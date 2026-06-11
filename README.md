@@ -1,55 +1,45 @@
-Flowsim (Node.js)
+Flowsim
 
-Kör lokalt:
+Kör lokalt
 
-1) Installera beroenden:
-
-```powershell
-cd C:\flowsim
-npm run install
-```
-
-2) Starta utvecklingsserver:
-
-```powershell
-npm run dev
-```
-
-Öppna sedan i webbläsaren:
-
-http://localhost:3000/
-
-Obs: `npm run install` kör scriptet `install` i `package.json` (detta kör i sin tur `npm install`).
-
-Filer skapade:
-- package.json
-- server.js
-- frontend/index.html
-- frontend/app.js
-- start-flowsim.bat
-- .gitignore
-
-Ny info — React + Vite frontend
-
-- Frontend finns i `frontend/` och är ett minimal React-app (Vite).
-
-Kör lokalt i utveckling (två terminaler):
+1. Installera beroenden:
 
 ```powershell
 cd C:\flowsim
-npm run install
+npm install
+```
+
+2. Starta servern:
+
+```powershell
 npm start
 ```
 
-I en separat terminal (frontend):
+3. Öppna appen:
 
-```powershell
-cd C:\flowsim\frontend
-npm install
-npm run dev
+```text
+http://localhost:3000
 ```
 
-Alternativt, starta endast backend med `npm start` och öppna http://localhost:3000
+Projektstruktur
 
-Detta README uppdaterar nu hur du kör frontend och backend under utveckling.
+- Backend: `server.js`
+- Frontend: `frontend/` (React + Vite)
+- Servern bygger och serverar frontend från `frontend/dist`
+
+Publik deployment
+
+Projektet är förberett för deployment på Render.
+
+Render använder:
+
+- Build command: `npm install`
+- Start command: `npm start`
+
+Detta fungerar eftersom root-projektet nu automatiskt installerar och bygger frontend under `postinstall`.
+
+Filer för deployment
+
+- `render.yaml` för Render
+- `package.json` i roten hanterar build/start för hela appen
 
