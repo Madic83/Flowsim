@@ -1,0 +1,9 @@
+{
+  "replacements": [
+    {
+      "filePath": "c:\\flowsim\\frontend\\src\\components\\MapPanel.jsx",
+      "oldString": "                              onClick={() => setOpenTriagePatient(p.id)}\n                              onMouseEnter={(e) => e.currentTarget.style.background = '#e3f2fd'}\n                              onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}",
+      "newString": "                              onClick={() => {\n                                setOpenTriagePatient(p.id);\n                                setTimeout(() => {\n                                  document.querySelectorAll('.leaflet-popup-close-button').forEach(btn => btn.click());\n                                }, 0);\n                              }}\n                              onMouseEnter={(e) => e.currentTarget.style.background = '#e3f2fd'}\n                              onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "flowsim",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "install": "npm install",
+    "start": "node server.js",
+    "start:frontend": "cd frontend && npm run dev",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^5.0.0"
+  }
+}

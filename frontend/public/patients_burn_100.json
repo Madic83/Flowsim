@@ -1,0 +1,72 @@
+[
+  {
+    "id": "BRN-001",
+    "name": "Emma Karlsson",
+    "sex": "kvinna",
+    "personnummer": "19850512-1234",
+    "baselineHealth": "Frisk",
+    "mechanism": "Brännskada",
+    "injuryDescription": "Brännskada ca 30%",
+    "triage": {
+      "scene": "Röd",
+      "collectionPoint": "Röd",
+      "emergencyDept": "Röd"
+    },
+    "ABCDE": {
+      "A": { "airway": "Fri" },
+      "B": { "AF": 22, "Sat": 97 },
+      "C": { "Puls": 110, "BT": "110/60", "Bleeding": "Ingen" },
+      "D": { "GCS": 15 },
+      "E": { "Temp": 36.2 }
+    },
+    "interventions": {
+      "AKM": ["Vätska", "Smärtlindring"],
+      "Radiology": "Ingen",
+      "Surgery": "Ingen"
+    },
+    "timeCritical": {
+      "avoidableComplicationMinutes": 30,
+      "avoidableDeathMinutes": 240
+    },
+    "outcome": {
+      "opNeeded": false,
+      "postOpCare": "IVA",
+      "ward": "IVA"
+    }
+  },
+  {
+    "id": "BRN-002",
+    "name": "Oskar Nilsson",
+    "sex": "man",
+    "personnummer": "19921203-5678",
+    "baselineHealth": "Diabetes",
+    "mechanism": "Brännskada",
+    "injuryDescription": "Brännskada ca 15%",
+    "triage": {
+      "scene": "Orange",
+      "collectionPoint": "Orange",
+      "emergencyDept": "Orange"
+    },
+    "ABCDE": {
+      "A": { "airway": "Fri" },
+      "B": { "AF": 18, "Sat": 99 },
+      "C": { "Puls": 95, "BT": "120/70", "Bleeding": "Ingen" },
+      "D": { "GCS": 15 },
+      "E": { "Temp": 36.8 }
+    },
+    "interventions": {
+      "AKM": ["Vätska", "Smärtlindring"],
+      "Radiology": "Ingen",
+      "Surgery": "Ingen"
+    },
+    "timeCritical": {
+      "avoidableComplicationMinutes": 60,
+      "avoidableDeathMinutes": 360
+    },
+    "outcome": {
+      "opNeeded": false,
+      "postOpCare": "IVA",
+      "ward": "IVA"
+    }
+  }
+]

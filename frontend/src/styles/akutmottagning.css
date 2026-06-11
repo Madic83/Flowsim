@@ -1,0 +1,22 @@
+.akut-full-screen{
+  height:100%;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  background:#f6f8fa;
+  color:#222;
+}
+.akut-topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#0b4a7a;
+  color:#fff;
+  padding:10px 14px;
+}
+.akut-title{ font-weight:700 }
+.akut-btn{ background:#fff; color:#0b4a7a; border:none; padding:6px 10px; border-radius:4px; cursor:pointer }
+.akut-content{ padding:16px; overflow:auto; flex:1 }
+
+/* Ensure container can take full height when inside the fullscreen element */
+#akut-container{ height:100vh }

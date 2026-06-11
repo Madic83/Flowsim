@@ -1,0 +1,3374 @@
+ESS 1 – Förmaksflimmer (I48.9)
+Onormal hjärtrytm (R00.8)
+Förberedande åtgärder
+
+EKG
+
+Röda symtom
+
+AV-Block III
+Ventrikeltakykardi
+
+Orange symtom
+
+Arytmi med medvetandeförlust
+Arytmi med nydebuterat benödem/dyspné/cyanos
+Arytmi – samtidigt blek och kallsvettig/kladdig/illamående
+AV-Block II
+Förmaksflimmer med bröstsmärta som patienten ej känner igen
+Nydebuterad arytmi med bröstsmärta/påtaglig obehagskänsla
+
+Gula symtom
+
+Hjärtfel – känt sedan tidigare
+Hjärtopererad, inklusive PCI inom senaste 3 månaderna
+Nydebuterat eller recidiverande förmaksflimmer
+Nyupptäckt VES i bigemini eller trigemini
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Hjärtrutin (TSH+T4 vid nyupptäckt förmaksflimmer)
+Blodgruppering
+Blodgas
+PVK (gärna höger arm)
+EKG-uppkoppling
+Plasmalyte
+
+RETTS Faktaruta
+Onormal hjärtrytm är ett symtom som kan vara orsakat av allvarliga arytmier som endast fångas intermittent men kan också vara av helt ofarlig karaktär men där patienten upplever extraslag. Extraslag kan ge symtom men vid undersökningstillfället kan extraslag saknas. VES = Ventrikulära extraslag.
+Vid akut hjärtsvikt kan symtom som bensvullnad/ödem, cyanos, rassel, ronki och dämpande andningsljud förekomma vid lungaskultation samt uttalad dyspné.
+"Arytmi med nydebuterat benödem/dyspné/cyanos" avser symtomen på hjärtsvikt (debut inom 48 timmar) i samband med en känd redan existerande arytmi, eller hjärtsvikt inducerad av arytmi.
+Plötslig medvetandeförlust utan föregående symtom och utan misstanke om bakomliggande krampsjukdom kan behöva en annan och mer skyndsam handläggning. Samtidigt är det ibland svårt att skilja medvetandeförlust vid arytmier från psykosomatiska orsakade symtom. Försök att anamnestiskt skilja på medvetandeförlust med prodromalsymtom (förkänningar), från medvetandeförluster som kommer plötsligt, utan förvarning och där patienten vaknar upp på golvet. Notera alltid tid för debut och följ lokal rutin för vidare klinisk handläggning.
+
+ESS 3 – Blodig upphostning/hemoptys (R04.2), Näsblödning/epistaxis (R04.0), Postoperativ tonsillblödning (R04.1)
+Förberedande åtgärder
+
+Hb g/L – om möjligt
+
+Röda symtom
+
+Hb <70 g/L eller initialt/lägst SBT <90 mmHg
+Pågående blödning från näsa/mun – stor okontrollerad
+
+Orange symtom
+
+Hb <90 g/L
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Svalgkirurgi senaste 14 dagarna
+
+Gula symtom
+
+Avstannad blödning samt koagulationshämmande läkemedel eller blödningsbenägenhet
+Övriga med pågående näsblödning
+
+Gröna symtom
+
+Övriga med avstannad näsblödning
+Övriga med hemoptys
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Polop prover
+Blodgruppering
+Bastest
+Blodgas
+PVK (överväg 2)
+Plasmalyte
+
+RETTS Faktaruta
+Blodupphostning/hemoptys skall alltid tas på allvar eftersom man vid upprepade tillfällen av hemoptys måste utesluta bakomliggande sjukdom. Vid vissa lungödem och vid lungemboli/lunginfarkt kan hemoptys förekomma men är relativt ovanligt och utgör inget kardinalsymtom. Hemoptys kan förekomma också vid koagulationshämmande behandling och vanlig benign hosta. Det är extra viktigt att man hos patienter med synlig blödning kontrollerar om det föreligger behandling med koagulationshämmare eller blödningsbenägenhet.
+
+ESS 4 – Andningsbesvär/dyspné/andnöd (R06.0), Hyperventilation (R06.4)
+Förberedande åtgärder
+
+EKG
+
+Röda symtom
+
+Dyspné samt blek/kallsvettig/medvetandeförlust
+Initialt/lägst SBT <90 mmHg
+ST-höjning
+Symtom och kliniska tecken som uppfyller nationella kriterier för sepsislarm
+
+Orange symtom
+
+Anamnes på medvetandeförlust
+Feber >38,5°C och frossa senaste 12 timmarna
+Dyspné med nytillkommet vänster eller högergrenblock
+Hjärtopererad, inklusive PCI senaste 3 månaderna
+Nytillkomna ischemitecken på EKG
+Pågående eller inom dygnet övergående dyspné med ischemitecken på EKG
+Synlig halsvenstas
+
+Gula symtom
+
+Benödem samt dyspné
+Obstruktivitet
+Tidigare känd kronisk hjärt-lungsjukdom
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Hjärtrutin + D-dimer
+Blodgruppering
+Blodgas
+PVK (överväg 2)
+EKG-uppkoppling
+Plasmalyte
+
+RETTS Faktaruta
+Dyspné/andnöd är ett av de vanligaste symtomen hos patienter som söker eller kontaktar akutsjukvården. Många av de sökande kan ha en tidigare känd hjärt-lungsjukdom. Alla tillstånd har inte en bakomliggande organisk orsak till dyspnén. Vid dyspné spelar därför kombinationen VP och ESS en viktig roll i handläggningen. Viktigt att komma ihåg är att patienter med kroniska lungsjukdomar ofta faller ut på vitalparametrar medan lungfriska kan ha helt normala vitalparametrar och ändå ha en allvarlig bakomliggande sjukdom. Vid lungemboli kan vissa patienter vara förvånansvärt opåverkade i vila. Ofta är akut lungemboli kombinerat med viss takykardi men behöver inte vara särskilt uttalad, i vissa fall kan nydebuterat förmaksflimmer vara associerat till lungemboli.
+
+ESS 5 – Bröstsmärta/bröstkorgssmärta (R07.4), Bröstsmärta vid andning (R07.1)
+Förberedande åtgärder
+
+EKG
+
+Röda symtom
+
+Pågående central bröstsmärta/tryck över bröstet med kardiell smärtkaraktär samt blek och kallsvettig/kladdig/illamående
+ST-höjning på EKG (STEMI)
+
+Orange symtom
+
+Pågående central bröstsmärta/tryck över bröstet med kardiell smärtkaraktär
+Pågående bröstsmärta/tryck över bröstet med nytillkommet vä/hö sidigt grenblock, eller AV block
+Pågående eller inom dygnet övergående bröstsmärta med aktuella ischemitecken på EKG
+Bröstsmärta/tryck över bröstet med medvetandeförlust det senaste dygnet
+Hjärtopererad, inklusive PCI senaste 3 månaderna
+Övergående bröstsmärta samt blek och kallsvettig/kladdig det senaste dygnet
+
+Gula symtom
+
+Övriga med pågående/övergående bröstsmärta
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Hjärtrutin
+Blodgruppering
+Bastest
+Blodgas
+PVK (överväg 2)
+EKG-uppkoppling
+Plasmalyte
+Syrgas om saturation <95%
+
+RETTS Faktaruta
+Bröstsmärta är den vanligaste orsaken till att patienter söker kontakt med akutsjukvården. RETTS ESS 5 visualiserar medicinsk risknivå (Röd till Grön) utifrån de vanligaste förekommande symtomen på bröstsmärta av kardiell genes och icke kardiell genes. Det förekommer alltid patienter med diffusare symtom som måste beaktas. Det är viktigt att val av triage-nivå vid varje undersökning och bedömning, baseras på både VP och rätt ESS samt utifrån vårdarens/användarens kliniska blick.
+
+ESS 6 – Buksmärta (R10.4), Flanksmärta (R10.4), Magsmärta (R10.4), Mag-tarmproblem (A09)
+Förberedande åtgärder
+
+EKG (Om buksmärta över navelplan och över 35 år eller kardiovaskulära riskfaktorer)
+
+Röda symtom
+
+Initialt/lägst SBT <90 mmHg
+Plötslig smärtdebut med samtidig medvetandeförlust
+Pågående smärta med plötslig debut samt blek/kallsvettig
+Symtom och kliniska tecken som uppfyller nationella kriterier för sepsislarm
+
+Orange symtom
+
+Feber >38,5°C och frossa senaste 12 timmarna
+Ileus – misstanke om
+Immunosupprimerad patient
+Pågående måttlig/svår smärta hos patient med känt bukaortaaneurysm
+Pågående måttlig/svår smärta hos patient med peritonealdialys eller pyelostomi
+Resistens i ljumske/buk – ej reponibel – ihållande svårt smärtsam
+Smärta och medvetandeförlust senaste 4 timmarna
+
+Gula symtom
+
+Övriga med ihållande buksmärta
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Bukrutin + Troponin
+Blododling vid feber >38,5 och frossa
+Blodgruppering
+Bastest
+Blodgas
+PVK x2
+EKG
+Plasmalyte (om kräkning)
+Bladderscan (vid stor buk)
+Urinsticka
+U-hCG på fertil kvinna
+
+RETTS Faktaruta
+Buksmärta är den vanligaste kontaktorsaken som brukar kategoriseras som ”kirurgi” inom akutvårdkedjan och finns vid många buktillstånd, diarré, kräkningar, infektion, metabola sjukdomar, kardiovaskulära tillstånd. Bakomliggande orsaker kan variera, och vissa tillstånd kräver omedelbart omhändertagande dock mer sällan akut kirurgisk åtgärd. Debuten och förekomst av andra samtidiga symtom som kräkning, hematuri, feber, frossa, diarré kan påverka handläggning och prioritering.
+
+ESS 7 – Blodig avföring/melena (K92.1), Blodig kräkning/hematemes (K92.0), Gastrointestinal blödning (K92), Rektal böld (L02.3), Symtom från anus och rektum/hemorrojder (K62.9)
+Förberedande åtgärder
+
+Hb g/L vid misstanke om blödning – om möjligt
+
+Röda symtom
+
+Initialt/lägst SBT <90 mmHg
+Pågående blödning – misstanke om/synlig – samt Hb <70 g/L
+Pågående stor blodkräkning eller stor rektal blödning
+Symtom och kliniska tecken som uppfyller nationella kriterier för sepsislarm
+
+Orange symtom
+
+Anamnes på esofagusvaricer
+Anamnes på stor blodkräkning eller stor rektal blödning
+Feber >38,5°C och frossa senaste 12 timmarna
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Pågående blödning och Hb <90 g/L
+Svalgkirurgi senaste 14 dagarna med blödning från näsa/mun
+
+Gula symtom
+
+Enstaka blödningar rektalt eller oralt
+Misstanke om/verifierad rektal abcess samt urinretention
+Svart avföring eller blod i avföringen
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Bukrutin
+Blodgas
+Blodgruppering
+Bastest
+PVK (överväg 2)
+Plasmalyte
+EKG (inför inläggning/operation)
+
+RETTS Faktaruta
+Hematemes beror oftast på blödning i ventrikel, esofagus eller övre delen av tunntarmen. Mörk/svart avföring/diarré betyder ofta blödning som pågått en tid, medan rött blod i avföringen ofta är färsk. Stora mängder blod indikerar större färsk blödning, medan små blodmängder i avföringen indikerar distal mindre blödning. Det är därför extra viktigt att man hos patienter med gastrointestinal blödning särskilt efterfrågar om patienten har ökad blödningsbenägenhet.
+
+ESS 8 – Illamående (R11.9A), Kräkning (R11.9B), Diarré (K59.1)
+Röda symtom
+
+Initialt/lägst SBT <90 mmHg
+Symtom och kliniska tecken som uppfyller nationella kriterier för sepsislarm
+
+Orange symtom
+
+Feber >38,5°C och frossa senaste 12 timmarna
+Ileus – misstanke om
+Immunosupprimerad patient
+Upprepade medvetandeförluster
+
+Gula symtom
+
+
+
+2 kräkningar sista 4 timmarna
+
+
+En medvetandeförlust
+Upprepade kräkningar/diarréer hos i övrigt skör eller multisjuk patient
+Upprepade kräkningar och shuntbehandlad hydrocefalus
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Bukrutin
+Blododling vid feber >38,5 och frossa
+Blodgas
+PVK x2
+EKG
+Plasmalyte
+
+RETTS Faktaruta
+Infektion: Symtom som kan indikera allvarlig infektion och kan leda till sepsis: Feber/skakfrossa/hypotermi, konfusion/vakenhetssänkning/motorisk oro, uttalad allmänpåverkan/allmän svaghet, andnöd/andfåddhet/takypné/dyspné, kräkning/diarré, smärta (ex buk). Feber är vanligt men det är även vanligt att patienterna inte har feber eller är hypoterma. Framförallt i sköra patientgrupper. Desto kraftigare frossa desto större risk att det rör sig om feber. Alla patienter med sepsis har inte feber och tänk på att patienten kan ha tagit febernedsättande, som påverkar mätningen. OBS! Lägre temperatur vid ankomst är korrelerad till högre sjukhusdödlighet.
+
+ESS 9 – Kramper (R56.9), Epilepsi, känd (G40.9)
+Röda symtom
+
+Blodtryck ≥ 180/120 samt gravid
+
+Orange symtom
+
+Blodtryck ≥ 160/110 samt gravid
+Koagulationshämmande läkemedel eller blödningsbenägenhet
+Krampanfall i abstinensfas
+Krampanfall utan tidigare känd epilepsi – misstänkt aktuellt
+Upprepade krampanfall – aktuella
+
+Gula symtom
+
+Krampanfall och tidigare känd epilepsi
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+CVS-rutin + Intoxrutin (vid misstänkt alkoholmissbruk)
+Blodgruppering
+Blodgas
+PVK
+EKG
+Plasmalyte
+
+RETTS Faktaruta
+Patient som haft aktuella (senaste dygnet) upprepade krampanfall har en ökad risk att få ytterligare ett krampanfall. Debut av epilepsi i vuxen ålder är ovanligt. Bakomliggande annan orsak till kramper bör misstänkas. Skalltrauma? Missbruk? Graviditet – misstänk preeklampsi. Hypertoni – högt blodtryck – kan debutera under graviditeten (efter v 20) och kallas då graviditetshypertoni. Kvinnan kan också vara diagnostiserad innan hon blir gravid och har då en essentiell hypertoni. Hos gravida skall blodtrycket observeras och monitoreras. Krampanfall hos patient med koagulationshämmande medicinering eller blödningsbenägenhet har ökad risk att kramperna kan bero på intrakraniell blödning.
+
+ESS 11 – Yrsel, balanssvårigheter (R42.0)
+Röda symtom
+
+(Inga röda symtom specificerade)
+
+Orange symtom
+
+Akut debut av konstant yrsel samt svårt att gå/stå/sitta utan levande stöd relaterat till yrseln
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt konstant yrsel
+Medvetandeförlust i samband med debut
+Plötsligt påkommen huvudvärk
+Spontan nystagmus – vertikal, torsionell eller riktningsväxlande nystagmus med blickriktningen
+
+Gula symtom
+
+Lägesyrsel/Karusellyrsel vid lägesförändring av huvudet – ostadig gå/stå
+Samtidiga upprepade kräkningar
+Skalltrauma senaste månaden
+Tidigare stroke
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+CVS-rutin
+Blodgruppering
+PVK
+EKG-uppkoppling
+Överväg ortostatiskt blodtryck
+Kapillärt Hb och glukos
+
+RETTS Faktaruta
+Yrsel är ett vanligt symtom hos både yngre och äldre patienter. Äldre kan dock få svårt att klara sin ADL vid plötslig yrsel eller variation i kronisk yrsel. En vanlig orsak till plötslig yrsel är godartad lägesbetingad yrsel som förvärras av huvudrörelse och lägesförändring av kroppen. Vid lägesbetingad benign yrsel är den ofta av rotatorisk karaktär. Med akut debut menas plötsligt påkommen yrsel inom några få timmars tidsintervall från ankomst. Vid yrsel hos äldre är det viktigt att man bedömer risken för fall och har patienten under uppsikt/tillsyn under vårdtiden.
+
+ESS 12 – Dubbelseende – båda ögonen (Binokulär Diplopi, H53.2), Facialispares (G51.9), Neurologiskt bortfall/TIA (G45.9), Stroke, misstanke om (I64.9)
+Röda symtom
+
+Symtom som uppfyller kriterier för strokelarm/vaskulär intervention
+
+Orange symtom
+
+DBT >120 mmHg
+Akut debuterat dubbelseende – båda ögonen (Binokulär Diplopi)
+Hydrocephalus/shunt
+Koagulationshämmande läkemedel eller blödningsbenägenhet
+Kräkningar/illamående/yrsel
+Patient med intermittenta bortfall inom 7 dygn
+Samtidig huvudvärk – måttlig/svår eller plötsligt debuterande
+Spontan para/tetraplegi
+
+Gula symtom
+
+Övriga med kvarvarande eller övergående fokala bortfall
+
+Gröna symtom
+
+Perifer facialispares utan andra symtom
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Om Rädda hjärnan-larm: Initiera larmkedja, sätt grov PVK och därefter till röntgen
+CVS-rutin
+Blodgruppering
+Bastest
+PVK
+NaCl-infusion
+Kapillärt P-glucos
+EKG
+Bladderscan vid misstänkt stroke
+
+RETTS Faktaruta
+Stroke är en av de vanligaste frågeställningar hos patienter med neurologiska symtom som söker på akutmottagningen. Viktigt är tidig CT i diagnostiken. Vid stroke finns ofta ett antal viktiga faktorer att ta hänsyn till vid prioritering, diagnostik och behandling. Det är särskilt viktigt att hitta patienten tidigt i förloppet vid misstanke om hjärninfarkt men också finna de patienter som eventuellt kan ha en blödning.
+
+ESS 13 – Ledvärk utan trauma (M25.5)
+Röda symtom
+
+Initialt/lägst SBT <90 mmHg
+Symtom och kliniska tecken som uppfyller nationella kriterier för sepsislarm
+
+Orange symtom
+
+Feber >38,5°C och frossa senaste 12 timmarna
+Immunosupprimerad patient
+Lokal infektion med svår smärta
+
+Gula symtom
+
+Inopererat material/protes i värkande led
+Nydebuterad svår smärta
+Omöjligt att flektera/extendera
+Rodnad, svullen och öm led
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Rutinpaket + urat
+Blododling
+PVK
+Kapillärt CRP
+
+RETTS Faktaruta
+ESS 13 används för engagemang i eller ovan fot/handled. Den viktigaste åtgärden vid handläggning av patienter med ledvärk är kartläggningen av utbredningen, en eller flera leder, symtomdebut och duration. Förekomst av feber/frossa samt lokal rodnad, eller allmänpåverkan. Har patienten tidigare kirurgi mot leden eller inopererad protes? Vid septisk artrit är det oftast stora leder inblandade och oftast en led. Fråga om trauma i anamnesen.
+
+ESS 14 – Ryggsmärta utan trauma (M54.9), Smärta i bröstryggen utan trauma (M54.6), Smärta nacke utan trauma (M54.2)
+Röda symtom
+
+Thorakal plötsligt smärta samt blek/kallsvettig
+Thorakal plötslig smärta med medvetandeförlust
+
+Orange symtom
+
+Feber >38,5°C och frossa senaste 12 timmarna
+Meningism/nackstelhet
+Nacksmärta med plötslig debut
+Nytillkommen fekal-/urininkontinens
+Ridbyxeanestesi
+Thorakal plötslig smärta men ej blek/kallsvettig
+Urinretention
+
+Gula symtom
+
+Koagulationshämmande läkemedel eller blödningsbenägenhet
+Smärta nacke med domningar/stickningar/smärta i arm
+Smärta rygg med domningar/stickningar/smärta i ben
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Hjärtrutin eller Polop
+Blodgruppering
+Bastest
+PVK
+EKG
+Urinsticka samt U-hCG på fertil kvinna
+Bladderscan
+
+RETTS Faktaruta
+Vanligaste orsaken till akut ryggvärk är muskulära besvär utan annan organisk orsak. Därför är det viktigt att tidigt sortera ut de patienter som inte behöver kompletterande utredning utan rådgivning om smärtbehandling. De som har ett uppenbart akut insjuknande skall utredas och handläggas på annat sätt.
+
+ESS 15 – Extremitetsbesvär (M79.6), Smärta i extremitet (M79.6), Svullnad i extremitet (R22.4), Underbensödem (R60.0)
+Förberedande åtgärder
+
+EKG vid misstanke om kardiell genes
+
+Röda symtom
+
+Initialt/lägst SBT <90 mmHg
+Symtom och kliniska tecken som uppfyller nationella kriterier för sepsislarm
+
+Orange symtom
+
+Feber >38,5°C och frossa senaste 12 timmarna
+Hematom med svullnad i ljumske – snabbt växande
+Plötslig debut med svår smärta
+Påverkat distalstatus (Obs cirkulation)
+
+Gula symtom
+
+Ensidig smärta/konsistensökning/svullnad
+Hematom med svullnad i handled – snabbt växande
+Inopererat material/protes
+Koagulationshämmande läkemedel eller blödningsbenägenhet
+Nydiagnostiserad DVT
+
+Gröna symtom
+
+Bilaterala underbensödem utan samtidig dyspné
+Återkommande eller i karaktär oförändrat lymfödem
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Trombosrutin (Om bilateral svullnad lägg till Troponin + Pro-BNP)
+Vid feber >38,5: Rundodling och Myoglobin
+PVK
+Kapillärt CRP
+EKG
+
+RETTS Faktaruta
+Akut smärta, molande värk eller strålande smärta arm/armar kan vara av kardiell genes (sk, referred pain). De här och liknande symtom i övre extremitet kan ibland upplevas diffusa och missvisande då de kan uppträda enskilt, spontant eller i samband med eller efter fysisk ansträngning utan andra påvisade kardinalsymtom för kardiell ischemi. Hos patienter med känt eller okänt förmaksflimmer kan kardiella embolier occludera extremitetskärl. Akut påkommen kall extremitet föranleder alltid kontakt med kärlkirurg (detta måste ske utan fördröjning, extremiteten är hotad).
+
+ESS 16 – Blod i urin/hematuri (R31.9), KAD-relaterade problem (Y84.6), Smärta vid vattenkastning (R30), Urinretention (R33.9), Urinvägsproblem (N39.0)
+Förberedande åtgärder
+
+Hb g/L vid hematuri – om möjligt
+
+Röda symtom
+
+Hematuri samt Hb <70 g/L eller initialt/lägst SBT <90 mmHg
+Symtom och kliniska tecken som uppfyller nationella kriterier för sepsislarm
+
+Orange symtom
+
+Feber >38,5°C och frossa senaste 12 timmarna
+Hematuri samt Hb <90 g/L
+Makroskopisk hematuri samt koagulationshämmande läkemedel eller blödningsbenägenhet
+
+Gula symtom
+
+Akut buksmärta samt urinproblem
+Makroskopisk hematuri
+Percutana urinkateterkomplikationer
+Urinretention samt blek/kallsvettig
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Rutinpaket
+PVK
+Om infektionstecken och feber >38,5: Rundodling
+Om blödning: Blodgruppering och Bastest
+Kapillärt HB + CRP
+Bladderscan
+
+RETTS Faktaruta
+De bakomliggande faktorerna vid vattenkastningssmärta är många. Fråga efter tidigare symtom av liknande karaktär. Makroskopisk hematuri kan ha olika akuticitet men skall alltid föranleda ställningstagande till utredning som i de flesta fall kan ske polikliniskt. Vid miktionssveda bör också könssjukdom beaktas. Percutan urinkateter innebär ökad infektionsrisk för patienten och vid komplikationer skall dessa patienter hanteras enligt lokal rutin.
+
+ESS 17 – Skrotal smärta (N50.8), Skrotal svullnad (N50.8D), Besvär i penis/urinrör (N50.9)
+Röda symtom
+
+(Inga röda symtom specificerade)
+
+Orange symtom
+
+Smärta skrotum – intermittent måttlig till kraftig <48 timmar
+Smärtande resistens i skrotum – ej reponibelt
+Priapism/paraphimosis
+Pågående smärta skrotum – måttlig till kraftig med plötslig debut <12 timmar
+
+Gula symtom
+
+Övrig smärta
+
+Gröna symtom
+
+Pungbråck, utan smärta – misstanke om nydebuterat
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Polop
+Blodgruppering
+Bastest
+PVK
+Urinprov
+
+RETTS Faktaruta
+Orsaken till skrotal smärta kan vara epididymit som förekommer i alla åldrar men ovanligt före puberteten. Testistorsion drabbar oftast pojkar och yngre män och karaktäriseras av plötslig eller intermittent insättande ensidig, skrotal smärta med svullnad. Omedelbar urologkontakt är viktig/obligatorisk vid misstanke om testistorsion. Hos äldre män kan smärtan vara orsakad av pungbråck.
+
+ESS 19 – Huvudvärk (R51.9), Neuralgi/nervsmärta (M79.2)
+Röda symtom
+
+SBT ≥ 180 samt gravid
+DBT ≥ 120 samt gravid
+Initialt/lägst SBT <90 mmHg
+Symtom och kliniska tecken som uppfyller nationella kriterier för sepsislarm
+
+Orange symtom
+
+Anamnes på medvetandeförlust
+Feber >38,5°C och frossa senaste 12 timmarna
+Inopererad shunt
+Koagulationshämmande läkemedel eller blödningsbenägenhet
+Kraftig huvud-/nack-/halsvärk med plötslig debut de senaste 24 timmarna
+Meningism/Nackstelhet
+Plötslig yrsel med samtidig huvudvärk
+SBT ≥ 160 samt gravid
+DBT ≥ 110 samt gravid
+
+Gula symtom
+
+SBT >240 mmHg (upprepade mätningar)
+DBT >140 mmHg (upprepade mätningar)
+
+Gröna symtom
+
+Övrig huvudvärk
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+CVS-rutin
+Rundodling vid meningism/nackstelhet eller feber >38.5
+Blodgruppering
+Bastest
+PVK
+EKG
+Bladderscan
+U-hCG på fertil kvinna
+
+RETTS Faktaruta
+Åskknallshuvudvärk är ett kardinalsymtom vid subarachnoidalblödning och kan vara en mindre sk varningsblödning och skall tas på största allvar. Åskknallshuvudvärk innebär att huvudvärken kommer plötsligt. Hos dessa patienter skall alltid subarachnoidalblödning misstänkas och uteslutas. Meningism definieras som patienten med huvudvärk, allmänpåverkad och med en reflektorisk nackstelhet vid passiv (undersökaren böjer huvudet framåt) flexion i nacken.
+
+ESS 20 – Medvetandeförlust (R40.2), Svimning/syncopé (R55.9)
+Orange symtom
+
+Blek/kallsvettig
+Medvetandeförlust vid fysisk ansträngning
+Upprepade medvetandeförluster
+
+Gula symtom
+
+En medvetandeförlust
+
+Gröna symtom
+
+Svimningskänsla utan faktisk medvetandeförlust
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+CVS-rutin
+Blodgas
+Blodgruppering
+PVK
+EKG-uppkoppling
+Bladderscan
+P-glucos
+Ortostatiskt blodtryck
+U-hCG på fertil kvinna
+
+RETTS Faktaruta
+Denna ESS skall enbart användas vid isolerad medvetandeförlust. Vid andra samtidiga symtom se istället aktuell ESS. Nytillkommen ortostatism/svimningskänsla från liggande till stående: Överväg att först kontrollera liggande blodtryck och direkt därefter kontrollera stående blodtryck. Fråga efter trauma i anamnesen. Definition medvetandeförlust: svimning eller syncope, dvs där medvetandeförlust uppges av patienten eller anhörig/bystander.
+
+ESS 21 – Graviditet (Z32.1), Gynekologiska besvär (N92.6), Högt blodtryck samt gravid, Postpartum <30 dagar (Z39.0), Underlivsbesvär (N94.9), Vaginal blödning (N93.9)
+Förberedande åtgärder
+
+Hb g/L – om möjligt
+
+Röda symtom
+
+Gravid med pågående mycket stor vaginal blödning
+Hb <70 g/L
+Initialt/lägst SBT <90 mmHg (gravid – Initialt/lägst SBT <80 mmHg)
+Symtom och kliniska tecken som uppfyller nationella kriterier för sepsislarm
+Pågående förlossning
+Pågående smärta med plötslig smärtdebut samt blek/kallsvettig
+SBT ≥180 samt gravid
+DBT ≥120 samt gravid
+
+Orange symtom
+
+Aktuellt krampanfall hos gravid patient
+Buksmärta av intervallkaraktär
+Feber >38,5°C och frossa senaste 12 timmarna
+Hb <90 g/L
+Immunosupprimerad patient
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Vaginal blödning – mycket stor
+Postpartum och anamnes på feber
+SBT ≥160 samt gravid
+DBT ≥110 samt gravid
+
+Gula symtom
+
+Hb <100 g/L
+Stor vaginal blödning
+Övriga med ihållande buksmärta
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS Faktaruta
+Denna algoritm/ESS skiljer sig från Buksmärta ESS 6 i det att den skall fånga problem från retroperitoneala organ hos kvinnor. 10–15% av alla kliniska graviditeter slutar i missfall. Tänk på att ett missfall kan upplevas olika och det är viktigt att patienten får stöd och uppföljning om hon önskar, även om ett okomplicerat missfall inte får en hög prioritet/har en hög medicinsk risk.
+
+ESS 29 – Gulsot/ikterus (R17.9), Ascites (R18.9)
+Röda symtom
+
+Initialt/lägst SBT <90 mmHg
+Symtom och kliniska tecken som uppfyller nationella kriterier för sepsislarm
+
+Orange symtom
+
+Feber >38,5°C och frossa senaste 12 timmarna
+
+Gula symtom
+
+Ascites/ökat bukomfång med eller utan ikterus
+Ikterus och feber
+
+Gröna symtom
+
+Ikterus utan andra symtom
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Bukrutin
+Blododling vid feber >38,5 och frossa
+PVK
+Bladderscan
+
+RETTS Faktaruta
+Gulsot är relativt ovanligt hos tidigare friska vuxna. Gulsoten kan dock även bero på allvarliga sjukdomar som hemolys, gallvägsmissbildning, sepsis eller annan infektion. Gulsot kan ses vid leversjukdom, störningar i gallflödet och vid ökat sönderfall av röda blodkroppar (hemolys).
+
+ESS 30 – Hängning/strypning (Y20), Käkskada (S02.2), Skada huvud/ansikte/näsa (S09.9), Skada nacke/hals (S11.9), Tandskada (K03.8)
+Förberedande åtgärder
+
+Uteslut traumalarmskriterier ESS 38
+
+Röda symtom
+
+Ansikts/halsskada med hotad luftväg (se ESS 38)
+Misstänkt ryggmärgsskada (se ESS 38)
+Penetrerande våld mot hals, huvud (se ESS 38)
+Öppen skallskada/impressionsfraktur (se ESS 38)
+Hängningsförsök – symtom efter
+Neurologiska bortfall
+Pulserande blödning i/på halsen
+Pulserande blödning på huvudet som ej är kontrollerbar med kompression
+Strypningsförsök – symtom efter
+
+Orange symtom
+
+Berusad/intoxikerad
+Blödning/vätska från hörselgång
+Fraktur skalle/ansiktsskelett/nacke exkl näsa – misstanke om
+Koagulationshämmande läkemedel eller blödningsbenägenhet
+Luxation käkled – misstanke om
+Pulserande blödning – kontrollerbar med risk för reblödning
+Påverkat mentalt status
+
+Gula symtom
+
+≥2 kräkningar
+Hematom/blåaktig svullnad på ytteröra
+Hörselnedsättning – nytillkommen i samband med skada
+Medvetslöshet/amnesi – i samband med skada
+Misshandel
+Fraktur näsa – utan misstanke om andra skador
+Shunt inopererad
+Sårskada – djup/sutureringskrävande
+Över 65 år med behandling av ASA eller andra trombocythämmare
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Överväg traumalarm
+Provpaket: Stort trauma/chock/hjärtstopp
+Blodgas
+Blodgruppering
+Bastest
+PVK x2
+EKG-uppkoppling
+
+RETTS Faktaruta
+Patienter som fyllt 65 år, som behandlas med trombocythämmare, skall till vårdinrättning för bedömning av behovet av en CT. Vid skada mot huvud/hals är det viktigt att fråga efter om patienten äter koagulationshämmande läkemedel vilket kan ge ökad blödningsbenägenhet.
+
+ESS 31 – Skada buk (S39.9), Skada könsorgan (S30.2), Skada thorax/rygg (S29.9)
+Förberedande åtgärder
+
+Uteslut traumalarmskriterier ESS 38
+
+Röda symtom
+
+Instabil/deformerad bröstkorg (se ESS 38)
+Misstänkt ryggmärgsskada (se ESS 38)
+Penetrerande våld mot bål (se ESS 38)
+Andningskorrelerad thorakal smärta samt blek/kallsvettig
+Avsaknad av ensidiga andningsljud – nytillkommen vid skada
+Fraktur på rygg – med/utan neurologisk påverkan – misstanke om
+Halsvenstas
+Subcutana emfysem
+
+Orange symtom
+
+Blödning rektal/vaginal – debut efter skada
+Buksmärta/bukomfång – tilltagande
+Fraktur på bröstkorg (ej revben/nyckelben) – misstanke om
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Skada scrotum med kraftig smärta/ödem
+Subcutana emfysem
+Urinstämma/kraftig hematuri
+
+Gula symtom
+
+Fraktur på bröstkorg – misstanke om
+Misshandel
+Skada underliv samt mindre yttre svullnad/blödning
+Sårskada – djup/sutureringskrävande
+Trauma mot buk
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Överväg traumalarm
+Provpaket: Stort trauma/chock/hjärtstopp eller liten traumarutin
+Blodgas
+Blodgruppering
+Bastest
+PVK x2
+EKG-uppkoppling
+Urinsticka
+Bladderscan vid misstanke om urinstämma
+
+RETTS Faktaruta
+Denna typ av skada föranleder alltid ett ställningstagande om särskild traumalarmsalgoritm skall användas, se ESS 38. Misstänk ryggfraktur vid: Måttlig/kraftig smärta centralt över kolumna vid palpation, axielt våld, oförmåga eller ovilja att röra huvud, överväg vid pat >65 år även vid subtilare fynd. Misstänk fraktur bröstkorg vid: Kraftig smärta över bröstkorgen efter trauma.
+
+ESS 32 – Hematom/svullnad/blåmärke (T14.0), Skrubbsår (T14.0B), Skärsår (T14.1), Sårskada (T14.1)
+Förberedande åtgärder
+
+Se ALLTID ÄVEN skadekort ESS 30–31 samt ESS 33–37
+Uteslut Traumalarmskriterier ESS 38
+
+Röda symtom
+
+Skärskada – ymnig/pulserande blödning – ej kontrollerbar
+
+Orange symtom
+
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+
+Gula symtom
+
+Skärskada på extremitet – ytlig med omfattande sårlängd – ej pulserande (se även ESS 86)
+Sårskada på extremitet med lokala infektionssymtom (se även ESS 47)
+
+Gröna symtom
+
+Hematom/bula/lindrig sårskada på huvudet – lätt/avstannad blödning
+Hematom/bula/sårskada i ansiktet – ymnig blödning – komprimerbar/kontrollerad
+Skadad nagel
+Sticka i finger/hand/fot – djupt sittande som kräver sjukvårdsinsats
+Skrubbsår på extremitet – smutsigt/kapillärblödning som kräver bedömning och rengöring
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av sjukvård
+
+Lokala processåtgärder
+
+Överväg traumalarm
+Provpaket: Stort trauma/chock/hjärtstopp
+Blodgas
+Blodgruppering
+Bastest
+Kapillärt Hb
+Kapillärt CRP vid infektionstecken
+Överväg tourniquet vid ej kontrollerbar blödning på extremitet
+
+RETTS Faktaruta
+ESS 32 är ett nytt kort för sårskador i olika omfattning. Kortets syfte är att komplettera övriga skadekort med överlappning på vissa symtom/kriterier. ESS 32 ersätter inte de skador som kan hanteras i skadekorten ESS 30–31 och 33–38. Vårdaren behöver därför ALLTID först bedöma om skadans art istället kan triageras utifrån skadekort ESS 30–31 och 33–37 och Traumakort ESS 38.
+
+ESS 33 – Skada axel/nyckelben (S49.9), Skada arm/handled (S69.9), Skada hand/finger (S66.3)
+Förberedande åtgärder
+
+Uteslut Traumalarmskriterier ESS 38
+
+Röda symtom
+
+≥2 frakturer på långa rörben (se ESS 38)
+Amputation ovan handled (se ESS 38)
+Penetrerande våld mot övre extremiteter ovan armbåge (se ESS 38)
+Stor yttre blödning (se ESS 38)
+Fraktur/luxation samt pulslös perifert om skada
+
+Orange symtom
+
+Amputation – nedom handled exkl fingertopp
+Distalstatus – sensoriskt/motoriskt total bortfall
+Fraktur/luxation – öppen/felställning – exkl. fingrar, felställda nyckelben
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Smärta och tecken på kompartmentsyndrom
+
+Gula symtom
+
+Amputation/delvis amputerad fingertopp
+Blödning – kontrollerbar
+Distalstatus – sensoriskt/motoriskt lätt nedsatt
+Fraktur i armbågsled/långa rörben/axelled – sluten/ej felställd misstanke om
+Fraktur/luxation i fingrar – felställning/öppen
+Misshandel
+Sårskada – djup/sutureringskrävande
+
+Gröna symtom
+
+Inget av ovanstående
+Fraktur/luxation övrigt – misstänkta/konstaterade
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Överväg traumalarm
+Provpaket: Stort trauma/chock/hjärtstopp
+Blodgas
+Blodgruppering
+Bastest
+PVK
+Kapillärt Hb
+
+RETTS Faktaruta
+≥2 frakturer på långa rörben hanteras i ESS 38. Nedsatt distalstatus är om pulsar och eller känsel är påverkade bortom skadan. Kompartmentsyndrom uppstår när en muskel i armen svullnar så mycket att trycket påverkar muskel, blodflöde och nerver. Det kan även uppstå om ett gips är för trångt och trycket på vävnaden därigenom blir för högt. Måste behandlas skyndsamt för att undvika bestående skador.
+
+ESS 34 – Skada fot/tå (S99.9), Skada höft/lårben/bäcken (S79.9), Skada knä/underben (S89.9)
+Förberedande åtgärder
+
+Uteslut traumalarmskriterier ESS 38
+
+Röda symtom
+
+≥2 frakturer på långa rörben (se ESS 38)
+Amputation ovan fot (ESS 38)
+Penetrerande våld mot nedre extremiteter ovan knä (ESS 38)
+Stor yttre blödning (ESS 38)
+Svår smärta i bäckenet/misstänkt bäckenfraktur (ESS 38)
+Fraktur/luxation samt pulslös perifert om skada
+Fraktur ovan knä – öppen
+
+Orange symtom
+
+Amputation – nedom fotled samt stortå, exkl övriga tår
+Distalstatus – sensoriskt/motoriskt total bortfall
+Fraktur – öppen/felställd – knä/nedom knä till ovan tår
+Fraktur ovan knä, exkl bäcken – sluten/ej felställd – misstanke om
+Luxation ovan tår
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Smärta och tecken på kompartmentsyndrom
+
+Gula symtom
+
+Amputation/delvis amputerad tå, exkl stortå
+Blödning – kontrollerbar
+Distalstatus – sensoriskt/motoriskt lätt nedsatt
+Fraktur i tår – öppen
+Fraktur knä/nedom knä, exkl tår – sluten/ej felställd – misstanke om
+Misshandel
+Sårskada – djup/sutureringskrävande
+
+Gröna symtom
+
+Fraktur/luxation övrigt – misstänkta/konstaterade
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Överväg traumalarm
+Provpaket: Stort trauma/chock/hjärtstopp
+Blodgas
+Blodgruppering
+Bastest
+PVK
+Kapillärt Hb
+Högläge vid misstänkt fotledsfraktur
+Överväg tourniquet vid amputationsskada
+
+RETTS Faktaruta
+≥2 frakturer på långa rörben hanteras i ESS 38. Långa rörben: Humerus (överarm), Femur (lårben), Samtidig fraktur på både tibia och fibula (underbensbenen). Kompartmentsyndrom uppstår när en muskel i benet svullnar så mycket att trycket påverkar muskler, blodflöde och nerver. Det kan även uppstå om ett gips är för trångt och trycket på vävnaden därigenom blir för högt. Måste behandlas skyndsamt för att undvika bestående skador.
+
+ESS 35 – Blixtnedslag (T75.0), Brännskada (T30.0), Elolycka (T75.4), Frätskada (T30.4), Hypertermi/Värmeslag (T67.0), Hypotermi (T68), Inhalationsskada (T59), Kemisk skada (T65), Köldskada (T35.7), Strålskada (T66.9), Toxisk effekt av kolmonoxid (T58.9)
+Förberedande åtgärder
+
+Uteslut traumalarmskriterier ESS 38
+
+Röda symtom
+
+Akut strålskada
+Brännskada/frätskada ≥18% (se ESS 38)
+Brännskada/frätskada ansikte/hals med hot om ofri luftväg
+Circumferent fullhudsbrännskada
+Elolycka högspänning
+Hypertermi i samband med yttre påverkan till överhettning/gravt värmeslag med temp över 40,5 °C
+Hypotermi i samband med nedkylning med temp under 32 °C
+Inhalation av brandrök med sot runt mun/i svalg (se ESS 38)
+Kem/frätskador av potentiellt livshotande ämne på hud eller per os (se ESS 38)
+Svullnad i ansikte/tunga
+
+Orange symtom
+
+Brännskada/frätskada/köldskada 5%–18%
+Hosta efter rökinhalation
+Hypertermi i samband med yttre påverkan till överhettning/värmeutmattning med temp upp till 40,5 °C
+Lindrig hypotermi i samband med nedkylning med temp 32–34,9 °C
+Lokal köldskada i svalg med kraftig sväljsmärta/svårt att svälja saliv efter inhalation av gaser/kemikalier
+Medvetandeförlust i anamnesen
+Övriga circumferenta brännskador
+
+Gula symtom
+
+Begränsad brännskada/frätskada/köldskada <5%
+Blixtnedslag i patientens omedelbara närhet
+Lokal köldskada
+
+Gröna symtom
+
+Övrig elolycka
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Överväg traumalarm
+Provpaket: Stort trauma/chock/hjärtstopp
+Blodgas
+Blodgruppering
+Bastest
+PVK
+EKG-uppkoppling
+Syrgas 15L reservoarmask
+Liten traumarutin + Myoglobin
+Urinsticka vid elolycka
+
+RETTS Faktaruta
+Med högspänning menas här allt >1000 V t.ex. kontaktledningar för tåg, högspänningsledningar eller blixtnedslag. Patienter som utsatts för vanlig hushållsel (230V) kan behöva uppföljning kring senkomplikation (nervskador etc). Hypertermi: Ett medicinsk tillstånd där kärnkroppstemperaturen stegras och blir onormalt hög och kan ge upphov till värmekramp, värmesynkopé och värmeslag. Hypotermi: Innebär att kroppens kärntemperatur är <35°C. Nedkylning, eller hypotermi, kan delas in i olika stadier.
+
+ESS 36 – Drunkning/drunkningstillbud (T75.1), Dykarsjuka/dekompressionssjukdom, misstanke om (T70.3)
+Förberedande åtgärder
+
+Uteslut traumalarmskriterier ESS 38
+
+Röda symtom
+
+Kramp efter drunkningstillbud
+Temp. <32 °C
+Patient har i samband med eller efter tillbudet varit medvetslös eller utan egen andning/cirkulation
+
+Orange symtom
+
+Intoxikerad patient
+Neurologiska bortfallssymtom
+Snabb uppstigning från dykning med komprimerad gas
+Temp 32–34,9°C
+Yrsel/ledvärk
+
+Gula symtom
+
+Andningsrelaterad smärta/andfåddhet efter dyk med komprimerad gas
+Hudmarmorering/lymfödem
+Misstänkt signifikant aspiration utan påverkade VP
+
+Gröna symtom
+
+Klåda
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Rutinpaket: Stort trauma/chock/hjärtstopp
+Blodgas
+Vid intox överväg urindrogsscreening
+EKG-övervakning
+Kontinuerlig temperaturövervakning (tempkateter, esofagus/rektaltemp)
+Liten traumarutin
+
+RETTS Faktaruta
+Drunkning är en diagnos men ofta handlar det om ett tillbud av olika karaktär där det varit en olycka av något slag, båt, simbassäng, badplats fall i vatten etc. Cirka 120 personer drunknar varje år i Sverige. Hypotermi är vanligt i samband med drunkning och ytterligare nedkylning ska motverkas.
+
+ESS 38 – Trauma (Z91.6)
+Röda symtom
+
+Behov av ventilationsstöd
+AF <10 eller >29/minut
+BT <90 mmHg eller ej palpabel radialispuls
+RLS ≥3 eller GCS ≤13
+Penetrerande våld mot hals, huvud, bål, extremiteter ovan armbåge/knä
+Öppen skallskada/impressionsfraktur
+Ansikts/halsskada med hotad luftväg
+Instabil/deformerad bröstkorg
+Svår smärta i bäckenet/misstänkt bäckenfraktur
+
+Orange symtom
+
+Bilolycka >50 km/h utan bälte
+Utkastad ur fordon
+Fastklämd med losstagningstid >20 min
+MC-olycka (eller motsvarande) >35 km/h
+Fall >5 meter
+Ospecificerat trauma – bedömd som Nivå 2 i SAMRÅD MED LÄKARE eller LAS
+
+Gula, gröna, blåa symtom
+
+(Ej specificerade, används endast för röd/orange prioritet)
+
+Lokala processåtgärder
+
+Aktivera traumalarm
+Provpaket: Stort trauma/chock/hjärtstopp
+Blodgas
+Blodgruppering
+Bastest
+PVK x2
+EKG-övervakning
+Överväg ROTEM (tas i ljusblått rör och skicka till blodcentralen, ring dem innan)
+
+RETTS Faktaruta
+Algoritm baseras på Nationella traumalarmskriterier. Ett eller flera kriterier i RÖD ruta ger NIVÅ 1 larm eller NIVÅ 2 larm. Oavsett vilket/vilka kriterier som ger utfall gäller prehospitalt förvarning till AKM samt lokala riktlinjer för val av transportprioritet till sjukhus.
+
+ESS 40 – Förgiftning/intoxikation (T50.9)
+Röda symtom
+
+(Ej specificerade)
+
+Orange symtom
+
+Buksmärta
+Intag av (känd/misstänkt) giftsvamp
+Intag av substans i suicidsyfte
+Misstanke om allvarlig intoxikation
+
+Gula symtom
+
+Intag av okänd substans
+
+Gröna symtom
+
+Intag av uppenbart ofarlig substans/mängd
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Intox-rutin
+Blodgas
+PVK
+EKG-uppkoppling
+Överväg Udrogscreening om drogintox
+
+RETTS Faktaruta
+Vid känt suicidförsök, eller misstanke om suicidförsök måste särskild övervakning övervägas. Överväg alltid behov av kuratorskontakt och/eller uppföljning i öppenvård. Vid svampförgiftning be patienten ange sannolik svamptyp och be eventuella anhöriga att ta hand om eventuella rester för att visa svampkunnig inom sjukvården.
+
+ESS 41 – Bett och stick av djur (T14.1A), Toxiska effekter av djur (T63.9), Bett av människa (T14.0), Stickskada med smittorisk (T14.0X)
+Röda symtom
+
+Anafylaktisk reaktion
+Initialt/lägst SBT <90 mmHg
+Svullnad i andningsvägar/mun med påverkad andning, tal eller sväljförmåga
+Symtom och kliniska tecken som uppfyller nationella kriterier för sepsislarm
+
+Orange symtom
+
+Bett av djur med potentiellt gift
+Feber >38,5°C och frossa senaste 12 timmarna
+Tidigare anamnes på allvarlig allergisk reaktion av bett eller stick av samma djur/insekt
+
+Gula symtom
+
+Djup sårskada
+
+Gröna symtom
+
+Kraftig lokal reaktion av bett
+Stickskador med smittorisk
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Provpaket: Stort trauma/hjärtstopp/chock
+Blodgas
+PVK
+Plasmalyte
+Vid misstanke om anafylaxi: Ge syrgas och förbered Adrenalin, Tavegyl och Betapred för att ge på ordination
+Vid feber >38,5°C: Rundodling
+Kapillärt CRP
+
+RETTS Faktaruta
+Giftinformationscentralen: 010-456 67 19 och i brådskande fall 112 och begär Giftinformationscentralen, www.giftinfo.se. Små sår och skärskador bör sutureras inom 6 h. Om bett av smådjur, stick etc fråga om handläggning och behandling, vaccination etc.
+
+ESS 43 – Allergi (T78.4), Exantem/hudutslag/blåmärke (R21.9), Klåda (F45.8), Läkemedelsreaktion (T88.7X)
+Röda symtom
+
+Anafylaktisk reaktion
+Svullnad i andningsvägar/mun med påverkad andning, tal eller sväljförmåga
+
+Orange symtom
+
+Tidigare anafylaktisk reaktion och nu exponerad för samma allergen
+
+Gula symtom
+
+Övriga med svullnad i ansikte eller klåda hals
+
+Gröna symtom
+
+Lokal urtikaria/exantem
+Övriga
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Provpaket: Stort trauma/hjärtstopp/chock
+Blodgas
+PVK x2
+Plasmalyte
+Syrgas
+Förbered Adrenalin, Tavegyl och Betapred för att ge på ordination
+
+RETTS Faktaruta
+Allergi är ett dynamiskt förlopp och kan initialt vara lindrigt men utvecklas till ett allvarligt tillstånd. Därför är tillsyn och reevaluering extra noga på patienter med allergisk reaktion. Anafylaktiska reaktioner oavsett orsak brukar indelas i olika faser: Initialfasen (inom ett par minuter till en timma efter kontakt med utlösande agens), Progressfasen (mer generella symtom med urtikaria, angioödem, tachykardi, buksmärtor), Chockfasen (medvetandepåverkan, hypotension och cirkulationssvikt).
+
+ESS 44 – Blåsor i munnen (J06.9), Halsont, förkylning (J06.9), Hosta (R05.9)
+Orange symtom
+
+Feber >38,5°C och frossa senaste 12 timmarna
+Immunosupprimerad patient
+Uttalade sväljsvårigheter, dreglar/kraftig smärta vid sväljning
+
+Gula symtom
+
+Halsont och grötigt tal
+Gapsvårigheter (trismus)
+
+Gröna symtom
+
+Bihålebesvär
+Muntorsk
+Svullen halsmandel med synlig svalgtappsförskjutning/återkommande halsböld
+Inget av ovanstående
+
+Blåa symtom
+
+Efter bedömning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Provpaket: Stort trauma/chock/hjärtstopp
+Blodgas
+PVK
+Plasmalyte
+Rundodling
+Rutinpaket
+
+RETTS Faktaruta
+Övre luftvägsbesvär orsakas oftast av virus och kräver i regel endast symtomlindrande behandling. Bedöm andningsarbete enligt ESS 4. Faryngit/laryngit: Halskatarr (Faryngit) är en diffus inflammation i slemhinnorna i bakre munnen, gomseglet, mandlarna och väggarna i svalget. Vanligaste orsaken till heshet och halsont hos vuxna. Blir patienten hes eller förlorar rösten innebär det att inflammationen gått ner i svalget (laryngit).
+
+ESS 45 – Öronproblem (H93.9), Öronvärk (H93.9)
+Orange symtom
+
+Feber >38,5°C och frossa senaste 12 timmarna
+Samtidigt Meningism/Nackstelhet
+
+Gula symtom
+
+Varig flytning ur hörselgången
+Rodnad och svullen processus mastoideus
+Öronvärk och samtidig perifer facialispares
+Öronvärk och samtidig kraftigt funktionsinskränkande yrsel
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Provpaket: Stort trauma/chock/hjärtstopp
+Blodgas
+Rundodling
+PVK
+Plasmalyte
+Rutinpaket
+Kapillärt CRP
+
+RETTS Faktaruta
+Öronproblem som infektion, värk hanteras oftast av primärvård eller närsjukvård. I RETTS finns en särskild "främmande kroppsalgoritm" se ESS 46!
+
+ESS 46 – Främmande kropp (T17), Främmande kropp i esofagus eller i magtarmkanalen (T18.1), Främmande kropp i luftväg (T17.9), Främmande kropp i näsa (T17.1), Främmande kropp i öra (T16.9)
+Röda symtom
+
+Främmande kropp i luftväg/svalg med påverkad andning/tal
+Misstanke om främmande kropp i luftrör
+
+Orange symtom
+
+Misstanke om kroppssmuggling
+Nedsvalt knappcellsbatteri eller magneter
+Svårigheter att svälja saliv
+
+Gula symtom
+
+Främmande kropp som sitter kvar i näsan
+Nedsvalt objekt med buksmärta
+Sväljningssvårigheter men sväljer saliv
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Polop
+Blodgas
+Blodgruppering
+Bastest
+PVK
+Plasmalyte
+
+RETTS Faktaruta
+Knappcellsbatteri och/eller magneter finns i leksaker och sväljs ibland av i huvudsak barn. Batteriet skapar en svag ström mellan – och + polerna vilket kan skada slemhinna och vävnad när magneterna/polerna dras mot varandra. Det är viktigt att patient som svalt knappcellsbatteri (typ litiumjon) handläggs utan dröjsmål på akutmottagning och att tid till röntgen för diagnostisering och vidare handläggning är så kort som möjligt.
+
+ESS 47 – Feber (R50.9), Infektion (B99.9), Lokal infektion i hud inkl. böld/lymfadenit (L08.9), Resistent svullnad/knöl på halsen (R22.1), Sepsis – misstanke om (A41.9), Tandvärk/tandinfektion (B99.9)
+Förberedande åtgärder
+
+Venös blodgas (vB-laktat) – om möjligt
+
+Röda symtom
+
+Förhöjt B-laktat (enl lokala riktlinjer)
+Initialt/lägst SBT <90 mmHg
+HF/puls högre än SBT
+Petekier
+Symtom och kliniska tecken som uppfyller nationella kriterier för sepsislarm
+
+Orange symtom
+
+Akut konfusion/delirium – snabb förändring senaste dygnet
+Feber >38,5°C och frossa senaste 12 timmarna
+Immunosupprimerad patient
+Kraftig svullnad samt tydlig rodnad från kind, underkäke ned på halsen
+Lokal infektion med svår smärta
+Meningism/Nackstelhet
+Uppdriven och hård munbotten samt sväljsvårigheter
+
+Gula symtom
+
+Lokal infektion (rodnad, värmeökning, smärta)
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Provpaket: Stort trauma/chock/hjärtstopp
+Blodgas
+Rundodling
+PVK x2
+Plasmalyte
+EKG-uppkoppling
+Bladderscan
+U-hCG på fertil kvinna
+Rutinpaket
+Vitalparametrar en gång i timmen fram till läkarbedömning
+Kapillärt CRP
+
+RETTS Faktaruta
+Sepsis är definitionsmässigt en multiorgan svikt till följd av immunsystemets reaktion på en infektion och generellt är orsaken bakteriella infektioner. Sepsis har en av de högsta akuta mortaliteterna av alla sökorsaker på en akutmottagning, mellan 15–50%. När patienten väl utvecklat multiorgansvikt är sällan triageringen svår att utföra – patienten är då ofta i chock med avsevärt påverkade vitala parametrar och faller ut röd.
+
+ESS 49 – Diabetes, känd (E14.9), Högt blodsocker/hyperglykemi (R73.9)
+Förberedande åtgärder
+
+Blodgas – om möjligt
+B-ketoner mmol/L – om möjligt
+P-glukos mmol/L
+
+Röda symtom
+
+Kussmaulandning
+pH <7,3
+
+Orange symtom
+
+B-ketoner >3 mmol/L
+Acetondoft
+P-glukos >15 mmol/L samt typ 1 diabetes
+P-glukos >25 mmol/L
+
+Gula symtom
+
+Diarré
+Kräkningar
+P-glukos 15–25 mmol/L
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+CVS-rutin
+B-ketoner
+Blodgas
+PVK
+EKG-uppkoppling
+Vid hyperglykemi: NaCl-infusion 9mg/ml 1000ml/timme
+Urinsticka
+U-hCG på fertil kvinna
+
+RETTS Faktaruta
+Patienter med hyperglykemi (hyperosmolärt tillstånd) eller diabetesketoacidos kan uppvisa varierande symtom och tecken. Ibland misstänker man därför initialt andra bakomliggande diagnoser. Cerebrala, cirkulatoriska, respiratoriska och gastrointestinala symtom är vanliga.
+
+ESS 50 – Lågt blodsocker/hypoglykemi (E16.2)
+Förberedande åtgärder
+
+P-glukos mmol/L
+
+Röda symtom
+
+P-glukos <2,5 mmol/L
+
+Orange symtom
+
+Oklara CNS symtom
+P-glukos <3,0 mmol/L
+Svårigheter att hålla P-glukos normalt trots tillförsel av extra energi/socker
+Överdosering av insulin eller peroral antidiabetika
+
+Gula symtom
+
+(Ej specificerade)
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+CVS-rutin
+Blodgas
+PVK
+EKG-uppkoppling
+Förbered glukosbehandling med 30% glukos
+Ge saft och näringsdryck/macka per os om pat kan äta och dricka
+
+RETTS Faktaruta
+Hypoglykemi är oftast kopplat till känd Diabetes Mellitus. Hos patienter med diabetes beror hypoglykemi ofta på överdosering av insulin i förhållande till matintag. Initialt ses symtom såsom: hunger, tremor, kallsvett, blekhet, kräkningar. Centralnervös påverkan medför: humörförändringar, dubbelseende, kramper, medvetslöshet.
+
+ESS 51 – Addisons sjukdom (E27.1), Binjurebarkssvikt, känd (E27.4), Kortisolsvikt (E23.0C)
+Förberedande åtgärder
+
+I anamnes: Pågående kortisonbehandling >3 veckor med minst 5 mg Prednisolon dagligen
+
+Röda symtom
+
+Ej tagit eller fått behålla ordinerad dos cortison
+Frossa och/eller feber i anamnesen
+Kräkning och/eller diarré
+
+Orange symtom
+
+Infektionsanamnes men tagit cortison enligt ordination
+
+Gula symtom
+
+(Ej specificerade)
+
+Gröna symtom
+
+(Ej specificerade)
+
+Blåa symtom
+
+(Ej specificerade)
+
+Lokala processåtgärder
+
+Addissonpaket
+Blodgas
+Rundodling vid misstanke om infektion
+PVK (överväg 2)
+EKG-uppkoppling
+NaCl-infusion 9mg/ml 1000ml, infusionstid 2 timmar
+Förbered 100mg SoluCortef iv – ges på ordination
+
+RETTS Faktaruta
+ESS 51 används vid misstanke om- eller vid känd kortisolbrist ex. primär binjurebarksvikt (Addisons sjukdom) och sekundär binjurebarksvikt – (Hypofyssvikt) eller pågående/varaktig kortisonbehandling. Akut kortisolbrist, även känd som Addisonkris eller binjurekris, är ett livshotande tillstånd som inträffar när kroppen inte har tillräckligt med kortisol.
+
+ESS 53 – Fallbenägenhet (R29.6), Hälsoundersökning (Z00.1), Högt blodtryck/hypertoni (I10.9), Intyg (Z02.7), Ospecifika symtom (R69.9), PEG-relaterade problem (Z93.1), Sjukdomskänsla trötthet (R53.9)
+Förberedande åtgärder
+
+Se alltid även ESS 47
+Venös blodgas (vB-laktat) – om möjligt
+
+Röda symtom
+
+Akut konfusion och samtidigt SBT >240mmHg och DBT >140mmHg
+Förhöjt B-laktat (enl lokala riktlinjer)
+HF/puls högre än SBT
+
+Orange symtom
+
+Akut konfusion/delirium – snabb förändring senaste dygnet
+DBT >140mmHg (upprepade mätningar) samt klar och opåverkad
+
+Gula symtom
+
+Avvikande beteende – nytillkommet
+Immunosupprimerad patient – med ospecifika eller ej ESS listade symtom
+Hastigt insättande – med ospecifika eller ej ESS listade symtom
+
+Gröna symtom
+
+Essentiell hypertoni som behöver följas upp inom primärvården
+PEG (gastrostomi) som lossnat eller riskerar att åka ut
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Provpaket: Stort trauma/chock/hjärtstopp
+Blodgas
+Rundodling vid feber >38.5
+PVK
+EKG-uppkoppling
+Rutinpaket
+Kapillärt CRP
+Kapillärt Hb
+EKG
+Bladderscan
+Urinsticka
+U-hCG på fertil kvinna
+
+RETTS Faktaruta
+Det finns potentiellt allvarliga bakomliggande orsaker som psykiatri, misshandel, sociala förhållande, infektion, skador, förgiftningar etc. som kan ge ospecifika symtom. Tänk på att äldre patienter kan ha svårt att redogöra för sin symtombild av olika skäl.
+
+ESS 57 – Dubbelseende – enskilt öga (Monokulär diplopi, H53.2), Infektion öga (H05.9), Ögoninfektion (H05.9), Ögonproblem (H57.9)
+Röda symtom
+
+Nyopererat öga, med plötslig svår värk och synnedsättning (endoftalmit)
+Plötslig svår värk i öga och synnedsättning med rött öga/illamående/kräkning/ljusstel pupill
+
+Orange symtom
+
+Akut synnedsättning i enskilt öga – övergående <1 dygn (misstanke om Amaurosis fugax)
+Feber >38,5°C och frossa senaste 12 timmarna
+
+Gula symtom
+
+Infekterat/rött öga med synpåverkan
+Plötslig synnedsättning/synförändring/skugga framför ögat
+Spontan blödning i ögat med synförändring
+
+Gröna symtom
+
+Dubbelseende – enskilt öga (Monokulär diplopi)
+Övriga med spontan blödning i ögat
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Ordinationer efter kontakt med ögonjour
+
+RETTS Faktaruta
+Ögonproblem och infektion hanteras i regel av primärvården. Fokalneurologiska bortfallssymtom: Orsakade av en cirkulationsrubbning i en artär som försörjer ett specifikt kärlområde i centrala nervsystemet, där samtliga symtom är övergående inom 24 timmar (vanligen inom 5–60 minuter). Även arteriellt orsakad övergående monokulär synnedsättning, Amaurosis fugax, tillhör begreppet TIA.
+
+ESS 65 – Cirkulationsstillestånd (I46.9)
+Röda symtom
+
+Pågående HLR
+ROSC
+
+Blåa symtom
+
+Patienten avliden. Återupplivning ej påbörjad/avslutad utan resultat
+
+RETTS processåtgärder
+
+Vid hjärtstopp startas HLR regelmässigt. Om patienten återfår någon form av cirkulation (ROSC) är patienten fortfarande prioritet RÖD.
+
+RETTS Faktaruta
+Vid hjärtstopp startas HLR regelmässigt. Om patienten återfår någon form av cirkulation (ROSC) är patienten fortfarande prioritet RÖD. Oavsett orsak till cirkulationsstillestånd eller resultat av återupplivningsförsök, kan denna ESS användas för registrering av patienten. Gäller patienter som påträffas med cirkulationsstillestånd, EJ patienter som under vårdtiden får cirkulationsstillestånd.
+
+ESS 70 – Provsvarsalgoritm i RETTS (R79.9), Rekommenderade basprover i RETTS
+Röda symtom
+
+pH <7,3
+
+Orange symtom
+
+BE <-4 eller >4 – nytillkommen
+B-ketoner >3 mmol/L
+B-laktat >4.0 mmol/L
+CRP >200 g/L
+P-glukos <3 eller >25 mmol/L
+P-glucos >15 mmol/L samt typ 1 diabetes
+PK-INR >2,5 för patient utan koagulationshämmande läkemedel
+S-K >5,5 eller <2,7 mmol/L
+S-kreatenin >500 micromol/L
+S-Na <125 mmol/L
+S-paracetamol micromol/L > referens för antidotbehandling
+Troponin nanogram/L >lokal gräns för myokardinfarkt/ACS
+
+Gula symtom
+
+Hb <90 g/L
+LPK <1,0
+
+Gröna symtom
+
+Trombocytopeni/trombocytos
+Inget av ovanstående
+
+Blåa symtom
+
+(Ej specificerade)
+
+Lokala processåtgärder
+
+Provpaket: Stort trauma/chock/hjärtstopp
+Blodgas
+Rundodling vid feber >38.5
+PVK, överväg 2st
+EKG-uppkoppling
+Blodgruppering och Bastest om anemi
+CVS-rutin/Bukrutin
+
+RETTS Faktaruta
+Inom akutsjukvården finns det ett behov men också en ökad tillgång till patientnära analyser som oftast ger snabba analyssvar. Detta ställer högre krav på snabb bedömning och åtgärd eftersom vissa analyser har ett starkare direkt prediktivt värde än andra.
+
+ESS 71 – Gipsproblem (T98.3)
+Orange symtom
+
+Ingen kapillär återfyllnad nedom skada/gips
+Kall extremitet
+Svår smärta i den gipsade extremiteten
+Symtom/tecken på kompartmentsyndrom
+
+Gula symtom
+
+Lokal infektion
+Måttlig smärta i den gipsade extremiteten
+
+Gröna symtom
+
+Trasigt gips
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Rutinpaket
+Blodgas
+Kapillärt CRP
+Blodgruppering
+Bastest
+Blododling vid infektionstecken eller feber >38,5
+Lossa gips efter läkarkontakt
+
+RETTS Faktaruta
+Gipsproblem: Fråga efter anamnes på skadan, åtgärd + tidsförloppet, hur länge har gipset suttit? Finns det genomförd kirurgi före gipsning? Om, ja så skall komplikation med postoperativ infektion uteslutas. Allmänna infektionstecken, B-laktat, venös blodgas. Gips som sitter fel kan både orsaka obehag och skador. Om patienten klagar på smärta eller obehag skall det alltid tas på allvar. Tilltagande smärtor får inte nonchaleras utan noggrann undersökning.
+
+ESS 72 – Operationskomplikation (T98.3)
+Röda symtom
+
+Initialt/lägst SBT <90 mmHg
+Nyopererat öga, med plötslig svår värk och synnedsättning (endoftalmit)
+Petekier och infektionstecken
+Postoperativ ymnig reblödning från operationssår – ej kontrollerbar
+Pågående smärta samt blek/kallsvettig
+Symtom och kliniska tecken som uppfyller nationella kriterier för sepsislarm
+
+Orange symtom
+
+Anlagd kärlanastomos/kärlfistel
+Blödning/svullnad från operation i och runt halsen
+Feber >38,5°C och frossa senaste 12 timmarna
+Hematom med svullnad i ljumske – snabbt växande – efter ingrepp
+Immunosupprimerad patient
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Sårruptur på bålen
+Symtom/tecken på kompartmentsyndrom
+
+Gula symtom
+
+Hematom med svullnad i handled – snabbt växande – efter ingrepp
+Lokala infektionstecken
+Postoperativ reblödning från operationssår – komprimerbar/kontrollerad – behov av re-suturering
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Provpaket: Stort trauma/chock/hjärtstopp
+Blodgas
+Rundodling vid feber >38.5
+Blodgruppering
+Bastest
+PVK x2
+Plasmalyte
+Beställa blod?
+EKG-uppkoppling
+Bladderscan
+U-hCG på fertil kvinna
+Rutinpaket
+
+RETTS Faktaruta
+Operationskomplikationer kan vara lokala komplikationer som tex. sårruptur, infektion eller blödning. Det kan även röra sig om mer generella komplikationer som DVT, UVI, pneumoni, sepsis men de handläggs bäst med annan algoritm t.ex ESS 15 eller ESS 47.
+
+ESS 80 – Depressiv episod (F32.9) – Psykiatri
+Förberedande åtgärder
+
+Farlighetsbedömning och suicidriskbedömning
+
+Gula symtom
+
+Social isolering
+Psykomotorisk oro (oroligt beteende, rastlöshet)
+Pågående affektlabilitet
+Påtaglig hämning (emotionellt, motoriskt, kognitivt)
+
+Gröna symtom
+
+Anhedoni (svårigheter att känna glädje, lust, intresse)
+Asteni (trötthet/uttröttbarhet, irritabilitet)
+Förändrad aptit (viktnedgång, viktuppgång)
+Nedsatt koncentration
+Tendens till isolering
+
+Blåa symtom
+
+Efter undersökning och bedömning enligt ESS 90 inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Dygnet runt kontaktas psykiatriska akutteamet, om ej behov av somatisk bedömning först. Tänk på att detta kan vara en riskpatient, ordna adekvat tillsyn (överväg extravak) tills personal från psykiatrin övertar ansvaret.
+
+RETTS Faktaruta
+Nedstämdhet är den vanligaste orsaken till kontakt med psykiatrin. Symtom under större delen av tiden under minst 2 veckor påverkan av, samt nedsatt funktionsnivå, talar för en kliniskt signifikant depression. Minskat intresse, lust och glädje är vanligt. Skuldkänslor, ambivalens, irritabilitet, energilöshet, sömnstörningar hör ofta till bilden.
+
+ESS 81 – Mani (F30.9), Hypomani (F30.0) – Psykiatri
+Förberedande åtgärder
+
+Farlighetsbedömning och suicidriskbedömning
+
+Gula symtom
+
+Blandtillstånd (samtidig hypomani/mani och depression)
+Desorientering/konfusion
+Gränslöshet
+Psykomotorisk oro (oroligt beteende, rastlöshet)
+Pågående affektlabilitet
+Riskfyllt beteende
+Snabbt tankeförlopp, kraftigt ökat talflöde (icke avledbart tal)
+
+Gröna symtom
+
+Lätt distraherbar
+Minskat sömnbehov
+Ökad energi, upprymdhet
+Ökad impulsivitet
+Ökad social interaktion
+Ökat talflöde
+
+Blåa symtom
+
+Efter undersökning och bedömning enligt ESS 90 inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Dygnet runt kontaktas psykiatriska akutteamet, om ej behov av somatisk bedömning först. Tänk på att detta kan vara en riskpatient, ordna adekvat tillsyn (överväg extravak) tills personal från psykiatrin övertar ansvaret.
+
+RETTS Faktaruta
+Vid mani/hypomani är grundstämningen övervägande förhöjd men blandtillstånd dvs samtidig depressivitet är inte ovanligt. Patienten har ökat självförtroende eller grandiositet, uppvisar rastlöshet, minskat sömnbehov, ångest, snabbt tankeförlopp, ökad talflöde, distraherbarhet och koncentrationssvårigheter.
+
+ESS 82 – Panikångestsyndrom (F41.0), Ångest (F41.9) – Psykiatri
+Förberedande åtgärder
+
+Farlighetsbedömning och suicidriskbedömning
+
+Gula symtom
+
+Dissociation (overklighetskänsla beträffande sin identitet eller omgivning)
+Psykomotorisk oro (oroligt beteende, rastlöshet)
+Pågående affektlabilitet
+Pågående panikattack
+Somatiska symtom
+Tvångstankar/tvångshandlingar
+Ångest/oro som avsevärt begränsar vardagliga/basala aktiviteter
+
+Gröna symtom
+
+Förekomst av ångest och/eller oro
+
+Blåa symtom
+
+Efter undersökning och bedömning enligt ESS 90 inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Dygnet runt kontaktas psykiatriska akutteamet, om ej behov av somatisk bedömning först. Tänk på att detta kan vara en riskpatient, ordna adekvat tillsyn (överväg extravak) tills personal från psykiatrin övertar ansvaret.
+
+RETTS Faktaruta
+Panikattack är den vanligaste orsaken till ett akutbesök. Patienten upplever stort obehag då symtomen debuterar till synes utan orsak inom några minuter och når sin kulmen efter någon halvtimme. Symtomen klingar av/går över av sig själv efter en stund. Symtom som ses är hjärtklappning, svettning, darrning, skakning, hyperventilation, kvävningskänsla, smärta eller obehag i bröstet/magen, rädsla att mista kontrollen eller ”bli tokig” samt dödsskräck.
+
+ESS 83 – Sömnstörning (G47.9) – Psykiatri
+Förberedande åtgärder
+
+Farlighetsbedömning och suicidriskbedömning
+
+Gula symtom
+
+Overklighetskänsla
+Psykomotorisk oro (oroligt beteende, rastlöshet)
+Pågående affektlabilitet
+
+Gröna symtom
+
+Asteni (trötthet/uttröttbarhet, irritabilitet) som begränsar vardagliga/basala aktiviteter
+Koncentrationssvårigheter
+
+Blåa symtom
+
+Efter undersökning och bedömning enligt ESS 90 inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Dygnet runt kontaktas psykiatriska akutteamet, om ej behov av somatisk bedömning först. Tänk på att detta kan vara en riskpatient, ordna adekvat tillsyn (överväg extravak) tills personal från psykiatrin övertar ansvaret.
+
+RETTS Faktaruta
+Sömnstörning är vanligt vid de flesta psykiska och somatiska sjukdomar samt vid belastande/stressfyllda livsbetingelser. Hypersomni innebär onormal trötthet vilket visar sig i förlängd nattsömn, uttalad trötthet dagtid, eller behov av att sova dagtid. Hyposomni innebär förkortad sömntid vilket kan inkludera svårigheter att somna, orolig ytlig sömn med frekventa uppvaknanden samt tidigt uppvaknande.
+
+ESS 84 – Psykotiska symtom (F23.9) – Psykiatri
+Förberedande åtgärder
+
+Farlighetsbedömning och suicidriskbedömning
+Alkometer ev U-toxicitetsprov – om möjligt
+
+Gula symtom
+
+Bristande sjukdomsinsikt
+Hallucinationer, vanföreställningar eller tankestörningar
+Psykomotorisk oro (oroligt beteende, rastlöshet)
+Pågående affektlabilitet
+
+Gröna symtom
+
+Kroniska vanföreställningar, negativa symtom och/eller hallucinationer
+
+Blåa symtom
+
+Efter undersökning och bedömning enligt ESS 90 inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Dygnet runt kontaktas psykiatriska akutteamet, om ej behov av somatisk bedömning först. Tänk på att detta kan vara en riskpatient, ordna adekvat tillsyn (överväg extravak) tills personal från psykiatrin övertar ansvaret.
+
+RETTS Faktaruta
+Störd verklighetsuppfattning är vanligt förekommande vid psykossjukdomar, affektiva sjukdomar och missbruk. Den kan förekomma i form av hallucinos (hörsel, syn, lukt, smak, taktil) eller vanföreställningar. Vid långvarig psykossjukdom kan kognitiva brister och negativa symtom (som emotionell avflackning, energilöshet och motivationsbrist) vara framträdande.
+
+ESS 85 – Missbruk/beroende (F10.2), Tremor vid missbruk (R25.1) – Psykiatri
+Förberedande åtgärder
+
+Farlighetsbedömning och suicidriskbedömning
+
+Orange symtom
+
+Abstinenssymtom med somatiska symtom
+Delirium tremens eller misstanke om
+Kramper i abstinensfas
+
+Gula symtom
+
+Aktuell svår somatisk sjukdom
+Psykomotorisk oro (oroligt beteende, rastlöshet)
+Pågående affektlabilitet
+Tremor
+
+Gröna symtom
+
+Missbruk som begränsar vardagliga/basala aktiviteter
+Önskemål om avgiftning eller abstinensbehandling hos patient med alkohol/substanspåverkan utan allvarligare symtom
+
+Blåa symtom
+
+Efter undersökning och bedömning enligt ESS 90 inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Intoxrutin
+Blodgas
+PVK
+EKG-uppkoppling
+Alkometer
+
+RETTS Faktaruta
+Missbruk kan vara ett livslångt tillstånd med upprepade återfall. Uppmärksamma eventuell förekomst av somatiska och neurologiska skador. Anamnes på Delirium tremens och epileptiska anfall är viktigt eftersom det är allvarliga tillstånd.
+
+ESS 86 – Självskadebeteende (F91.9) – Psykiatri
+Förberedande åtgärder
+
+Farlighetsbedömning och suicidriskbedömning
+Uteslut Traumalarmskriterier ESS 38
+
+Orange symtom
+
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+
+Gula symtom
+
+Blödning (färsk sårskada, se även skadekort)
+Impulsivitet
+Psykomotorisk oro (oroligt beteende, rastlöshet)
+Pågående affektlabilitet
+
+Gröna symtom
+
+Självskadebeteende utan aktuell självskadehandling
+
+Blåa symtom
+
+Efter undersökning och bedömning enligt ESS 90 inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Kapillärt Hb vid sårskada med pågående eller avstannad blödning
+Dygnet runt kontaktas psykiatriska akutteamet, om ej behov av somatisk bedömning först. Tänk på att detta kan vara en riskpatient, ordna adekvat tillsyn (överväg extravak) tills personal från psykiatrin övertar ansvaret.
+
+RETTS Faktaruta
+Personen utsätter avsiktligt sin kropp för skada exempelvis genom att skära eller bränna sig själv. Orsaken till beteendet är inte alltid tydlig för patienten. De med självskadebeteenden försöker sällan ta sitt liv. Den yttersta funktion självskadandet fyller är att hantera övermäktiga känslor.
+
+ESS 87 – Ätstörning (F50.9) – Psykiatri
+Förberedande åtgärder
+
+Farlighetsbedömning och suicidriskbedömning
+BMI
+
+Gula symtom
+
+BMI <14
+Försämrad kognitiv funktion vid svältpåverkan
+
+Gröna symtom
+
+Behov av att bryta recidiv av ätstörning
+BMI 14–17,5
+Hetsätning med/utan efterföljande självrensning
+Trötthetskänslor
+
+Blåa symtom
+
+Efter undersökning och bedömning enligt ESS 90 inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Blodgas
+PVK
+EKG
+
+RETTS Faktaruta
+Anorexia nervosa (AN) och Bulimia nervosa (BN) kännetecknas av en fixering vid kroppsform och vikt, vilket ger upphov till viktfobi och uttalad rädsla att öka i vikt även om man är underviktig. Detta resulterar i bantning/svält och/eller hetsätning med kompensatoriskt beteende.
+
+ESS 88 – Krisreaktion (F43.0), Reaktion på svår stress (F43.9) – Psykiatri
+Förberedande åtgärder
+
+Farlighetsbedömning och suicidriskbedömning
+
+Gula symtom
+
+Dissociation (overklighetskänsla beträffande sin identitet eller omgivning)
+Psykomotorisk oro (oroligt beteende, rastlöshet)
+Pågående affektlabilitet
+Stupor
+
+Gröna symtom
+
+Isoleringstendens
+Koncentrationssvårigheter
+
+Blåa symtom
+
+Efter undersökning och bedömning enligt ESS 90 inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Dygnet runt kontaktas psykiatriska akutteamet, om ej behov av somatisk bedömning först. Tänk på att detta kan vara en riskpatient, ordna adekvat tillsyn (överväg extravak) tills personal från psykiatrin övertar ansvaret.
+
+RETTS Faktaruta
+Ett flertal psykiatriska sjukdomstillstånd kan utvecklas som reaktion på akut eller subakut stress (i olika former). Akut stressreaktion, posttraumatiskt stressyndrom, anpassningsstörning samt utmattningssyndrom är vanliga orsaker till kontakt med akutmottagningen.
+
+ESS 89 – Demens (F03.9), Desorienterad (R41.0), Organiska psykiska störningar (F00–F09) – Psykiatri
+Förberedande åtgärder
+
+Farlighetsbedömning och suicidriskbedömning
+
+Gula symtom
+
+Apati
+Desorientering/konfusion
+Försämrat minne, språkstörning, nedsatt motorisk förmåga
+Psykomotorisk oro (oroligt beteende, rastlöshet)
+Pågående affektlabilitet
+
+Gröna symtom
+
+För omgivningen tydligt avvikande beteende, nedsatt omdöme och insikt
+
+Blåa symtom
+
+Efter undersökning och bedömning enligt ESS 90 inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Eventuellt Intoxrutin
+Kapillärt CRP
+Kapillärt Hb
+EKG
+Bladderscan
+Urinsticka
+
+RETTS Faktaruta
+Oklar kontaktorsak kan maskera en allvarlig psykisk sjukdom. Alkohol och/eller drogrelaterade eller bakomliggande somatisk/neurologisk sjukdom är vanliga orsaker som kan ge en varierande och fluktuerande symtombild.
+
+ESS 90 – Ej akut psykiatrisk problematik (F99.9) – Psykiatri
+Förberedande åtgärder
+
+Farlighetsbedömning och suicidriskbedömning
+
+Gröna symtom
+
+Ej akut – övrig psykiatrisk problematik
+
+Blåa symtom
+
+Enbart social problematik
+Lindrig psykisk ohälsa som inte uppfyller kriterier inom övriga psykiatriska sökorsaker
+Opåverkade vitalparametrar
+Opåverkat allmäntillstånd
+Önskemål om recept/läkemedel/intyg
+Önskemål om samtalsstöd som inte uppfyller kriterier för psykiatrisk akutsjukvård
+
+Lokala processåtgärder
+
+Dygnet runt kontaktas psykiatriska akutteamet, om ej behov av somatisk bedömning först. Tänk på att detta kan vara en riskpatient, ordna adekvat tillsyn (överväg extravak) tills personal från psykiatrin övertar ansvaret.
+
+RETTS Faktaruta
+Patienter som inkommer till en psykiatrisk akutmottagning utgör en heterogen patientgrupp där det kan vara svårt att bedöma det aktuella vårdbehovet. Därför kommer alla sökanden genomgå bedömning. Vid hänvisning av patient till primärvård, annan akutmottagning eller ordinarie öppenvård så SKALL tillräckligt beslutsunderlag finnas till grund för bedömningen.
+
+ESS 98 – Beteendestörning av utagerande slag (F91) – Psykiatri
+Förberedande åtgärder
+
+Farlighetsbedömning AU122
+Suicidriskbedömning
+
+Röda symtom
+
+Pågående aktivt våldsam/pågående attack mot person eller djur
+
+Orange symtom
+
+Allvarlig våldshandling senaste 7 dagarna
+Attackerar föremål/person
+Fysiskt hotfullt beteende
+Snabbt växlande humör
+Verbalt hotfullt beteende
+
+Gula symtom
+
+Avvisande i kontakten
+Bullrigt beteende
+Förvirrat/desorienterat beteende
+Retligt/lättirritabelt beteende
+Utförd våldshandling från 7 dagar till 3 månader
+
+Gröna symtom
+
+Avklingat utagerande beteende
+Tidigare våldsamt beteende (äldre än 3 månader)
+
+Blåa symtom
+
+Efter undersökning och bedömning enligt ESS 90 inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Dygnet runt kontaktas psykiatriska akutteamet, om ej behov av somatisk bedömning först. Tänk på att detta kan vara en riskpatient, ordna adekvat tillsyn (överväg extravak) tills personal från psykiatrin övertar ansvaret.
+
+RETTS Faktaruta
+Utagerande beteende är en vanlig sökorsak på BUP. Vanliga bakomliggande tillstånd är bl.a. (diagnosticerad/odiagnosticerad) autism, ADHD, intellektuell utvecklingsstörning, akut stress, övrig ångest m.fl. Vid autism kan det ofta vara, för andra, bagatellartade händelser som leder till oförståeligt kraftigt utagerande beteende. Impulsivitet är en annan riskfaktor för utagerande, liksom övrig emotionell instabilitet.
+
+ESS 99 – Suicidriskbedömning (AU118) – Psykiatri
+Förberedande åtgärder
+
+Farlighetsbedömning
+
+Röda symtom
+
+Pågående/omedelbar suicidal handling
+
+Orange symtom
+
+Allvarlig suicidhandling senaste 7 dagarna
+Nytillkomna/förvärrade suicidtankar i kombination med alkohol/drogpåverkan
+Uttalade suicidala avsikter och/eller planer
+
+Gula symtom
+
+Nytillkomna/förvärrade suicidtankar
+Utförd suicidhandling från 7 dagar till 3 månader
+
+Gröna symtom
+
+Kroniska suicidtankar utan försämring
+Suicidförsök tidigare än 3 månader
+Uttalade dödstankar
+Uttalad dödsönskan
+
+Blåa symtom
+
+Efter undersökning och bedömning enligt ESS 90 inget omedelbart behov av akutsjukvård
+
+Lokala processåtgärder
+
+Dygnet runt kontaktas psykiatriska akutteamet, om ej behov av somatisk bedömning först. Tänk på att detta kan vara en riskpatient, ordna adekvat tillsyn (överväg extravak) tills personal från psykiatrin övertar ansvaret.
+
+RETTS Faktaruta
+Impulsiva patienter kan göra allvarliga suicidförsök trots att de inte har medvetna dödsönskningar/suicidtankar. Patienter med antisociala/manipulativa personlighetsdrag kan uttala hot om suicid i syfte att få sina krav uppfyllda, i dessa fall är ej suicidstegen tillämplig.
+
+ESS 101 – Blodig upphostning/hemoptys (R04.2), Näsblödning/epistaxis (R04.4), Postoperativ tonsillblödning (R04.1) – Barn
+Röda symtom
+
+Pågående stor okontrollerad blödning från näsa/mun
+
+Orange symtom
+
+Koagulationshämmande läkemedel eller blödningsbenägenhet
+Pågående medelstor näsblödning
+Svalgkirurgi senaste 14 dagarna
+
+Gula symtom
+
+Intermittent färsk näsblödning
+
+Gröna symtom
+
+Övriga med hemoptys
+Övriga med avstannad näsblödning
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+Stora blödningar från mun utan känd svalgkirurgi, överväg ESS 108
+
+RETTS Faktaruta
+Hemoptys (blodig hosta) kan förekomma vid lungsjukdom som embolier, lunginflammationer och lungblödningar. Hemoptys kan också komma från övre luftvägen vid intensiv hosta och är vanligare hos patienter med påverkad på koagulationssystemet.
+
+ESS 104 – Andningsbesvär/dyspné/andnöd (R06.0), Andningsuppehåll/apné (R06.8), Bröstsmärta vid andning (R07.1), Hyperventilation (R06.4) – Barn
+Förberedande åtgärder
+
+Kontrollera KapÅ
+
+Röda symtom
+
+Kraftigt andningspåverkad/andningsarbete
+Sepsis/meningitmisstanke
+Samtidig urticaria eller svullnad i ansiktet
+Stridor, feber och svårighet att svälja
+
+Orange symtom
+
+Andningsuppehåll hos spädbarn
+Akut påkomna symtom/misstanke om främmande kropp
+Hjärtopererad senaste månaden
+Känd svår allergi
+KapÅ >2 sekunder
+Måttligt andningspåverkad
+Samtidig bröstsmärta
+
+Gula symtom
+
+Känd medfödd eller annan kronisk hjärt-lungsjukdom
+Lätt andningspåverkad
+
+Gröna symtom
+
+Skällande hosta utan ökat andningsarbete
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även allergi, misshandel, främmande kropp)
+
+RETTS Faktaruta
+Epiglottit – se ESS 144. Andningsuppehåll hos spädbarn är ett ospecifikt tecken som kan signalera allt från allvarliga infektioner/kramper till banala aspirationstillbud. Andningsbesvär beror oftast på någon form av lungsjukdom. Det är viktigt att även beakta kardiella orsaker eller metabola som vid metabol acidos (som vid diabetes).
+
+ESS 106 – Buksmärta (R10.4), Flanksmärta (R10.4), Magsmärta (R10.4), Mag-tarmproblem (A09), Smärta/svullnad buk (K42.0), Smärta/svullnad ljumske (K40.9) – Barn
+Förberedande åtgärder
+
+P-glukos vid känd diabetes
+
+Röda symtom
+
+Akut debut med pågående smärta och påverkat allmäntillstånd
+
+Orange symtom
+
+All tidigare bukkirurgi
+Buksmärta och påverkat allmäntillstånd
+Buksmärta hos flicka/kvinna i pubertal ålder – plötslig debut, lågt sittande med intensiv konstant smärtpunkt
+Diabetes och P-glukos >12 mmol/L
+Icke reponibel resistens i ljumsken
+Immunosupprimerad patient
+Intervallartad smärta flera ggr/tim hos barn <4 år
+Spänd och ömmande buk
+Ökad törst och urinmängd senaste tiden
+Öm testikel
+
+Gula symtom
+
+Buksmärta med >2 kräkningar sista 4 timmarna
+Intervallartad buksmärta flera ggr/tim hos barn >4 år
+Reponibel resistens i ljumsken
+Svår/måttlig smärta men opåverkat allmäntillstånd
+
+Gröna symtom
+
+Lätt smärta
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även förgiftning, högt blodsocker, diabetes, skada buk, skrotal smärta, gynekologiska besvär)
+
+RETTS Faktaruta
+Barn förlägger ofta smärtförnimmelsen till magen även om den egentliga orsaken kan sitta på andra ställen t.ex. vid pneumoni. Tänk på gastroenterit vid diarréer och kräkningar. Diabetes mellitus kan debutera med buksmärta som huvudsymtom.
+
+ESS 107 – Blodig avföring/melena (K92.1), Diarré/lös avföring (A09), Symtom från anus och rektum/hemorrojder (K62.9) – Barn
+Förberedande åtgärder
+
+Kontroll av KapÅ
+
+Röda symtom
+
+Pågående stor rektal blödning även mellan avföringar
+
+Orange symtom
+
+Immunosupprimerad patient
+Intervallartad buksmärta och blodig avföring
+KapÅ >2 sekunder
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Röd geléaktig avföring
+Svår törst
+
+Gula symtom
+
+Svart avföring
+Övriga med rektal blödning
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även buksmärta, vaginal blödning)
+
+RETTS Faktaruta
+Barn <2 år med stora diarrémängder riskerar hyperton dehydrering som bland annat visar sig genom svår törst (hög natriumhalt i blodet orsakas av vattenförluster). Invagination ger kraftiga intermittenta buksmärtor och ibland röd geléaktig avföring.
+
+ESS 108 – Blodig kräkning/hematemes (K92.0), Illamående (R11.9A), Kräkning (R11.9B) – Barn
+Förberedande åtgärder
+
+Kontroll av KapÅ
+
+Röda symtom
+
+Sepsis/meningitmisstanke
+Pågående stor blodig kräkning/hematemes
+
+Orange symtom
+
+Diabetes eller annan metabol sjukdom
+Huvudvärk
+Hydrocephalus/shunt
+Immunosupprimerad patient
+KapÅ >2 sekunder
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Svalgkirurgi senaste 14 dagarna
+Svår törst
+
+Gula symtom
+
+(Ej specificerade)
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning och bedömning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även buksmärta, Addisons/kortisolbrist, infektion)
+
+RETTS Faktaruta
+Vid gastroenterit är det viktigt att bedöma graden av uttorkning (dehydrering). Hyperton dehydrering kan vara ett livshotande tillstånd. Hög misstanke – små barn med stora förluster!
+
+ESS 109 – Epilepsi, känd (G40.9), Frånvaroattack (G40.3A), Kramper (R56.8), Ryckningar hos spädbarn (P90.9) – Barn
+Förberedande åtgärder
+
+Mät blodtryck på gravid patient
+
+Röda symtom
+
+Sepsis/meningitmisstanke
+SBT ≥180 samt gravid
+DBT ≥120 samt gravid
+
+Orange symtom
+
+Diabetes eller annan metabol sjukdom
+Huvudvärk
+Hydrocephalus/shunt
+Koagulationshämmande läkemedel eller blödningsbenägenhet
+Trauma mot huvudet
+Upprepade kramper senaste dygnet hos tidigare friskt barn
+Upprepade kräkningar senaste dygnet
+
+Gula symtom
+
+Ökad krampfrekvens senaste dygnet hos barn med känd epilepsi
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning och bedömning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även förgiftning, graviditet)
+
+RETTS Faktaruta
+Sepsis/Meningitmisstanke symtomförklaring, se ESS 147. Feberkramp (generaliserad kramp kortare än 15 min) förekommer hos 2–5 % av barn mellan 6 månader och 5 år.
+
+ESS 111 – Yrsel, balanssvårigheter (R42) – Barn
+Förberedande åtgärder
+
+Kontroll av KapÅ
+
+Röda symtom
+
+Koagulationshämmande läkemedel eller blödningsbenägenhet
+
+Orange symtom
+
+Huvudvärk – Plötsligt påkommen
+Hydrocephalus/shunt
+KapÅ >2 sekunder
+Medvetandeförlust i samband med debut
+
+Gula symtom
+
+Kräkningar
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även neurologiskt bortfall, skada huvud)
+
+RETTS Faktaruta
+Yrsel kan yttra sig som en känsla av ostadighet eller karusellkänsla. I samband med infektioner kan påverkan på lillhjärnan ge balansrubbning (cerebellär ataxi). Andra orsaker till yrsel: Migrän, epilepsi, stroke, arytmier samt expansiva förändringar i bakre skallgropen.
+
+ESS 112 – Facialispares (G51.9), Neurologiskt bortfall/symtom (R29.8) – Barn
+Röda symtom
+
+Koagulationshämmande läkemedel eller blödningsbenägenhet
+Huvudvärk – Plötsligt påkommen
+Stroke – misstanke om
+
+Orange symtom
+
+Feber >38,5°C senaste dygnet
+Hydrocephalus/shunt
+Kräkning/illamående/yrsel
+Trauma mot huvud, nacke eller rygg senaste månaden
+
+Gula symtom
+
+Huvudvärk – långvarig
+
+Gröna symtom
+
+Perifer facialispares utan andra symtom
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även skada huvud/nacke, skada rygg)
+
+RETTS Faktaruta
+Neurologiskt bortfall/symtom = nytillkommen nedsatt kraft, ändrad/avsaknad av känsel eller koordinationsrubbning. Vanligast i extremiteter och ansikte. Viktigt att läkare vid strokemisstanke snarast gör bedömning om trombolys/trombektomi är aktuell.
+
+ESS 113 – Ledvärk utan trauma (M25.5), Hälta utan trauma (R26.8) – Barn
+Röda symtom
+
+Sepsis/meningitmisstanke
+
+Orange symtom
+
+Feber >38,5°C senaste dygnet samt svullen/öm led
+Immunosupprimerad patient
+
+Gula symtom
+
+Inopererat material/protes i värkande led
+Kan ej stödja på extremitet
+Omöjligt att flektera/extendera
+Svår smärta
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även skada på ben/fot, skada på hand/arm)
+
+RETTS Faktaruta
+Sepsis/Meningitmisstanke symtomförklaring, se ESS 147. Barn kan ha svårt att korrekt lokalisera smärta i nedre extremiteter så rygg-, höft- eller knäsmärta kan lätt misstolkas. Dock måste alltid septisk artrit uteslutas.
+
+ESS 114 – Ryggsmärta utan trauma (M54.9), Smärta i bröstryggen utan trauma (M54.6), Smärta nacke utan trauma (M54.2) – Barn
+Förberedande åtgärder
+
+I anamnes – hematologiska sjukdomar?
+
+Röda symtom
+
+Sepsis/meningitmisstanke
+
+Orange symtom
+
+Feber >38,5°C senaste dygnet
+Neurologiskt bortfall – nytillkommet
+Urinretention
+
+Gula symtom
+
+Inget av ovanstående
+
+Gröna symtom
+
+(Ej specificerade)
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även blodsjukdom, kardiell genes, hematuri, neurologiskt symtom, smärta flank)
+
+RETTS Faktaruta
+Sepsis/Meningitmisstanke symtomförklaring, se ESS 147. Neurologiskt bortfall/symtom innebär ändrad eller avsaknad av känsel eller styrka i någon del av kroppen. Vanligaste ställen är extremiteter och ansikte.
+
+ESS 115 – Extremitetsbesvär (M79.6), Smärta i extremitet (M79.6), Svullnad i extremitet (R22.4), Ödem (R60.9) – Barn
+Förberedande åtgärder
+
+I anamnes – hematologiska sjukdomar?
+
+Orange symtom
+
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Svår smärta i extremitet
+
+Gula symtom
+
+Kan ej stödja på extremitet
+Känd njursjukdom
+Svullnad/konsistensökning
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även blodsjukdom, ledbesvär, lokal infektion, neurologiskt symtom, skada ben)
+
+RETTS Faktaruta
+Ödem förekommer vid nefrotiskt syndrom och debuterar med svullnad utan andra symtom. Vid feber/frossa, svullnad och kraftig lokal smärta kan allvarlig lokal infektion föreligga, såsom vid nekrotiserande fasciit, vilket skall handläggas skyndsamt.
+
+ESS 116 – Blod i urin/hematuri (R31), KAD-relaterade problem (Y84.6), Smärta vid vattenkastning (R30), Urinretention (R33), Urinvägsproblem (R39) – Barn
+Orange symtom
+
+Feber >38,5°C senaste dygnet
+Koagulationshämmande läkemedel eller blödningsbenägenhet
+Urinretention
+
+Gula symtom
+
+Buksmärta
+Känd njursjukdom och ödem
+Makroskopisk hematuri
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även buksmärta)
+
+RETTS Faktaruta
+Hematuri (blod i urinen) är vanligt vid urinvägsinfektioner men förekommer också vid njursten, sjukdom i urinröret och efter trauma. Samtidigt är det viktigt att inte missa pyelonefrit hos små barn som ibland kan yttra sig som oklar feber utan övriga symtom.
+
+ESS 119 – Huvudvärk (R51) – Barn
+Förberedande åtgärder
+
+Mät blodtryck på gravid patient
+
+Röda symtom
+
+Sepsis/meningitmisstanke
+SBT ≥180 samt gravid
+DBT ≥120 samt gravid
+
+Orange symtom
+
+Feber >38,5°C senaste dygnet
+Förvirring/beteendeförändring
+Hydrocephalus/shunt
+Kraftig huvudvärk med plötslig debut det senaste dygnet
+Krampanamnes
+Känd tumor cerebri
+Upprepade kräkningar senaste dygnet
+SBT ≥160 samt gravid
+DBT ≥110 samt gravid
+
+Gula symtom
+
+Enstaka kräkning
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även smärta i nacken utan trauma, neurologiska symtom, skada huvud/nacke, graviditet)
+
+RETTS Faktaruta
+Kraftig huvudvärk med plötslig debut är ett kardinalsymtom vid subarachnoidalblödning och skall tas på största allvar. Hos barn med huvudvärk som uppvisar avvikande beteende eller påverkat medvetande skall CNS-infektion misstänkas, särskilt vid feber.
+
+ESS 120 – Medvetandeförlust (R55), Svimning/syncopé (R55) – Barn
+Förberedande åtgärder
+
+Kontrollera KapÅ
+
+Orange symtom
+
+KapÅ >2 sekunder
+Medfött hjärtfel/hjärtopererad
+Medvetandeförlust vid fysisk ansträngning
+Upprepade medvetandeförluster
+
+Gula symtom
+
+En medvetandeförlust
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även yrsel, graviditet)
+
+RETTS Faktaruta
+Svimning föregås ofta av svaghet, yrsel och känslan av att försvinna bort. En klar majoritet orsakas av en vasovagal reaktion med blodtrycksfall vilket ger försämrad syresättning av hjärnan en kort stund.
+
+ESS 121 – Graviditet (O20.9), Gynekologiska besvär (N92.6), Postpartum <30 dagar (Z39.0), Underlivsbesvär (N92.6), Vaginal blödning (N93.9) – Barn
+Förberedande åtgärder
+
+Mät blodtryck på gravid patient
+
+Röda symtom
+
+Plötslig debut med pågående smärta och påverkat allmäntillstånd
+Pågående förlossning
+SBT ≥180 samt gravid
+DBT ≥120 samt gravid
+
+Orange symtom
+
+Feber >38,5°C senaste dygnet
+Gravid och buksmärta
+Gravid och vaginalblödning
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Låg buksmärta av intervallkaraktär
+Mycket stor vaginal blödning utan påverkat allmäntillstånd
+Postpartum <30 dagar samt anamnes på feber
+SBT ≥160 samt gravid
+DBT ≥110 samt gravid
+
+Gula symtom
+
+Stor vaginal blödning
+Sårskada som behöver sutureras
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även buksmärta, sexuella övergrepp)
+
+RETTS Faktaruta
+Rodnad eller irritation i underlivet kan hos barn bero på en bakterieinfektion. Vid flytning kan även främmande kropp misstänkas. Misstankar om sexuella övergrepp måste tas på allvar och dessa uppgifter ska i förekommande fall framföras till undersökande läkare.
+
+ESS 130 – Hängning/strypning (Y20.99), Käkskada (S00.8), Skada huvud/ansikte/näsa (S09.9), Skada nacke/hals (S11.9), Tandskada (K03.8) – Barn
+Förberedande åtgärder
+
+Uteslut Traumalarmskriterier ESS 138
+
+Röda symtom
+
+Ansikts/halsskada med hotad luftväg (se ESS 138)
+Misstänkt ryggmärgsskada (se ESS 138)
+Penetrerande våld mot hals, huvud (se ESS 138)
+Öppen skallskada/impressionsfraktur (se ESS 138)
+Hängningsförsök – symtom efter/misstanke om
+Koagulationshämmande läkemedel eller blödningsbenägenhet
+Neurologiska bortfall
+Pulserande blödning i/på halsen/på huvudet
+Strypningsförsök – symtom efter/misstanke om
+Svullnad hals/nacke – kraftig eller ökande
+Sväljningssvårigheter
+
+Orange symtom
+
+Berusad/intoxikerad
+Blödning/vätska från hörselgång
+Fraktur skalle/skallbas/ansiktsskelett/nacke – misstanke om
+Huvudvärk/smärta i nacke – svår
+Luxation käkled – misstanke om
+Medvetslöshet >1 min i samband med skada
+Misshandel – misstanke om
+Påverkat mentalt status
+
+Gula symtom
+
+≥2 kräkningar
+Amnesi
+Djup/suturkrävande sårskada
+Hematom/blåaktig svullnad på ytteröra
+Huvudvärk/smärta i nacke – lätt till måttlig
+Hörselnedsättning – nytillkommen i samband med skada
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+Överväg traumalarm
+
+RETTS Faktaruta
+Kraftig svullnad i huvud-halsregionen kan allvarligt påverka andningsvägarna. Tillse att patienten blir rengjord i och omkring sårområdet direkt efter första bedömning efter primärkontakt. Vid skada mot huvud/hals är det viktigt att fråga efter om patienten äter koagulationshämmande läkemedel vilket kan ge ökad blödningsbenägenhet.
+
+ESS 131 – Skada buk (S39.9), Skada könsorgan (S30.2), Skada thorax/rygg (S29.9) – Barn
+Förberedande åtgärder
+
+Uteslut Traumalarmskriterier ESS 138
+
+Röda symtom
+
+Instabil/deformerad bröstkorg (se ESS 138)
+Misstänkt ryggmärgsskada (se ESS 138)
+Penetrerande våld mot bål (se ESS 138)
+Andningskorrelerad thorakal smärta samt blek/kallsvettig
+Avsaknad av ensidiga andningsljud – nytillkommen vid skada
+Fraktur på rygg – med/utan neurologisk påverkan – misstanke om
+Halsvenstas
+Subcutana emfysem
+
+Orange symtom
+
+Blödning rektal/vaginal – debut efter skada
+Buksmärta/bukomfång – tilltagande
+Fraktur på bröstkorg (ej revben/nyckelben) – misstanke om
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Skada scrotum och kraftig smärta/ödem
+Sårskada – djup/sutureringskrävande
+Urinstämma/makroskopisk hematuri
+
+Gula symtom
+
+Misshandel – misstanke om
+Skada underliv samt mindre yttre svullnad/blödning
+Trauma mot buk
+
+Gröna symtom
+
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+Överväg traumalarm
+
+RETTS Faktaruta
+Blödningar skall misstänkas och pneumothorax skall alltid uteslutas. Tillse att patienten blir rengjord i och omkring sårområdet direkt efter första bedömning efter primärkontakt.
+
+ESS 132 – Hematom/svullnad/blåmärke (T14.0), Skrubbsår (T14.0B), Skärsår (T14.1), Sårskada (T14.1) – Barn
+Förberedande åtgärder
+
+Se ALLTID ÄVEN skadekort ESS 130–131 samt ESS 133–137
+Uteslut Traumalarmskriterier ESS 138
+
+Röda symtom
+
+Skärskada – ymnig/pulserande blödning – ej kontrollerbar
+
+Orange symtom
+
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+
+Gula symtom
+
+Skärskada på extremitet – ytlig med omfattande sårlängd – ej pulserande (se även ESS 199)
+Sårskada på extremitet med lokala infektionssymtom (se även ESS 147)
+
+Gröna symtom
+
+Hematom/bula/lindrig sårskada på huvudet – lätt/avstannad blödning
+Hematom/bula/sårskada i ansiktet – ymnig blödning – komprimerbar/kontrollerad
+Skadad nagel
+Sticka i finger/hand/fot – djupt sittande som kräver sjukvårdsinsats
+Skrubbsår på extremitet – smutsigt/kapillärblödning som kräver bedömning och rengöring
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av sjukvård
+
+RETTS processåtgärder
+
+Överväg traumalarm
+
+RETTS Faktaruta
+ESS 132 är ett symtomkort för sårskador i olika omfattning. Kortets syfte är att komplettera övriga skadekort med överlappning på vissa symtom/kriterier. ESS 132 ersätter inte de skador/symtom som i första hand kan hanteras i skadekorten ESS 130–131 och 133–138.
+
+ESS 133 – Skada axel/nyckelben (S49.9), Skada arm/handled (S69.9), Skada hand/finger (S66.3) – Barn
+Förberedande åtgärder
+
+Uteslut Traumalarmskriterier ESS 138
+
+Röda symtom
+
+≥2 frakturer på långa rörben (se ESS 138)
+Penetrerande våld mot övre extremiteter ovan armbåge (se ESS 138)
+Amputation ovan hand (se ESS 138)
+Stor yttre blödning (se ESS 138)
+Amputation nedom handled exkl fingertoppar
+Fraktur/luxation samt pulslös perifert om skada
+Pulserande blödning
+
+Orange symtom
+
+Distalstatus – nedsatt
+Fraktur/luxation exkl fingrar/nyckelben – felställning/öppen
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Smärta och tecken på kompartmentsyndrom
+
+Gula symtom
+
+Amputation/delvis amputerad – fingertopp
+Blödning – kontrollerbar
+Fraktur/luxation i fingrar – felställning/öppen
+Fraktur i armbågsled/långa rörben/axelled – sluten/ej felställd – misstanke om
+Fraktur nyckelben – misstanke om
+Misshandel – misstanke om
+Sårskada – djup/sutureringskrävande
+
+Gröna symtom
+
+Fraktur/luxation övrigt – misstänkta/konstaterade
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+Överväg traumalarm
+
+RETTS Faktaruta
+Tillse att patienten blir rengjord i och omkring sårområdet direkt efter den första bedömningen efter primärkontakt. Yngre barn kan vid drag i armen få subluxation/lux av radius i armbågen, pigluxation, och vill då inte använda den drabbade extremiteten. Fingeramputationer hos barn har bättre prognos vid reimplantation än vuxna. Bevara fingret väl! Vid misstanke om misshandel ges ytterligare vägledning i ESS 142.
+
+ESS 134 – Skada fot/tå (S99.9), Skada höft/lårben/bäcken (S79.9), Skada knä/underben (S89.9) – Barn
+Förberedande åtgärder
+
+Uteslut Traumalarmskriterier ESS 138
+
+Röda symtom
+
+≥2 frakturer på långa rörben (se ESS 138)
+Amputation – ovan fot (se ESS 138)
+Penetrerande våld mot nedre extremiteter ovan knä (se ESS 138)
+Stor yttre blödning (se ESS 138)
+Svår smärta i bäckenet/misstänkt bäckenfraktur (se ESS 138)
+Amputation – nedom fotled inkl stortå exkl övriga tår
+Fraktur/luxation samt pulslös perifert om skada
+Fraktur ovan knä – öppen/felställd
+Pulserande blödning
+
+Orange symtom
+
+Distalstatus nedsatt
+Fraktur knä/nedom knä till ovan tår – öppen/felställd
+Fraktur ovan knä exkl bäcken – sluten/ej felställd – misstanke om
+Luxation ovan tår
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Smärta och tecken till kompartmentsyndrom
+
+Gula symtom
+
+Amputation/delvis amputerad tå exkl stortå
+Blödning – kontrollerbar
+Fraktur knä/nedom knä – sluten/ej felställd – misstanke om
+Fraktur i tår – öppen
+Misshandel – misstanke om
+Sårskada – djup/sutureringskrävande
+
+Gröna symtom
+
+Fraktur/luxation övrigt – misstänkta/konstaterade
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+Överväg traumalarm
+
+RETTS Faktaruta
+Tillse att patienten blir rengjord i och omkring sårområdet direkt efter första bedömning efter primärkontakt. Kompartmentsyndrom uppstår när en muskel i benet svullnar så mycket att trycket påverkar muskler, blodflöde och nerver. Det kan även uppstå om ett gips är för trång och trycket på vävnaden därigenom blir för högt. Måste behandlas skyndsamt för att undvika bestående skador.
+
+ESS 135 – Blixtnedslag (T75.0), Brännskada (T30.0), Elolycka (T75.4), Frätskada (T30.4), Hypertermi/Värmeslag (T67.0), Hypotermi (T68), Inhalationsskada (T59), Kemisk skada (T65), Köldskada (T35.7), Strålskada (T66.9), Toxisk effekt av kolmonoxid (T58.9) – Barn
+Förberedande åtgärder
+
+Uteslut Traumalarmskriterier ESS 138
+
+Röda symtom
+
+Bränn-, frät- el. skållskada ansikte/hals
+Bränn-, frät- el. skållskada >5% barn <1 år
+Bränn-, frät- el. skållskada >10% barn >1 år
+Elolycka högspänning
+Hypertermi i samband med yttre påverkan till överhettning/gravt värmeslag med temp över 40,5 °C
+Hypotermi i samband med nedkylning med temp under 32 °C
+Inhalationsskador av rök inomhus eller kemisk produkt
+Kem/frätskador av potentiellt livshotande ämne
+Stridor
+Strålskada
+Svullnad i ansikte/tunga, svedda ansiktshår, sot i näsa/mun
+
+Orange symtom
+
+Bränn-, frät- el. skållskada 1–5%, barn <1 år
+Bränn-, frät- el. skållskada 1–10% barn >1 år
+Hosta efter rökinhalation
+Hypertermi i samband med yttre påverkan till överhettning/värmeutmattning med temp upp till 40,5 °C
+Lindrig hypotermi i samband med nedkylning med temp 32–34,9 °C
+Lokal köldskada i svalg med kraftig sväljsmärta/svårt att svälja saliv efter inhalation av gaser/kemikalier
+
+Gula symtom
+
+Blixtnedslag – i patientens omedelbara närhet
+Köldskada – lokal
+Misshandel – misstanke om
+
+Gröna symtom
+
+Bränn-, frät- el. skållskada <1%
+Inget av ovanstående
+Övrig elolycka
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+Överväg traumalarm
+EKG vid elolycka/högspänning/blixtnedslag
+
+RETTS Faktaruta
+Bränn-, frät- el. skållskada ansikte/hals som ger Röd prio! Vid brännskada från öppen eld, vid stor risk för inhalationsskada (som t.ex. brand inomhus eller sot i mun-näsa), om skållskada >1%. Högspänning: Med högspänning menas här allt >1000 V t.ex. kontaktledningar för tåg, högspänningsledningar eller blixtnedslag. 	
+
+ESS 136 – Drunkning/drunkningstillbud (T75.1), Dykarsjuka/dekompressionssjukdom, misstanke om (T70.3) – Barn
+Förberedande åtgärder
+
+Uteslut Traumalarmskriterier ESS 138
+
+Röda symtom
+
+Aspiration och samtidig dyspné
+Kramp efter drunkningstillbud
+Patient har i samband med eller efter tillbudet varit medvetslös eller utan egen andning/cirkulation
+Temp. <32 °C
+
+Orange symtom
+
+Intoxikerad patient
+Aspiration av vatten – misstanke om
+Neurologiska bortfallssymtom
+Snabb uppstigning från dykning med komprimerad gas
+Temp 32–34,9°C
+Yrsel/ledvärk
+
+Gula symtom
+
+Andningsrelaterad smärta/andfåddhet efter dyk med komprimerad gas
+Hudmarmorering/lymfödem
+Till synes somatiskt oskadad
+
+Gröna symtom
+
+Klåda
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+Överväg traumalarm
+
+RETTS Faktaruta
+Drunkning är en diagnos men ofta handlar det om ett tillbud av olika karaktär där det varit en olycka av något slag, båt, simbassäng, badplats fall i vatten etc. Hypotermi är vanligt i samband med drunkning och ytterligare nedkylning ska motverkas.
+
+ESS 137 – Skada öga (S05), Ögonskada (S05) – Barn
+Förberedande åtgärder
+
+Uteslut Traumalarmskriterier ESS 138
+
+Röda symtom
+
+Penetrerande skada
+Utbuktande öga efter skada
+
+Orange symtom
+
+Frätskada eller misstänkt frätskada
+Inskränkt ögonrörlighet/dubbelseende
+Skada med synnedsättning
+
+Gula symtom
+
+Synlig blödning i främre kammaren efter skada
+
+Gröna symtom
+
+Främmande kropp i öga
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+Polop
+Blodgruppering
+Bastest
+PVK
+
+RETTS Faktaruta
+Penetrerande skada, här avses ej ytlig hornhinneskada (svetsblänk eller rispor). Misstanke om eller känd frätskada i öga skall sköljas. Följ lokala PM/rutiner!
+
+ESS 138 – Trauma (Z91.6) – Barn
+Röda symtom
+
+Behov av ventilationsstöd
+Över 15 år: AF <10 eller >29/minut
+Under 15 år: Andningspåverkan
+Över 15 år: BT <90 mmHg eller ej palpabel radialispuls
+Under 15 år: Kapillär återfyllnad >2 sek
+0–1 år: Puls <90 eller >190
+1–5 år: Puls <70 eller >160
+RLS ≥3 eller GCS ≤13
+Penetrerande våld mot hals, huvud, bål, extremiteter ovan armbåge/knä
+Öppen skallskada/impressionsfraktur
+Ansikts/halsskada med hotad luftväg
+Instabil/deformerad bröstkorg
+Svår smärta i bäckenet/misstänkt bäckenfraktur
+
+Orange symtom
+
+Bilolycka >50 km/h utan bälte
+Utkastad ur fordon
+Fastklämd med losstagningstid >20 min
+MC-olycka (eller motsvarande) >35 km/h
+Under 15 år: Påkörd/överkörd av motorfordon
+Över 15 år: Fall >5 m
+Under 15 år: Fall >3 m
+Ospecificerat trauma – bedömd som Nivå 2 i SAMRÅD MED LÄKARE eller LAS
+
+RETTS processåtgärder
+
+(N1) NIVÅ 1...AMK: Fullt traumateam.
+(N2) NIVÅ 2...AMK: Begr. traumateam.
+
+RETTS Faktaruta
+Algoritm baseras på Nationella traumalarmskriterier. Ett eller flera kriterier i RÖD ruta ger NIVÅ 1 larm eller NIVÅ 2 larm. Oavsett vilket/vilka kriterier som ger utfall gäller prehospital förvarning till AKM samt lokala riktlinjer för val av transportprioritet till sjukhus.
+
+ESS 140 – Förgiftning/intoxikation (T65.9) – Barn
+Röda symtom
+
+Allvarlig intoxikation – misstanke om
+Intag av (känd/misstänkt) giftsvamp
+
+Orange symtom
+
+Buksmärta
+Intag av okänd substans/mängd
+Intag av substans i suicidsyfte
+
+Gula symtom
+
+(Ej specificerade)
+
+Gröna symtom
+
+Intag av uppenbart ofarlig substans/mängd
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+Ring Giftinfo
+
+RETTS Faktaruta
+Förgiftningsolycksfall är vanliga bland småbarn. I regel är substansen känd medan dosen ofta är osäker. Feldosering av läkemedel förekommer. I tonåren är förgiftningar ofta relaterade till självdestruktivt beteende.
+
+ESS 141 – Bett av människa (T14.1), Bett och stick av djur (T14.1), Stickskada med smittorisk (Y28.99), Toxiska effekter av djur (T63.9) – Barn
+Röda symtom
+
+Anafylaktisk reaktion
+Svullnad i andningsvägar/mun med påverkad andning, tal eller sväljförmåga
+
+Orange symtom
+
+Bett av djur med potentiellt gift
+Bett/stick i svalg
+Misstanke om sekundärinfektion och feber >38,5°C
+Tidigare allvarlig reaktion vid bett eller stick
+
+Gula symtom
+
+Sårskada – djup
+
+Gröna symtom
+
+Bett eller misstanke om bett av djur som är ogiftigt
+Reaktion av bett – kraftig lokal
+Stickskador med smittorisk
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även allergisk reaktion av djur, infektion)
+
+RETTS Faktaruta
+Svullnad och rodnad runt ögat med feber kan tyda på ethmoidit. Huggormsbett är farligare för barn än för vuxna pga. den relativt sett högre dosen. Ormbett kan orsaka progredierande lokal svullnad men även allmänna symtom med kräkningar, buksmärtor, blodtrycksfall och andningssvårigheter.
+
+ESS 142 – Fysisk misshandel/misstanke om (T74.9), Sexuellt övergrepp/misstanke om (Z04.4) – Barn
+Orange symtom
+
+Koagulationshämmande läkemedel eller blödningsbenägenhet samt pågående blödning
+Misshandel/övergrepp – inom senaste 2 dygnen – tecken på/misstanke om
+Pågående vaginal/rektal blödning
+Svår ångest
+
+Gula symtom
+
+Emotionell labilitet
+Psykomotorisk oro/agitation
+Ångest/oro
+Inget av ovanstående
+
+Gröna symtom
+
+(Ej specificerade)
+
+Blåa symtom
+
+(Ej specificerade)
+
+RETTS processåtgärder
+
+(Se även vaginal/rektal blödning)
+
+RETTS Faktaruta
+All sjukvårdspersonal har lagstadgad skyldighet att anmäla till socialtjänsten vid misstanke om att barn far illa, barnmisshandel/sexuella övergrepp. Överväg en polisanmälan i dialog med kollegor. Kommunicera tydligt med dina arbetskamrater om din misstanke. Dokumentera berättelsen ordagrant. Jämför intryck och anamnes.
+
+ESS 143 – Allergi (T78.4), Exantem/hudutslag/blåmärke (R21), Klåda (F45.8), Läkemedelsreaktion (T88.7) – Barn
+Röda symtom
+
+Anafylaktisk reaktion
+Svullnad i andningsvägar/mun med påverkad andning, tal eller sväljförmåga
+
+Orange symtom
+
+Immunosupprimerad patient
+Svullnadskänsla i svalget
+Tidigare allvarlig reaktion av samma allergen
+
+Gula symtom
+
+Övriga med svullnad i ansikte eller klåda hals
+
+Gröna symtom
+
+Urtikaria
+Inget av ovanstående
+
+Blåa symtom
+
+Efter undersökning inget omedelbart behov av akutsjukvård
+
+RETTS processåtgärder
+
+(Se även bett/stick utan allergisk reaktion, blodsjukdom, sepsis/meningit, misshandel)
+
+RETTS Faktaruta
+Anafylaktisk reaktion innebär en allvarlig allergisk reaktion, ofta med utslag/svullnad, som påverkar flera organsystem med andningssymptom och/eller cirkulationspåverkan. Initialfasen kommer inom ett par minuter till 1h efter kontakt med utlösande agens.

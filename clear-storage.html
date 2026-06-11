@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rensa localStorage</title>
+</head>
+<body>
+    <h1>Rensar localStorage...</h1>
+    <div id="status"></div>
+    <script>
+        const status = document.getElementById('status');
+        const keys = Object.keys(localStorage);
+        status.innerHTML = `<p>Hittar ${keys.length} nycklar i localStorage</p>`;
+        
+        // Rensa alla nycklar
+        localStorage.clear();
+        
+        status.innerHTML += '<p><strong>✓ Alla localStorage-nycklar rensade!</strong></p>';
+        status.innerHTML += '<p>Stäng detta fönster och öppna akutmottagningen igen.</p>';
+        
+        // Automatisk omladdning efter 2 sekunder
+        setTimeout(() => {
+            window.close();
+        }, 2000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,4554 @@
+{
+  "personnel": [
+    {
+      "id": "AL-001",
+      "firstName": "Christer",
+      "lastName": "Forsberg",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-002",
+      "firstName": "Bengt",
+      "lastName": "Strömberg",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-003",
+      "firstName": "Peter",
+      "lastName": "Hedlund",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-004",
+      "firstName": "Gunnel",
+      "lastName": "Berg",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-005",
+      "firstName": "Josefin",
+      "lastName": "Jakobsson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-006",
+      "firstName": "Eva",
+      "lastName": "Bengtsson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-007",
+      "firstName": "Bertil",
+      "lastName": "Lundgren",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-008",
+      "firstName": "Emma",
+      "lastName": "Fredriksson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-009",
+      "firstName": "Daniel",
+      "lastName": "Lindberg",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-010",
+      "firstName": "Anna",
+      "lastName": "Holmberg",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-011",
+      "firstName": "Fredrik",
+      "lastName": "Andreasson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-012",
+      "firstName": "Elin",
+      "lastName": "Axelsson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-013",
+      "firstName": "Kristina",
+      "lastName": "Bengtsson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-014",
+      "firstName": "Kerstin",
+      "lastName": "Ek",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-015",
+      "firstName": "Julia",
+      "lastName": "Månsson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-016",
+      "firstName": "Birgit",
+      "lastName": "Lund",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-017",
+      "firstName": "Fredrik",
+      "lastName": "Karlsson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-018",
+      "firstName": "Andreas",
+      "lastName": "Andersson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-019",
+      "firstName": "Mikael",
+      "lastName": "Strömberg",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-020",
+      "firstName": "Emma",
+      "lastName": "Jönsson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-021",
+      "firstName": "Jessica",
+      "lastName": "Karlsson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-022",
+      "firstName": "Gunnel",
+      "lastName": "Andreasson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-023",
+      "firstName": "Rolf",
+      "lastName": "Söderberg",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-024",
+      "firstName": "Agneta",
+      "lastName": "Gustavsson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-025",
+      "firstName": "Bo",
+      "lastName": "Lundgren",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-026",
+      "firstName": "Emelie",
+      "lastName": "Gustafsson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-027",
+      "firstName": "Olle",
+      "lastName": "Lund",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-028",
+      "firstName": "Sonja",
+      "lastName": "Holmgren",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-029",
+      "firstName": "Bengt",
+      "lastName": "Mårtensson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-030",
+      "firstName": "Ulf",
+      "lastName": "Hedberg",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-031",
+      "firstName": "Christina",
+      "lastName": "Lindgren",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-032",
+      "firstName": "Marianne",
+      "lastName": "Malmström",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-033",
+      "firstName": "Emil",
+      "lastName": "Karlsson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-034",
+      "firstName": "Bertil",
+      "lastName": "Ek",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-035",
+      "firstName": "Amanda",
+      "lastName": "Andreasson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-036",
+      "firstName": "Ulla",
+      "lastName": "Ek",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-037",
+      "firstName": "Jessica",
+      "lastName": "Sundström",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-038",
+      "firstName": "Monica",
+      "lastName": "Björk",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-039",
+      "firstName": "Rolf",
+      "lastName": "Eklund",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-040",
+      "firstName": "Sven",
+      "lastName": "Holmgren",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-041",
+      "firstName": "Inger",
+      "lastName": "Åström",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-042",
+      "firstName": "Bo",
+      "lastName": "Bergman",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-043",
+      "firstName": "Nils",
+      "lastName": "Pettersson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-044",
+      "firstName": "Magnus",
+      "lastName": "Lind",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-045",
+      "firstName": "Barbro",
+      "lastName": "Holm",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-046",
+      "firstName": "Peter",
+      "lastName": "Johansson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-047",
+      "firstName": "Bengt",
+      "lastName": "Andersson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-048",
+      "firstName": "Sara",
+      "lastName": "Isaksson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-049",
+      "firstName": "Astrid",
+      "lastName": "Gunnarsson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "AL-050",
+      "firstName": "Mats",
+      "lastName": "Arvidsson",
+      "category": "Akutläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-001",
+      "firstName": "Emelie",
+      "lastName": "Ek",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-002",
+      "firstName": "Mattias",
+      "lastName": "Lund",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-003",
+      "firstName": "Bo",
+      "lastName": "Sundström",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-004",
+      "firstName": "Victoria",
+      "lastName": "Lundberg",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-005",
+      "firstName": "Ingrid",
+      "lastName": "Sundström",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-006",
+      "firstName": "Emelie",
+      "lastName": "Berggren",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-007",
+      "firstName": "Marianne",
+      "lastName": "Andreasson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-008",
+      "firstName": "Christina",
+      "lastName": "Nyström",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-009",
+      "firstName": "Bo",
+      "lastName": "Jonasson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-010",
+      "firstName": "Birgit",
+      "lastName": "Andreasson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-011",
+      "firstName": "Olle",
+      "lastName": "Lindberg",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-012",
+      "firstName": "Birgitta",
+      "lastName": "Gustavsson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-013",
+      "firstName": "Elsa",
+      "lastName": "Åkesson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-014",
+      "firstName": "Marianne",
+      "lastName": "Axelsson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-015",
+      "firstName": "Viktor",
+      "lastName": "Wallin",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-016",
+      "firstName": "Stefan",
+      "lastName": "Svensson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-017",
+      "firstName": "Viktor",
+      "lastName": "Åberg",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-018",
+      "firstName": "Elsa",
+      "lastName": "Claesson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-019",
+      "firstName": "Stefan",
+      "lastName": "Holmqvist",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-020",
+      "firstName": "Olle",
+      "lastName": "Pettersson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-021",
+      "firstName": "Johanna",
+      "lastName": "Sjöberg",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-022",
+      "firstName": "Sven",
+      "lastName": "Bengtsson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-023",
+      "firstName": "Åke",
+      "lastName": "Linder",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-024",
+      "firstName": "Inga",
+      "lastName": "Wallin",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-025",
+      "firstName": "Mattias",
+      "lastName": "Forsberg",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-026",
+      "firstName": "Christina",
+      "lastName": "Lindberg",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-027",
+      "firstName": "Stefan",
+      "lastName": "Nordin",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-028",
+      "firstName": "Peter",
+      "lastName": "Sandberg",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-029",
+      "firstName": "Emil",
+      "lastName": "Edlund",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-030",
+      "firstName": "Peter",
+      "lastName": "Norberg",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-031",
+      "firstName": "Bo",
+      "lastName": "Magnusson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-032",
+      "firstName": "Barbro",
+      "lastName": "Nilsson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-033",
+      "firstName": "Rolf",
+      "lastName": "Holmgren",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-034",
+      "firstName": "Viktor",
+      "lastName": "Andersson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-035",
+      "firstName": "Emil",
+      "lastName": "Magnusson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-036",
+      "firstName": "Marianne",
+      "lastName": "Olofsson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-037",
+      "firstName": "Johanna",
+      "lastName": "Berg",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-038",
+      "firstName": "Elin",
+      "lastName": "Karlsson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-039",
+      "firstName": "Josefin",
+      "lastName": "Larsson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-040",
+      "firstName": "Sonja",
+      "lastName": "Lundberg",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-041",
+      "firstName": "Kjell",
+      "lastName": "Karlsson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-042",
+      "firstName": "Kristina",
+      "lastName": "Erlandsson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-043",
+      "firstName": "Margareta",
+      "lastName": "Berggren",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-044",
+      "firstName": "Barbro",
+      "lastName": "Strömberg",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-045",
+      "firstName": "Christer",
+      "lastName": "Blomqvist",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-046",
+      "firstName": "Monica",
+      "lastName": "Hedlund",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-047",
+      "firstName": "Christer",
+      "lastName": "Berglund",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-048",
+      "firstName": "Lena",
+      "lastName": "Sjöberg",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-049",
+      "firstName": "Ida",
+      "lastName": "Lindqvist",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ANL-050",
+      "firstName": "Emelie",
+      "lastName": "Arvidsson",
+      "category": "Anestesiläkare",
+      "status": "available"
+    },
+    {
+      "id": "ORT-001",
+      "firstName": "Viktor",
+      "lastName": "Jönsson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-002",
+      "firstName": "Oskar",
+      "lastName": "Malmberg",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-003",
+      "firstName": "Ann-Marie",
+      "lastName": "Holmberg",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-004",
+      "firstName": "Patrik",
+      "lastName": "Sandberg",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-005",
+      "firstName": "Sara",
+      "lastName": "Blomqvist",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-006",
+      "firstName": "Elin",
+      "lastName": "Åkesson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-007",
+      "firstName": "Elin",
+      "lastName": "Johnsson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-008",
+      "firstName": "Gustav",
+      "lastName": "Berg",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-009",
+      "firstName": "Emil",
+      "lastName": "Åström",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-010",
+      "firstName": "Peter",
+      "lastName": "Jakobsson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-011",
+      "firstName": "Elisabeth",
+      "lastName": "Berggren",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-012",
+      "firstName": "Emma",
+      "lastName": "Åkesson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-013",
+      "firstName": "Eva",
+      "lastName": "Axelsson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-014",
+      "firstName": "Rebecka",
+      "lastName": "Magnusson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-015",
+      "firstName": "Anita",
+      "lastName": "Isaksson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-016",
+      "firstName": "Christer",
+      "lastName": "Johnsson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-017",
+      "firstName": "Lars",
+      "lastName": "Malmberg",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-018",
+      "firstName": "Johan",
+      "lastName": "Martinsson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-019",
+      "firstName": "Alexander",
+      "lastName": "Nilsson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-020",
+      "firstName": "Jonas",
+      "lastName": "Nordin",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-021",
+      "firstName": "Fredrik",
+      "lastName": "Linder",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-022",
+      "firstName": "Björn",
+      "lastName": "Sjögren",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-023",
+      "firstName": "Elsa",
+      "lastName": "Andreasson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-024",
+      "firstName": "Karin",
+      "lastName": "Söderström",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-025",
+      "firstName": "Adam",
+      "lastName": "Edlund",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-026",
+      "firstName": "Stig",
+      "lastName": "Hedberg",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-027",
+      "firstName": "Ulla",
+      "lastName": "Falk",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-028",
+      "firstName": "Håkan",
+      "lastName": "Mattsson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-029",
+      "firstName": "Sune",
+      "lastName": "Lund",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-030",
+      "firstName": "Barbro",
+      "lastName": "Norberg",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-031",
+      "firstName": "Patrik",
+      "lastName": "Sjöberg",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-032",
+      "firstName": "Linda",
+      "lastName": "Magnusson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-033",
+      "firstName": "Sandra",
+      "lastName": "Sundberg",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-034",
+      "firstName": "Gustav",
+      "lastName": "Malmström",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-035",
+      "firstName": "Sonja",
+      "lastName": "Falk",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-036",
+      "firstName": "Henrik",
+      "lastName": "Persson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-037",
+      "firstName": "Jan",
+      "lastName": "Fredriksson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-038",
+      "firstName": "Oskar",
+      "lastName": "Hellström",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-039",
+      "firstName": "Sebastian",
+      "lastName": "Lund",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-040",
+      "firstName": "Viktor",
+      "lastName": "Håkansson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-041",
+      "firstName": "Christina",
+      "lastName": "Erlandsson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-042",
+      "firstName": "Peter",
+      "lastName": "Ek",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-043",
+      "firstName": "Sofia",
+      "lastName": "Eklund",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-044",
+      "firstName": "Magnus",
+      "lastName": "Sjöberg",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-045",
+      "firstName": "Kurt",
+      "lastName": "Jansson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-046",
+      "firstName": "Nils",
+      "lastName": "Nordin",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-047",
+      "firstName": "Monica",
+      "lastName": "Edlund",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-048",
+      "firstName": "Erik",
+      "lastName": "Henriksson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-049",
+      "firstName": "Maria",
+      "lastName": "Fredriksson",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "ORT-050",
+      "firstName": "Elin",
+      "lastName": "Hedlund",
+      "category": "Ortopeder",
+      "status": "available"
+    },
+    {
+      "id": "KIR-001",
+      "firstName": "Birgitta",
+      "lastName": "Eklund",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-002",
+      "firstName": "Mats",
+      "lastName": "Edlund",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-003",
+      "firstName": "Alexander",
+      "lastName": "Engström",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-004",
+      "firstName": "Bo",
+      "lastName": "Blomqvist",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-005",
+      "firstName": "Fredrik",
+      "lastName": "Strömberg",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-006",
+      "firstName": "Anita",
+      "lastName": "Henriksson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-007",
+      "firstName": "Elin",
+      "lastName": "Lundberg",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-008",
+      "firstName": "Kerstin",
+      "lastName": "Danielsson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-009",
+      "firstName": "Bengt",
+      "lastName": "Sjöberg",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-010",
+      "firstName": "Kurt",
+      "lastName": "Sjöberg",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-011",
+      "firstName": "Monica",
+      "lastName": "Bengtsson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-012",
+      "firstName": "Bertil",
+      "lastName": "Gustafsson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-013",
+      "firstName": "Anna",
+      "lastName": "Åkesson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-014",
+      "firstName": "Andreas",
+      "lastName": "Lundgren",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-015",
+      "firstName": "Lena",
+      "lastName": "Carlsson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-016",
+      "firstName": "Björn",
+      "lastName": "Nordström",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-017",
+      "firstName": "Madeleine",
+      "lastName": "Holm",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-018",
+      "firstName": "Håkan",
+      "lastName": "Lund",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-019",
+      "firstName": "Mikael",
+      "lastName": "Sundström",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-020",
+      "firstName": "Åke",
+      "lastName": "Berggren",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-021",
+      "firstName": "Kurt",
+      "lastName": "Blomqvist",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-022",
+      "firstName": "Marcus",
+      "lastName": "Bengtsson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-023",
+      "firstName": "Sebastian",
+      "lastName": "Andersson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-024",
+      "firstName": "Kerstin",
+      "lastName": "Johansson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-025",
+      "firstName": "Siv",
+      "lastName": "Söderberg",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-026",
+      "firstName": "Patrik",
+      "lastName": "Holmberg",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-027",
+      "firstName": "Rebecka",
+      "lastName": "Viklund",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-028",
+      "firstName": "Birgitta",
+      "lastName": "Hedberg",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-029",
+      "firstName": "Peter",
+      "lastName": "Berg",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-030",
+      "firstName": "Gunnel",
+      "lastName": "Nyberg",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-031",
+      "firstName": "Elsa",
+      "lastName": "Arvidsson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-032",
+      "firstName": "Rolf",
+      "lastName": "Åkesson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-033",
+      "firstName": "Alexander",
+      "lastName": "Sundström",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-034",
+      "firstName": "Henrik",
+      "lastName": "Söderström",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-035",
+      "firstName": "Kjell",
+      "lastName": "Dahl",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-036",
+      "firstName": "Magnus",
+      "lastName": "Hellström",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-037",
+      "firstName": "Julia",
+      "lastName": "Strand",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-038",
+      "firstName": "Britt",
+      "lastName": "Jönsson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-039",
+      "firstName": "Per",
+      "lastName": "Johnsson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-040",
+      "firstName": "Martin",
+      "lastName": "Arvidsson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-041",
+      "firstName": "Elin",
+      "lastName": "Björklund",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-042",
+      "firstName": "Monica",
+      "lastName": "Strömberg",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-043",
+      "firstName": "Emil",
+      "lastName": "Ek",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-044",
+      "firstName": "Gunilla",
+      "lastName": "Svensson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-045",
+      "firstName": "Marcus",
+      "lastName": "Danielsson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-046",
+      "firstName": "Julia",
+      "lastName": "Jakobsson",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-047",
+      "firstName": "Ann-Marie",
+      "lastName": "Sjögren",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-048",
+      "firstName": "Kurt",
+      "lastName": "Bergström",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-049",
+      "firstName": "Sune",
+      "lastName": "Malmberg",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "KIR-050",
+      "firstName": "Victoria",
+      "lastName": "Nyström",
+      "category": "Kirurger",
+      "status": "available"
+    },
+    {
+      "id": "NSK-001",
+      "firstName": "Berit",
+      "lastName": "Berg",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-002",
+      "firstName": "Ulla",
+      "lastName": "Nordin",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-003",
+      "firstName": "Jonas",
+      "lastName": "Sandström",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-004",
+      "firstName": "Ulf",
+      "lastName": "Sjöberg",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-005",
+      "firstName": "Sonja",
+      "lastName": "Jönsson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-006",
+      "firstName": "Ulf",
+      "lastName": "Åkesson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-007",
+      "firstName": "Elisabeth",
+      "lastName": "Sandberg",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-008",
+      "firstName": "Rebecka",
+      "lastName": "Martinsson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-009",
+      "firstName": "Göran",
+      "lastName": "Fransson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-010",
+      "firstName": "Emma",
+      "lastName": "Carlsson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-011",
+      "firstName": "Emma",
+      "lastName": "Olsson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-012",
+      "firstName": "Filip",
+      "lastName": "Danielsson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-013",
+      "firstName": "Martin",
+      "lastName": "Pettersson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-014",
+      "firstName": "Anita",
+      "lastName": "Lundqvist",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-015",
+      "firstName": "Christina",
+      "lastName": "Söderberg",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-016",
+      "firstName": "Thomas",
+      "lastName": "Lindström",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-017",
+      "firstName": "Sonja",
+      "lastName": "Nyberg",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-018",
+      "firstName": "Adam",
+      "lastName": "Svensson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-019",
+      "firstName": "Olle",
+      "lastName": "Holmgren",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-020",
+      "firstName": "Jonas",
+      "lastName": "Nyberg",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-021",
+      "firstName": "Oskar",
+      "lastName": "Holm",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-022",
+      "firstName": "Monica",
+      "lastName": "Sjögren",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-023",
+      "firstName": "Viktor",
+      "lastName": "Berg",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-024",
+      "firstName": "Victoria",
+      "lastName": "Strömberg",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-025",
+      "firstName": "Ulla",
+      "lastName": "Claesson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-026",
+      "firstName": "Astrid",
+      "lastName": "Bergström",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-027",
+      "firstName": "Johan",
+      "lastName": "Gustafsson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-028",
+      "firstName": "Gustav",
+      "lastName": "Claesson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-029",
+      "firstName": "Bo",
+      "lastName": "Jonasson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-030",
+      "firstName": "Marcus",
+      "lastName": "Eklund",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-031",
+      "firstName": "Fredrik",
+      "lastName": "Persson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-032",
+      "firstName": "Niklas",
+      "lastName": "Andreasson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-033",
+      "firstName": "Adam",
+      "lastName": "Nyberg",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-034",
+      "firstName": "Bo",
+      "lastName": "Nordin",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-035",
+      "firstName": "Lena",
+      "lastName": "Lindqvist",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-036",
+      "firstName": "Inga",
+      "lastName": "Åström",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-037",
+      "firstName": "Kurt",
+      "lastName": "Olofsson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-038",
+      "firstName": "Inga",
+      "lastName": "Bergström",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-039",
+      "firstName": "Maria",
+      "lastName": "Gunnarsson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-040",
+      "firstName": "Monica",
+      "lastName": "Bergström",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-041",
+      "firstName": "Bertil",
+      "lastName": "Engström",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-042",
+      "firstName": "Anders",
+      "lastName": "Sjöberg",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-043",
+      "firstName": "Sofia",
+      "lastName": "Larsson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-044",
+      "firstName": "Kristina",
+      "lastName": "Berglund",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-045",
+      "firstName": "David",
+      "lastName": "Engström",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-046",
+      "firstName": "Inga",
+      "lastName": "Jonasson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-047",
+      "firstName": "Adam",
+      "lastName": "Engström",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-048",
+      "firstName": "Emelie",
+      "lastName": "Bergström",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-049",
+      "firstName": "David",
+      "lastName": "Hansson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "NSK-050",
+      "firstName": "Sonja",
+      "lastName": "Erlandsson",
+      "category": "Narkossköterskor",
+      "status": "available"
+    },
+    {
+      "id": "USO-001",
+      "firstName": "Mikael",
+      "lastName": "Jansson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-002",
+      "firstName": "Sonja",
+      "lastName": "Söderström",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-003",
+      "firstName": "Henrik",
+      "lastName": "Nyberg",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-004",
+      "firstName": "Agneta",
+      "lastName": "Nordström",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-005",
+      "firstName": "Alexander",
+      "lastName": "Öberg",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-006",
+      "firstName": "Håkan",
+      "lastName": "Henriksson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-007",
+      "firstName": "Julia",
+      "lastName": "Isaksson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-008",
+      "firstName": "Bo",
+      "lastName": "Gunnarsson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-009",
+      "firstName": "Gustav",
+      "lastName": "Bergman",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-010",
+      "firstName": "Bertil",
+      "lastName": "Lundgren",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-011",
+      "firstName": "Erik",
+      "lastName": "Dahlberg",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-012",
+      "firstName": "Johanna",
+      "lastName": "Persson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-013",
+      "firstName": "Elin",
+      "lastName": "Fransson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-014",
+      "firstName": "Elin",
+      "lastName": "Åkesson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-015",
+      "firstName": "Sara",
+      "lastName": "Erlandsson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-016",
+      "firstName": "Lars",
+      "lastName": "Söderström",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-017",
+      "firstName": "Sven",
+      "lastName": "Nordin",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-018",
+      "firstName": "Ulla",
+      "lastName": "Jönsson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-019",
+      "firstName": "Adam",
+      "lastName": "Lundström",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-020",
+      "firstName": "Ulla",
+      "lastName": "Bengtsson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-021",
+      "firstName": "Anders",
+      "lastName": "Martinsson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-022",
+      "firstName": "Stig",
+      "lastName": "Holmgren",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-023",
+      "firstName": "Berit",
+      "lastName": "Lindström",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-024",
+      "firstName": "Sebastian",
+      "lastName": "Eklund",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-025",
+      "firstName": "Martin",
+      "lastName": "Andersson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-026",
+      "firstName": "Anna",
+      "lastName": "Jonasson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-027",
+      "firstName": "Kurt",
+      "lastName": "Karlsson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-028",
+      "firstName": "Malin",
+      "lastName": "Norberg",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-029",
+      "firstName": "Per",
+      "lastName": "Samuelsson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-030",
+      "firstName": "Kristina",
+      "lastName": "Wallin",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-031",
+      "firstName": "Anita",
+      "lastName": "Karlsson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-032",
+      "firstName": "Lennart",
+      "lastName": "Jansson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-033",
+      "firstName": "Sonja",
+      "lastName": "Sjögren",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-034",
+      "firstName": "Barbro",
+      "lastName": "Magnusson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-035",
+      "firstName": "Alexander",
+      "lastName": "Lundström",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-036",
+      "firstName": "Monica",
+      "lastName": "Persson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-037",
+      "firstName": "Bengt",
+      "lastName": "Forsberg",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-038",
+      "firstName": "Lennart",
+      "lastName": "Bengtsson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-039",
+      "firstName": "Nils",
+      "lastName": "Öberg",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-040",
+      "firstName": "Elisabeth",
+      "lastName": "Johnsson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-041",
+      "firstName": "Elin",
+      "lastName": "Persson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-042",
+      "firstName": "Elin",
+      "lastName": "Bergström",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-043",
+      "firstName": "Maj",
+      "lastName": "Nordin",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-044",
+      "firstName": "Fredrik",
+      "lastName": "Olsson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-045",
+      "firstName": "David",
+      "lastName": "Gustavsson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-046",
+      "firstName": "Emma",
+      "lastName": "Berg",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-047",
+      "firstName": "Lena",
+      "lastName": "Lundström",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-048",
+      "firstName": "Stefan",
+      "lastName": "Johansson",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-049",
+      "firstName": "Gunnel",
+      "lastName": "Berg",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "USO-050",
+      "firstName": "Martin",
+      "lastName": "Engström",
+      "category": "Undersköterskor operation",
+      "status": "available"
+    },
+    {
+      "id": "OSK-001",
+      "firstName": "Elin",
+      "lastName": "Lundqvist",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-002",
+      "firstName": "Sebastian",
+      "lastName": "Sundberg",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-003",
+      "firstName": "Karin",
+      "lastName": "Holm",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-004",
+      "firstName": "Sandra",
+      "lastName": "Holm",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-005",
+      "firstName": "Ida",
+      "lastName": "Wallin",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-006",
+      "firstName": "Johanna",
+      "lastName": "Åberg",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-007",
+      "firstName": "Kristina",
+      "lastName": "Blomqvist",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-008",
+      "firstName": "Johanna",
+      "lastName": "Olsson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-009",
+      "firstName": "Niklas",
+      "lastName": "Lundberg",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-010",
+      "firstName": "Andreas",
+      "lastName": "Danielsson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-011",
+      "firstName": "Kurt",
+      "lastName": "Nilsson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-012",
+      "firstName": "Stefan",
+      "lastName": "Svensson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-013",
+      "firstName": "Martin",
+      "lastName": "Holmberg",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-014",
+      "firstName": "Martin",
+      "lastName": "Johnsson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-015",
+      "firstName": "Niklas",
+      "lastName": "Söderström",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-016",
+      "firstName": "Sara",
+      "lastName": "Håkansson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-017",
+      "firstName": "Anna",
+      "lastName": "Nordström",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-018",
+      "firstName": "Oskar",
+      "lastName": "Andreasson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-019",
+      "firstName": "Madeleine",
+      "lastName": "Malmström",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-020",
+      "firstName": "Christina",
+      "lastName": "Berg",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-021",
+      "firstName": "Maj",
+      "lastName": "Nyberg",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-022",
+      "firstName": "Håkan",
+      "lastName": "Olofsson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-023",
+      "firstName": "Agneta",
+      "lastName": "Åström",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-024",
+      "firstName": "Kjell",
+      "lastName": "Pettersson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-025",
+      "firstName": "Rolf",
+      "lastName": "Dahl",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-026",
+      "firstName": "Oskar",
+      "lastName": "Andersson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-027",
+      "firstName": "Jan",
+      "lastName": "Svensson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-028",
+      "firstName": "Ingrid",
+      "lastName": "Gunnarsson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-029",
+      "firstName": "Agneta",
+      "lastName": "Lundberg",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-030",
+      "firstName": "Oskar",
+      "lastName": "Dahl",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-031",
+      "firstName": "Rebecka",
+      "lastName": "Malmberg",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-032",
+      "firstName": "Johanna",
+      "lastName": "Holm",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-033",
+      "firstName": "Gunilla",
+      "lastName": "Sjögren",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-034",
+      "firstName": "Sven",
+      "lastName": "Hedlund",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-035",
+      "firstName": "Sara",
+      "lastName": "Berggren",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-036",
+      "firstName": "Mikael",
+      "lastName": "Johansson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-037",
+      "firstName": "Peter",
+      "lastName": "Linder",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-038",
+      "firstName": "Christer",
+      "lastName": "Sandberg",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-039",
+      "firstName": "Elin",
+      "lastName": "Björk",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-040",
+      "firstName": "Ulla",
+      "lastName": "Öberg",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-041",
+      "firstName": "Sandra",
+      "lastName": "Isaksson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-042",
+      "firstName": "Johan",
+      "lastName": "Björk",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-043",
+      "firstName": "Inga",
+      "lastName": "Andersson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-044",
+      "firstName": "Victoria",
+      "lastName": "Magnusson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-045",
+      "firstName": "Marianne",
+      "lastName": "Erlandsson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-046",
+      "firstName": "Maria",
+      "lastName": "Persson",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-047",
+      "firstName": "Gustav",
+      "lastName": "Strömberg",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-048",
+      "firstName": "Björn",
+      "lastName": "Viklund",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-049",
+      "firstName": "Britt",
+      "lastName": "Strand",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "OSK-050",
+      "firstName": "Göran",
+      "lastName": "Falk",
+      "category": "Operationssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-001",
+      "firstName": "Barbro",
+      "lastName": "Olsson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-002",
+      "firstName": "Andreas",
+      "lastName": "Sundberg",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-003",
+      "firstName": "Rebecka",
+      "lastName": "Mårtensson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-004",
+      "firstName": "Marcus",
+      "lastName": "Lund",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-005",
+      "firstName": "Rebecka",
+      "lastName": "Jakobsson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-006",
+      "firstName": "Jan",
+      "lastName": "Samuelsson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-007",
+      "firstName": "Martin",
+      "lastName": "Månsson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-008",
+      "firstName": "Elin",
+      "lastName": "Lundström",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-009",
+      "firstName": "Sara",
+      "lastName": "Mårtensson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-010",
+      "firstName": "Fredrik",
+      "lastName": "Malmström",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-011",
+      "firstName": "Filip",
+      "lastName": "Nyström",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-012",
+      "firstName": "Christina",
+      "lastName": "Eklund",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-013",
+      "firstName": "Johan",
+      "lastName": "Engström",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-014",
+      "firstName": "Daniel",
+      "lastName": "Holm",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-015",
+      "firstName": "Gunilla",
+      "lastName": "Edlund",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-016",
+      "firstName": "Britt",
+      "lastName": "Gustafsson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-017",
+      "firstName": "Peter",
+      "lastName": "Åkesson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-018",
+      "firstName": "Astrid",
+      "lastName": "Larsson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-019",
+      "firstName": "Göran",
+      "lastName": "Wallin",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-020",
+      "firstName": "Jessica",
+      "lastName": "Bergström",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-021",
+      "firstName": "Kurt",
+      "lastName": "Blomqvist",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-022",
+      "firstName": "Peter",
+      "lastName": "Holm",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-023",
+      "firstName": "Ulf",
+      "lastName": "Söderström",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-024",
+      "firstName": "Åke",
+      "lastName": "Linder",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-025",
+      "firstName": "Mattias",
+      "lastName": "Hedlund",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-026",
+      "firstName": "Elin",
+      "lastName": "Samuelsson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-027",
+      "firstName": "Emil",
+      "lastName": "Nyberg",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-028",
+      "firstName": "Viktor",
+      "lastName": "Mårtensson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-029",
+      "firstName": "Kjell",
+      "lastName": "Öberg",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-030",
+      "firstName": "Bertil",
+      "lastName": "Lundqvist",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-031",
+      "firstName": "Stig",
+      "lastName": "Sjöberg",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-032",
+      "firstName": "Filip",
+      "lastName": "Sjögren",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-033",
+      "firstName": "Viktor",
+      "lastName": "Gunnarsson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-034",
+      "firstName": "Mattias",
+      "lastName": "Jansson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-035",
+      "firstName": "Marianne",
+      "lastName": "Holmberg",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-036",
+      "firstName": "Britt",
+      "lastName": "Holmberg",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-037",
+      "firstName": "Kerstin",
+      "lastName": "Sjöberg",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-038",
+      "firstName": "Ulla",
+      "lastName": "Ström",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-039",
+      "firstName": "Fredrik",
+      "lastName": "Håkansson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-040",
+      "firstName": "Lars",
+      "lastName": "Svensson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-041",
+      "firstName": "Sune",
+      "lastName": "Eriksson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-042",
+      "firstName": "Amanda",
+      "lastName": "Carlsson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-043",
+      "firstName": "Gustav",
+      "lastName": "Mårtensson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-044",
+      "firstName": "Sandra",
+      "lastName": "Sandström",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-045",
+      "firstName": "Barbro",
+      "lastName": "Holmqvist",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-046",
+      "firstName": "Stig",
+      "lastName": "Claesson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-047",
+      "firstName": "Lena",
+      "lastName": "Björk",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-048",
+      "firstName": "Inga",
+      "lastName": "Eriksson",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-049",
+      "firstName": "Birgitta",
+      "lastName": "Wallin",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "ASK-050",
+      "firstName": "Bengt",
+      "lastName": "Dahlberg",
+      "category": "Akutsjuksköterskor",
+      "status": "available"
+    },
+    {
+      "id": "USA-001",
+      "firstName": "Bengt",
+      "lastName": "Danielsson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-002",
+      "firstName": "Johanna",
+      "lastName": "Sjöberg",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-003",
+      "firstName": "Inga",
+      "lastName": "Magnusson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-004",
+      "firstName": "Jan",
+      "lastName": "Lund",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-005",
+      "firstName": "Sara",
+      "lastName": "Magnusson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-006",
+      "firstName": "Eva",
+      "lastName": "Dahlberg",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-007",
+      "firstName": "Margareta",
+      "lastName": "Ström",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-008",
+      "firstName": "Bertil",
+      "lastName": "Sjögren",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-009",
+      "firstName": "Sandra",
+      "lastName": "Lundström",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-010",
+      "firstName": "Maria",
+      "lastName": "Lundgren",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-011",
+      "firstName": "Emma",
+      "lastName": "Berglund",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-012",
+      "firstName": "Gustav",
+      "lastName": "Sundberg",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-013",
+      "firstName": "Rolf",
+      "lastName": "Dahlberg",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-014",
+      "firstName": "Nils",
+      "lastName": "Sandberg",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-015",
+      "firstName": "Per",
+      "lastName": "Söderberg",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-016",
+      "firstName": "Gunnel",
+      "lastName": "Henriksson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-017",
+      "firstName": "Magnus",
+      "lastName": "Norberg",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-018",
+      "firstName": "Patrik",
+      "lastName": "Martinsson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-019",
+      "firstName": "Gustav",
+      "lastName": "Sandberg",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-020",
+      "firstName": "Emma",
+      "lastName": "Ström",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-021",
+      "firstName": "Inga",
+      "lastName": "Holmberg",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-022",
+      "firstName": "Maj",
+      "lastName": "Björk",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-023",
+      "firstName": "Monica",
+      "lastName": "Forsberg",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-024",
+      "firstName": "Margareta",
+      "lastName": "Lundberg",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-025",
+      "firstName": "Josefin",
+      "lastName": "Sjöberg",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-026",
+      "firstName": "Håkan",
+      "lastName": "Blomqvist",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-027",
+      "firstName": "Kjell",
+      "lastName": "Söderberg",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-028",
+      "firstName": "Linda",
+      "lastName": "Isaksson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-029",
+      "firstName": "Johan",
+      "lastName": "Mattsson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-030",
+      "firstName": "Amanda",
+      "lastName": "Linder",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-031",
+      "firstName": "Håkan",
+      "lastName": "Jakobsson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-032",
+      "firstName": "Madeleine",
+      "lastName": "Lundström",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-033",
+      "firstName": "Sonja",
+      "lastName": "Karlsson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-034",
+      "firstName": "Birgit",
+      "lastName": "Lundqvist",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-035",
+      "firstName": "Peter",
+      "lastName": "Jakobsson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-036",
+      "firstName": "Magnus",
+      "lastName": "Söderström",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-037",
+      "firstName": "Christina",
+      "lastName": "Gustafsson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-038",
+      "firstName": "Anita",
+      "lastName": "Karlsson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-039",
+      "firstName": "Jonas",
+      "lastName": "Nordin",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-040",
+      "firstName": "Kurt",
+      "lastName": "Hansson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-041",
+      "firstName": "Lena",
+      "lastName": "Mårtensson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-042",
+      "firstName": "Ingrid",
+      "lastName": "Wallin",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-043",
+      "firstName": "Kerstin",
+      "lastName": "Martinsson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-044",
+      "firstName": "Nils",
+      "lastName": "Söderberg",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-045",
+      "firstName": "Linda",
+      "lastName": "Berggren",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-046",
+      "firstName": "Marcus",
+      "lastName": "Karlsson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-047",
+      "firstName": "Alexander",
+      "lastName": "Jönsson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-048",
+      "firstName": "Malin",
+      "lastName": "Boström",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-049",
+      "firstName": "Christer",
+      "lastName": "Carlsson",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "USA-050",
+      "firstName": "Magnus",
+      "lastName": "Falk",
+      "category": "Undersköterskor akuten",
+      "status": "available"
+    },
+    {
+      "id": "IVS-001",
+      "firstName": "Anna",
+      "lastName": "Samuelsson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-002",
+      "firstName": "Ann-Marie",
+      "lastName": "Sjögren",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-003",
+      "firstName": "Daniel",
+      "lastName": "Lundberg",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-004",
+      "firstName": "Leif",
+      "lastName": "Nordström",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-005",
+      "firstName": "Karin",
+      "lastName": "Jonasson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-006",
+      "firstName": "Britt",
+      "lastName": "Nilsson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-007",
+      "firstName": "Ulla",
+      "lastName": "Strömberg",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-008",
+      "firstName": "Kerstin",
+      "lastName": "Nyberg",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-009",
+      "firstName": "Maria",
+      "lastName": "Sjögren",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-010",
+      "firstName": "Margareta",
+      "lastName": "Wallin",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-011",
+      "firstName": "Ann-Marie",
+      "lastName": "Olofsson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-012",
+      "firstName": "Lena",
+      "lastName": "Lindström",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-013",
+      "firstName": "Filip",
+      "lastName": "Åkesson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-014",
+      "firstName": "Jonas",
+      "lastName": "Mattsson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-015",
+      "firstName": "Fredrik",
+      "lastName": "Andersson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-016",
+      "firstName": "Thomas",
+      "lastName": "Dahl",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-017",
+      "firstName": "Maria",
+      "lastName": "Edlund",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-018",
+      "firstName": "Johanna",
+      "lastName": "Claesson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-019",
+      "firstName": "Stig",
+      "lastName": "Wallin",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-020",
+      "firstName": "Björn",
+      "lastName": "Ek",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-021",
+      "firstName": "Stefan",
+      "lastName": "Johnsson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-022",
+      "firstName": "Stefan",
+      "lastName": "Arvidsson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-023",
+      "firstName": "Ida",
+      "lastName": "Nordström",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-024",
+      "firstName": "Julia",
+      "lastName": "Johansson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-025",
+      "firstName": "Marianne",
+      "lastName": "Holm",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-026",
+      "firstName": "Barbro",
+      "lastName": "Söderström",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-027",
+      "firstName": "Sebastian",
+      "lastName": "Åberg",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-028",
+      "firstName": "Britt",
+      "lastName": "Henriksson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-029",
+      "firstName": "Filip",
+      "lastName": "Berggren",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-030",
+      "firstName": "Gunilla",
+      "lastName": "Sjöberg",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-031",
+      "firstName": "Britt",
+      "lastName": "Sjöberg",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-032",
+      "firstName": "Åke",
+      "lastName": "Magnusson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-033",
+      "firstName": "Inga",
+      "lastName": "Eklund",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-034",
+      "firstName": "Emma",
+      "lastName": "Gustavsson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-035",
+      "firstName": "David",
+      "lastName": "Persson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-036",
+      "firstName": "Mattias",
+      "lastName": "Larsson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-037",
+      "firstName": "Erik",
+      "lastName": "Dahl",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-038",
+      "firstName": "Bengt",
+      "lastName": "Lundberg",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-039",
+      "firstName": "Sandra",
+      "lastName": "Ek",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-040",
+      "firstName": "Lars",
+      "lastName": "Lundgren",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-041",
+      "firstName": "Ida",
+      "lastName": "Hellström",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-042",
+      "firstName": "Johan",
+      "lastName": "Nordin",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-043",
+      "firstName": "Ann-Marie",
+      "lastName": "Wallin",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-044",
+      "firstName": "David",
+      "lastName": "Jansson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-045",
+      "firstName": "Lena",
+      "lastName": "Sundberg",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-046",
+      "firstName": "Bengt",
+      "lastName": "Hedlund",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-047",
+      "firstName": "Martin",
+      "lastName": "Hansson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-048",
+      "firstName": "Mattias",
+      "lastName": "Lundberg",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-049",
+      "firstName": "Lennart",
+      "lastName": "Hansson",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "IVS-050",
+      "firstName": "Gunnel",
+      "lastName": "Sandström",
+      "category": "IVA-sköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-001",
+      "firstName": "Birgitta",
+      "lastName": "Lundgren",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-002",
+      "firstName": "Bo",
+      "lastName": "Magnusson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-003",
+      "firstName": "Olle",
+      "lastName": "Öberg",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-004",
+      "firstName": "Rebecka",
+      "lastName": "Björk",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-005",
+      "firstName": "Elisabeth",
+      "lastName": "Fransson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-006",
+      "firstName": "Hanna",
+      "lastName": "Sjögren",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-007",
+      "firstName": "Anita",
+      "lastName": "Sundberg",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-008",
+      "firstName": "Bengt",
+      "lastName": "Berglund",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-009",
+      "firstName": "Sonja",
+      "lastName": "Åkesson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-010",
+      "firstName": "Håkan",
+      "lastName": "Lundgren",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-011",
+      "firstName": "Kurt",
+      "lastName": "Lundgren",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-012",
+      "firstName": "Barbro",
+      "lastName": "Lindgren",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-013",
+      "firstName": "Agneta",
+      "lastName": "Hellström",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-014",
+      "firstName": "Anita",
+      "lastName": "Mattsson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-015",
+      "firstName": "Elin",
+      "lastName": "Eriksson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-016",
+      "firstName": "Rolf",
+      "lastName": "Hedberg",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-017",
+      "firstName": "Håkan",
+      "lastName": "Larsson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-018",
+      "firstName": "Erik",
+      "lastName": "Norberg",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-019",
+      "firstName": "Sara",
+      "lastName": "Strömberg",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-020",
+      "firstName": "Emelie",
+      "lastName": "Björklund",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-021",
+      "firstName": "Elsa",
+      "lastName": "Lindberg",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-022",
+      "firstName": "Elsa",
+      "lastName": "Strömberg",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-023",
+      "firstName": "Sara",
+      "lastName": "Hedlund",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-024",
+      "firstName": "Sara",
+      "lastName": "Andreasson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-025",
+      "firstName": "Monica",
+      "lastName": "Lindgren",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-026",
+      "firstName": "Alexander",
+      "lastName": "Månsson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-027",
+      "firstName": "Magnus",
+      "lastName": "Olsson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-028",
+      "firstName": "Sune",
+      "lastName": "Sjöberg",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-029",
+      "firstName": "Rolf",
+      "lastName": "Sandberg",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-030",
+      "firstName": "Thomas",
+      "lastName": "Lindström",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-031",
+      "firstName": "Elisabeth",
+      "lastName": "Jönsson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-032",
+      "firstName": "Maj",
+      "lastName": "Sundberg",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-033",
+      "firstName": "Mikael",
+      "lastName": "Nyström",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-034",
+      "firstName": "Kristina",
+      "lastName": "Nilsson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-035",
+      "firstName": "Nils",
+      "lastName": "Jansson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-036",
+      "firstName": "Barbro",
+      "lastName": "Isaksson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-037",
+      "firstName": "Kerstin",
+      "lastName": "Norberg",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-038",
+      "firstName": "Lennart",
+      "lastName": "Olsson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-039",
+      "firstName": "Birgitta",
+      "lastName": "Bengtsson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-040",
+      "firstName": "Kristina",
+      "lastName": "Boström",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-041",
+      "firstName": "Marianne",
+      "lastName": "Dahl",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-042",
+      "firstName": "Olle",
+      "lastName": "Carlsson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-043",
+      "firstName": "Elisabeth",
+      "lastName": "Hellström",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-044",
+      "firstName": "Magnus",
+      "lastName": "Magnusson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-045",
+      "firstName": "Christer",
+      "lastName": "Viklund",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-046",
+      "firstName": "Julia",
+      "lastName": "Hellström",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-047",
+      "firstName": "Jonas",
+      "lastName": "Jakobsson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-048",
+      "firstName": "Fredrik",
+      "lastName": "Hansson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-049",
+      "firstName": "Johan",
+      "lastName": "Pettersson",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "AVS-050",
+      "firstName": "Christina",
+      "lastName": "Nyström",
+      "category": "Avdelningssköterskor",
+      "status": "available"
+    },
+    {
+      "id": "USI-001",
+      "firstName": "Inger",
+      "lastName": "Engström",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-002",
+      "firstName": "Sofia",
+      "lastName": "Lundqvist",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-003",
+      "firstName": "Lars",
+      "lastName": "Nyberg",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-004",
+      "firstName": "Mikael",
+      "lastName": "Jonasson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-005",
+      "firstName": "Gustav",
+      "lastName": "Åkesson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-006",
+      "firstName": "Daniel",
+      "lastName": "Björklund",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-007",
+      "firstName": "Daniel",
+      "lastName": "Andersson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-008",
+      "firstName": "Ida",
+      "lastName": "Forsberg",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-009",
+      "firstName": "Anna",
+      "lastName": "Nordin",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-010",
+      "firstName": "Lennart",
+      "lastName": "Holm",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-011",
+      "firstName": "Lennart",
+      "lastName": "Nilsson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-012",
+      "firstName": "Ingrid",
+      "lastName": "Sandström",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-013",
+      "firstName": "Kristina",
+      "lastName": "Mårtensson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-014",
+      "firstName": "Linda",
+      "lastName": "Karlsson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-015",
+      "firstName": "Kurt",
+      "lastName": "Jansson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-016",
+      "firstName": "Oskar",
+      "lastName": "Dahl",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-017",
+      "firstName": "Gunilla",
+      "lastName": "Jakobsson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-018",
+      "firstName": "Ann-Marie",
+      "lastName": "Månsson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-019",
+      "firstName": "Agneta",
+      "lastName": "Engström",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-020",
+      "firstName": "Kerstin",
+      "lastName": "Magnusson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-021",
+      "firstName": "Mattias",
+      "lastName": "Söderberg",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-022",
+      "firstName": "Erik",
+      "lastName": "Engström",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-023",
+      "firstName": "Martin",
+      "lastName": "Svensson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-024",
+      "firstName": "Johanna",
+      "lastName": "Mattsson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-025",
+      "firstName": "Sven",
+      "lastName": "Andersson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-026",
+      "firstName": "Linda",
+      "lastName": "Gustafsson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-027",
+      "firstName": "Olle",
+      "lastName": "Boström",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-028",
+      "firstName": "Stig",
+      "lastName": "Holm",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-029",
+      "firstName": "Barbro",
+      "lastName": "Lundqvist",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-030",
+      "firstName": "Rolf",
+      "lastName": "Danielsson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-031",
+      "firstName": "Elisabeth",
+      "lastName": "Johnsson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-032",
+      "firstName": "Elsa",
+      "lastName": "Lundberg",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-033",
+      "firstName": "Linda",
+      "lastName": "Norberg",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-034",
+      "firstName": "Ulf",
+      "lastName": "Holmqvist",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-035",
+      "firstName": "Inger",
+      "lastName": "Lind",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-036",
+      "firstName": "Gustav",
+      "lastName": "Claesson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-037",
+      "firstName": "Malin",
+      "lastName": "Dahl",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-038",
+      "firstName": "Hanna",
+      "lastName": "Holmgren",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-039",
+      "firstName": "Barbro",
+      "lastName": "Bengtsson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-040",
+      "firstName": "Kurt",
+      "lastName": "Viklund",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-041",
+      "firstName": "Peter",
+      "lastName": "Lundberg",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-042",
+      "firstName": "Maj",
+      "lastName": "Johnsson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-043",
+      "firstName": "Ann-Marie",
+      "lastName": "Danielsson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-044",
+      "firstName": "Ulla",
+      "lastName": "Lundberg",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-045",
+      "firstName": "Britt",
+      "lastName": "Söderström",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-046",
+      "firstName": "Sune",
+      "lastName": "Holm",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-047",
+      "firstName": "Maj",
+      "lastName": "Samuelsson",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-048",
+      "firstName": "Birgitta",
+      "lastName": "Wallin",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-049",
+      "firstName": "Bertil",
+      "lastName": "Lundgren",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USI-050",
+      "firstName": "Malin",
+      "lastName": "Sjöberg",
+      "category": "Undersköterskor IVA",
+      "status": "available"
+    },
+    {
+      "id": "USV-001",
+      "firstName": "Josefin",
+      "lastName": "Viklund",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-002",
+      "firstName": "Ingrid",
+      "lastName": "Erlandsson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-003",
+      "firstName": "Peter",
+      "lastName": "Nordin",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-004",
+      "firstName": "Olle",
+      "lastName": "Blomqvist",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-005",
+      "firstName": "Gunnel",
+      "lastName": "Håkansson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-006",
+      "firstName": "Lars",
+      "lastName": "Åström",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-007",
+      "firstName": "Malin",
+      "lastName": "Samuelsson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-008",
+      "firstName": "Barbro",
+      "lastName": "Pettersson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-009",
+      "firstName": "Victoria",
+      "lastName": "Linder",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-010",
+      "firstName": "Johan",
+      "lastName": "Andersson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-011",
+      "firstName": "Sune",
+      "lastName": "Ström",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-012",
+      "firstName": "Kerstin",
+      "lastName": "Danielsson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-013",
+      "firstName": "Jessica",
+      "lastName": "Sjögren",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-014",
+      "firstName": "Peter",
+      "lastName": "Dahl",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-015",
+      "firstName": "Alexander",
+      "lastName": "Lindqvist",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-016",
+      "firstName": "Elisabeth",
+      "lastName": "Pettersson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-017",
+      "firstName": "Elin",
+      "lastName": "Viklund",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-018",
+      "firstName": "Ulla",
+      "lastName": "Berg",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-019",
+      "firstName": "Berit",
+      "lastName": "Lundberg",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-020",
+      "firstName": "Berit",
+      "lastName": "Hedberg",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-021",
+      "firstName": "Julia",
+      "lastName": "Wallin",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-022",
+      "firstName": "Birgit",
+      "lastName": "Fransson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-023",
+      "firstName": "Barbro",
+      "lastName": "Sjöberg",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-024",
+      "firstName": "Nils",
+      "lastName": "Lundström",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-025",
+      "firstName": "Margareta",
+      "lastName": "Andersson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-026",
+      "firstName": "Christina",
+      "lastName": "Lundqvist",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-027",
+      "firstName": "Mats",
+      "lastName": "Hellström",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-028",
+      "firstName": "Fredrik",
+      "lastName": "Berg",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-029",
+      "firstName": "Fredrik",
+      "lastName": "Lundgren",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-030",
+      "firstName": "Alexander",
+      "lastName": "Gustavsson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-031",
+      "firstName": "Astrid",
+      "lastName": "Lindqvist",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-032",
+      "firstName": "Anders",
+      "lastName": "Karlsson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-033",
+      "firstName": "Ann-Marie",
+      "lastName": "Claesson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-034",
+      "firstName": "Sara",
+      "lastName": "Nyström",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-035",
+      "firstName": "Mattias",
+      "lastName": "Olsson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-036",
+      "firstName": "Sebastian",
+      "lastName": "Falk",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-037",
+      "firstName": "Stig",
+      "lastName": "Fransson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-038",
+      "firstName": "Agneta",
+      "lastName": "Lundberg",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-039",
+      "firstName": "Linda",
+      "lastName": "Lundqvist",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-040",
+      "firstName": "Johanna",
+      "lastName": "Engström",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-041",
+      "firstName": "Amanda",
+      "lastName": "Hellström",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-042",
+      "firstName": "Daniel",
+      "lastName": "Söderberg",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-043",
+      "firstName": "Christer",
+      "lastName": "Isaksson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-044",
+      "firstName": "Jan",
+      "lastName": "Olsson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-045",
+      "firstName": "Monica",
+      "lastName": "Gunnarsson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-046",
+      "firstName": "Karin",
+      "lastName": "Forsberg",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-047",
+      "firstName": "Nils",
+      "lastName": "Martinsson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-048",
+      "firstName": "Sofia",
+      "lastName": "Axelsson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-049",
+      "firstName": "Erik",
+      "lastName": "Lindberg",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    },
+    {
+      "id": "USV-050",
+      "firstName": "Madeleine",
+      "lastName": "Håkansson",
+      "category": "Undersköterskor avdelning",
+      "status": "available"
+    }
+  ]
+}

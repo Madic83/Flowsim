@@ -1,0 +1,538 @@
+[
+    {
+        "id": "GUN-001",
+        "surname": "Sundberg",
+        "sex": "kvinna",
+        "personnummer": "19601229-9420",
+        "baselineHealth": "Frisk",
+        "mechanism": "Skott",
+        "injuryDescription": "Skottskada thorax",
+        "triage": {
+            "scene": "Röd",
+            "collectionPoint": "Grön",
+            "emergencyDept": "Röd"
+        },
+        "interventions": {
+            "AKM": [
+                "Transfusion",
+                "Vätska",
+                "Analgetika",
+                "Tourniquet"
+            ],
+            "Radiology": "CT thorax",
+            "Surgery": "Akut laparotomi"
+        },
+        "timeCritical": {
+            "avoidableComplicationMinutes": 30,
+            "avoidableDeathMinutes": 240
+        },
+        "outcome": {
+            "opNeeded": false,
+            "postOpCare": "PostOP AVD",
+            "ward": "PostOP"
+        },
+        "XABCDE": {
+            "X": "",
+            "A": {
+                "airway": "Hotad"
+            },
+            "B": {
+                "AF": 34,
+                "Sat": 93
+            },
+            "C": {
+                "Puls": 131,
+                "BT": "106/59"
+            },
+            "D": {
+                "GCS": 13
+            },
+            "E": {
+                "Temp": 35.6
+            }
+        }
+    },
+    {
+        "id": "GUN-002",
+        "name": "Gustav",
+        "surname": "Ekström",
+        "sex": "man",
+        "personnummer": "19661228-5061",
+        [
+        "baselineHealth": "Diabetes",
+        "mechanism": "Skott",
+        "injuryDescription": "Skottskada buk",
+        "triage": {
+            "scene": "Grön",
+            "collectionPoint": "Gul",
+            "emergencyDept": "Röd"
+        },
+        "interventions": {
+            "AKM": [
+                "Transfusion",
+                "Omläggning",
+                "Intubering",
+                "Tourniquet",
+                "Antibiotika"
+            ],
+            "Radiology": "Ingen",
+            "Surgery": "Thoracotomi"
+        },
+        "timeCritical": {
+            "avoidableComplicationMinutes": 15,
+            "avoidableDeathMinutes": 120
+        },
+        "outcome": {
+            "opNeeded": true,
+            "postOpCare": "IVA",
+            "ward": "PostOP"
+        },
+        "XABCDE": {
+            "X": "",
+            "A": {
+                "airway": "Hotad"
+            },
+            "B": {
+                "AF": 32,
+                "Sat": 88
+            },
+            "C": {
+                "Puls": 156,
+                "BT": "85/61"
+            },
+            "D": {
+                "GCS": 11
+            },
+            "E": {
+                "Temp": 36.7
+            }
+        }
+    },
+    {
+        "id": "GUN-003",
+        "name": "Patrik",
+        "surname": "Lindqvist",
+        "sex": "man",
+        "personnummer": "19961220-4289",
+        "baselineHealth": "Frisk",
+        "mechanism": "Skott",
+        "injuryDescription": "Skottskada ben",
+        "triage": {
+            "scene": "Gul",
+            "collectionPoint": "Röd",
+            "emergencyDept": "Grön"
+        },
+        "interventions": {
+            "AKM": [
+                "Analgetika",
+                "Antibiotika",
+                "Syrgas",
+                "Vätska"
+            ],
+            "Radiology": "CT thorax",
+            "Surgery": "Akut laparotomi"
+        },
+        "timeCritical": {
+            "avoidableComplicationMinutes": 120,
+            "avoidableDeathMinutes": 60
+        },
+        "outcome": {
+            "opNeeded": true,
+            "postOpCare": "IVA",
+            "ward": "AVD"
+        },
+        "XABCDE": {
+            "X": "",
+            "A": {
+                "airway": "Hotad"
+            },
+            "B": {
+                "AF": 25,
+                "Sat": 89
+            },
+            "C": {
+                "Puls": 154,
+                "BT": "87/89"
+            },
+            "D": {
+                "GCS": 10
+            },
+            "E": {
+                "Temp": 34.7
+            }
+        }
+    },
+    {
+        "id": "GUN-004",
+        "name": "Viktor",
+        "surname": "Bergman",
+        "sex": "man",
+        "personnummer": "20031219-8777",
+        "baselineHealth": "Frisk",
+        "mechanism": "Skott",
+        "injuryDescription": "Skottskada ben",
+        "triage": {
+            "scene": "Gul",
+            "collectionPoint": "Grön",
+            "emergencyDept": "Grön"
+        },
+        "interventions": {
+            "AKM": [
+                "Vätska",
+                "Antibiotika"
+            ],
+            "Radiology": "RTG",
+            "Surgery": "Extern fixation"
+        },
+        "timeCritical": {
+            "avoidableComplicationMinutes": 30,
+            "avoidableDeathMinutes": 360
+        },
+        "outcome": {
+            "opNeeded": false,
+            "postOpCare": "Observation",
+            "ward": "IVA"
+        },
+        "XABCDE": {
+            "X": "",
+            "A": {
+                "airway": "Fri"
+            },
+            "B": {
+                "AF": 31,
+                "Sat": 97
+            },
+            "C": {
+                "Puls": 112,
+                "BT": "129/88"
+            },
+            "D": {
+                "GCS": 10
+            },
+            "E": {
+                "Temp": 35.1
+            }
+        }
+    },
+    {
+        "id": "GUN-005",
+        "name": "Niklas",
+        "surname": "Holmgren",
+        "sex": "man",
+        "personnummer": "20061218-3085",
+        "baselineHealth": "Frisk",
+        "mechanism": "Skott",
+        "injuryDescription": "Skottskada hals",
+        "triage": {
+            "scene": "Gul",
+            "collectionPoint": "Gul",
+            "emergencyDept": "Gul"
+        },
+        "interventions": {
+            "AKM": [
+                "Analgetika",
+                "Antibiotika"
+            ],
+            "Radiology": "eFAST",
+            "Surgery": "Extern fixation"
+        },
+        "timeCritical": {
+            "avoidableComplicationMinutes": 60,
+            "avoidableDeathMinutes": 360
+        },
+        "outcome": {
+            "opNeeded": true,
+            "postOpCare": "Observation",
+            "ward": "PostOP"
+        },
+        "XABCDE": {
+            "X": "",
+            "A": {
+                "airway": "Hotad"
+            },
+            "B": {
+                "AF": 15,
+                "Sat": 90
+            },
+            "C": {
+                "Puls": 104,
+                "BT": "78/45"
+            },
+            "D": {
+                "GCS": 11
+            },
+            "E": {
+                "Temp": 37.1
+            }
+        }
+    },
+    {
+        "id": "GUN-006",
+        "name": "Maja",
+        "surname": "Andersson",
+        "sex": "kvinna",
+        "personnummer": "19931221-8180",
+        "baselineHealth": "Frisk",
+        "mechanism": "Skott",
+        "injuryDescription": "Skottskada huvud",
+        "triage": {
+            "scene": "Gul",
+            "collectionPoint": "Gul",
+            "emergencyDept": "Grön"
+        },
+        "interventions": {
+            "AKM": [
+                "Transfusion",
+                "Omläggning",
+                "Antibiotika",
+                "Syrgas",
+                "Intubering"
+            ],
+            "Radiology": "eFAST",
+            "Surgery": "Ingen"
+        },
+        "timeCritical": {
+            "avoidableComplicationMinutes": 30,
+            "avoidableDeathMinutes": 120
+        },
+        "outcome": {
+            "opNeeded": true,
+            "postOpCare": "PostOP AVD",
+            "ward": "AVD"
+        },
+        "XABCDE": {
+            "X": "",
+            "A": {
+                "airway": "Hotad"
+            },
+            "B": {
+                "AF": 29,
+                "Sat": 96
+            },
+            "C": {
+                "Puls": 131,
+                "BT": "123/41"
+            },
+            "D": {
+                "GCS": 12
+            },
+            "E": {
+                "Temp": 35.3
+            }
+        }
+    },
+    {
+        "id": "GUN-007",
+        "name": "Valter",
+        "surname": "Persson",
+        "sex": "man",
+        "personnummer": "20101217-5749",
+        "baselineHealth": "Frisk",
+        "mechanism": "Skott",
+        "injuryDescription": "Skottskada thorax",
+        "triage": {
+            "scene": "Grön",
+            "collectionPoint": "Gul",
+            "emergencyDept": "Gul"
+        },
+        "interventions": {
+            "AKM": [
+                "Antibiotika",
+                "Tourniquet",
+                "Intubering"
+            ],
+            "Radiology": "Ingen",
+            "Surgery": "Kärlrekonstruktion"
+        },
+        "timeCritical": {
+            "avoidableComplicationMinutes": 30,
+            "avoidableDeathMinutes": 360
+        },
+        "outcome": {
+            "opNeeded": false,
+            "postOpCare": "Observation",
+            "ward": "PostOP"
+        },
+        "XABCDE": {
+            "X": "",
+            "A": {
+                "airway": "Hotad"
+            },
+            "B": {
+                "AF": 30,
+                "Sat": 88
+            },
+            "C": {
+                "Puls": 148,
+                "BT": "120/71"
+            },
+            "D": {
+                "GCS": 10
+            },
+            "E": {
+                "Temp": 37.0
+            }
+        }
+    },
+    {
+        "id": "GUN-008",
+        "name": "Julia",
+        "surname": "Sjöberg",
+        "sex": "kvinna",
+        "personnummer": "19691227-9206",
+        "baselineHealth": "Diabetes",
+        "mechanism": "Skott",
+        "injuryDescription": "Skottskada thorax",
+        "triage": {
+            "scene": "Gul",
+            "collectionPoint": "Gul",
+            "emergencyDept": "Grön"
+        },
+        "interventions": {
+            "AKM": [
+                "Antibiotika",
+                "Transfusion"
+            ],
+            "Radiology": "Angio",
+            "Surgery": "Ingen"
+        },
+        "timeCritical": {
+            "avoidableComplicationMinutes": 15,
+            "avoidableDeathMinutes": 360
+        },
+        "outcome": {
+            "opNeeded": true,
+            "postOpCare": "Observation",
+            "ward": "PostOP"
+        },
+        "XABCDE": {
+            "X": "",
+            "A": {
+                "airway": "Fri"
+            },
+            "B": {
+                "AF": 23,
+                "Sat": 86
+            },
+            "C": {
+                "Puls": 154,
+                "BT": "85/50"
+            },
+            "D": {
+                "GCS": 14
+            },
+            "E": {
+                "Temp": 37.4
+            }
+        }
+    },
+    {
+        "id": "GUN-009",
+        "name": "Martin",
+        "surname": "Nyström",
+        "sex": "man",
+        "personnummer": "19871223-4731",
+        "baselineHealth": "Frisk",
+        "mechanism": "Skott",
+        "injuryDescription": "Skottskada huvud",
+        "triage": {
+            "scene": "Gul",
+            "collectionPoint": "Gul",
+            "emergencyDept": "Grön"
+        },
+        "interventions": {
+            "AKM": [
+                "Omläggning",
+                "Antibiotika",
+                "Tourniquet",
+                "Intubering",
+                "Vätska"
+            ],
+            "Radiology": "eFAST",
+            "Surgery": "Ingen"
+        },
+        "timeCritical": {
+            "avoidableComplicationMinutes": 60,
+            "avoidableDeathMinutes": 360
+        },
+        "outcome": {
+            "opNeeded": true,
+            "postOpCare": "IVA",
+            "ward": "IVA"
+        },
+        "XABCDE": {
+            "X": "",
+            "A": {
+                "airway": "Hotad"
+            },
+            "B": {
+                "AF": 30,
+                "Sat": 98
+            },
+            "C": {
+                "Puls": 126,
+                "BT": "106/62"
+            },
+            "D": {
+                "GCS": 13
+            },
+            "E": {
+                "Temp": 35.5
+            }
+        }
+    },
+    {
+        "id": "GUN-010",
+        "name": "Jonas",
+        "surname": "Axelsson",
+        "sex": "man",
+        "personnummer": "19601229-9647",
+        "baselineHealth": "Frisk",
+        "mechanism": "Skott",
+        "injuryDescription": "Skottskada hals",
+        "triage": {
+            "scene": "Gul",
+            "collectionPoint": "Grön",
+            "emergencyDept": "Gul"
+        },
+        "interventions": {
+            "AKM": [
+                "Intubering",
+                "Tourniquet",
+                "Omläggning",
+                "Analgetika"
+            ],
+            "Radiology": "Angio",
+            "Surgery": "Thoracotomi"
+        },
+        "timeCritical": {
+            "avoidableComplicationMinutes": 15,
+            "avoidableDeathMinutes": 360
+        },
+        "outcome": {
+            "opNeeded": true,
+            "postOpCare": "IVA",
+            "ward": "IVA"
+        },
+        "XABCDE": {
+            "X": "",
+            "A": {
+                "airway": "Fri"
+            },
+            "B": {
+                "AF": 16,
+                "Sat": 85
+            },
+            "C": {
+                "Puls": 155,
+                "BT": "84/73"
+            },
+            "D": {
+                "GCS": 13
+            },
+            "E": {
+                "Temp": 36.9
+            }
+        }
+    }
+]
