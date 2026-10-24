@@ -3,6 +3,6 @@ services:
     name: flowsim
     env: node
     plan: free
-    buildCommand: npm install
+    buildCommand: npm install && npm --prefix frontend run build
     startCommand: npm start
     autoDeploy: true
