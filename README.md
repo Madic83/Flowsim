@@ -29,7 +29,12 @@ Projektstruktur
 
 Publik deployment
 
-Projektet är förberett för deployment på Render.
+Öppna den publika appen på https://flowsim.onrender.com.
+
+Välj **Instruktör** och logga in med användarnamn `admin` och lösenord `admin`.
+Välj **Deltagare** för att ansluta med instruktörens sessionskod.
+
+Projektet deployas på Render.
 
 Render använder:
 
