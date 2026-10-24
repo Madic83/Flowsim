@@ -1480,9 +1480,9 @@ export default function MapPanel({ simTime: propSimTime }) {
 
   return (
     <>
-    <div style={{ height: '90vh', width: '100%', marginTop: 16, borderRadius: 8, overflow: 'hidden', boxShadow: '0 2px 8px #0002', display: 'flex', flexDirection: 'row' }}>
+    <div className="flowsim-map-layout" style={{ height: '90vh', width: '100%', marginTop: 16, borderRadius: 8, overflow: 'hidden', boxShadow: '0 2px 8px #0002', display: 'flex', flexDirection: 'row' }}>
       {/* Informationspanel till vänster */}
-      <div style={{ width: 320, minWidth: 220, background: '#f7faff', borderRight: '1px solid #e0e0e0', padding: 24, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+      <div className="flowsim-map-sidebar" style={{ width: 320, minWidth: 220, background: '#f7faff', borderRight: '1px solid #e0e0e0', padding: 24, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
         <h3 style={{marginTop:0,marginBottom:16,fontWeight:700,fontSize:22,color:'#1976d2'}}>Information</h3>
         
         {/* Automatiserings-indikator */}
@@ -1702,7 +1702,7 @@ export default function MapPanel({ simTime: propSimTime }) {
         </div>
       </div>
       {/* Karta till höger */}
-      <div style={{ flex: 1, height: '100%' }}>
+      <div className="flowsim-map-canvas" style={{ flex: 1, height: '100%' }}>
         <MapContainer
           center={[63.8258, 20.2630]}
           zoom={17}

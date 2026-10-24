@@ -1,0 +1,199 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.flowsim-login-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.flowsim-app-shell,
+.flowsim-window-shell {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.flowsim-window-shell table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.catastrophe-sheet__scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.flowsim-map-layout {
+  height: 90vh;
+  height: 90dvh;
+  width: 100%;
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px #0002;
+  display: flex;
+  flex-direction: row;
+}
+
+.flowsim-map-sidebar {
+  width: 320px;
+  min-width: 220px;
+  flex: 0 0 auto;
+  background: #f7faff;
+  border-right: 1px solid #e0e0e0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: auto;
+}
+
+.flowsim-map-canvas {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+}
+
+@media (max-width: 760px) {
+  .flowsim-login-shell {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto 1fr;
+  }
+
+  .flowsim-login-brand {
+    min-height: 24vh;
+    padding: 18px !important;
+  }
+
+  .flowsim-login-brand img {
+    max-height: 22vh;
+  }
+
+  .flowsim-login-panel {
+    padding: 22px !important;
+  }
+
+  .flowsim-app-shell {
+    padding: 12px !important;
+  }
+
+  .flowsim-app-shell h1 {
+    margin-top: 4px;
+    font-size: 26px;
+  }
+
+  .flowsim-session-header {
+    align-items: flex-start !important;
+  }
+
+  .flowsim-session-header > span {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .flowsim-session-header > button {
+    margin-left: 0 !important;
+  }
+
+  .flowsim-panel-tabs {
+    flex-wrap: wrap;
+    gap: 8px !important;
+  }
+
+  .flowsim-panel-tabs button {
+    flex: 1 1 130px;
+    min-height: 44px;
+  }
+
+  .flowsim-clock-controls {
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .flowsim-clock-controls > span {
+    margin-left: 0 !important;
+  }
+
+  .flowsim-clock-controls select {
+    min-height: 42px;
+  }
+
+  .flowsim-hospital-buttons {
+    flex-direction: column;
+  }
+
+  .flowsim-hospital-buttons button {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .flowsim-exercise-selector button {
+    min-height: 44px;
+  }
+
+  .flowsim-window-shell {
+    padding: 12px !important;
+  }
+
+  .flowsim-window-back button {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  [role="dialog"] {
+    box-sizing: border-box;
+    width: calc(100vw - 24px) !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 24px) !important;
+    max-height: calc(100dvh - 24px) !important;
+    overflow: auto;
+  }
+
+  .flowsim-window-shell > div:first-child + div > div:first-child {
+    flex-wrap: wrap;
+  }
+
+  .flowsim-map-layout {
+    height: calc(100dvh - 105px) !important;
+    min-height: 460px;
+    flex-direction: column !important;
+    overflow: auto !important;
+    border-radius: 0;
+  }
+
+  .flowsim-map-sidebar {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-height: 42dvh;
+    flex: 0 0 auto;
+    padding: 12px !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .flowsim-map-canvas {
+    width: 100%;
+    min-height: 300px;
+    flex: 1 0 300px;
+  }
+
+  .catastrophe-sheet {
+    min-width: 1040px;
+  }
+}

@@ -555,11 +555,13 @@ export default function Katastrofliggare({ simTime = '00:00' }) {
         <span className="catastrophe-sheet__hint">Redigera celler direkt · Dra personal mellan listor</span>
       </header>
       {notice && <div role="status" className="catastrophe-notice">{notice}</div>}
-      <div className="catastrophe-grid catastrophe-grid--top">
-        {SECTION_DEFINITIONS.filter(section => section.group === 'top').map(renderSection)}
-      </div>
-      <div className="catastrophe-grid catastrophe-grid--bottom">
-        {SECTION_DEFINITIONS.filter(section => section.group === 'bottom').map(renderSection)}
+      <div className="catastrophe-sheet__scroll">
+        <div className="catastrophe-grid catastrophe-grid--top">
+          {SECTION_DEFINITIONS.filter(section => section.group === 'top').map(renderSection)}
+        </div>
+        <div className="catastrophe-grid catastrophe-grid--bottom">
+          {SECTION_DEFINITIONS.filter(section => section.group === 'bottom').map(renderSection)}
+        </div>
       </div>
     </main>
   );

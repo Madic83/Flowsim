@@ -7,6 +7,7 @@ import iconUrl from 'leaflet/dist/images/marker-icon.png';
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import App from './App';
 import WindowTab from './WindowTab';
+import './styles/responsive.css';
 
 // Ensure Leaflet default marker assets resolve correctly in Vite builds.
 delete L.Icon.Default.prototype._getIconUrl;

@@ -163,9 +163,17 @@ export default function App() {
     'Lycksele lasarett'
   ]
 
-  const [showExercisePanel, setShowExercisePanel] = useState(false)
+  const [showExercisePanel, setShowExercisePanel] = useState(() => new URLSearchParams(window.location.search).get('view') === 'exercises')
   const [selectedHospital, setSelectedHospital] = useState(hospitals[0]);
   const controlPanelMapRef = useRef();
+
+  useEffect(() => {
+    function handleExerciseWindowReturn(event) {
+      if (event.data?.type === 'returnToExerciseViews') setShowExercisePanel(true);
+    }
+    window.addEventListener('message', handleExerciseWindowReturn);
+    return () => window.removeEventListener('message', handleExerciseWindowReturn);
+  }, []);
   
   // Medicinska inriktningsbeslut
   const [medicalDirective, setMedicalDirective] = useState(() => {
@@ -819,6 +827,10 @@ export default function App() {
   const openWindowsRef = useRef([]);
   function openWindow(title, content) {
     let url = `/window?title=${encodeURIComponent(title)}&hospital=${encodeURIComponent(selectedHospital)}`;
+    if (window.matchMedia('(max-width: 760px)').matches) {
+      window.location.assign(url);
+      return;
+    }
     const win = window.open(url, '_blank');
     openWindowsRef.current.push(win);
     setTimeout(() => {
@@ -1213,15 +1225,15 @@ export default function App() {
 
   if (!sessionAuth) {
     return (
-      <div style={{minHeight:'100vh',display:'grid',gridTemplateColumns:'minmax(0, 1.1fr) minmax(320px, 0.9fr)',fontFamily:'Arial, sans-serif',background:'#f1f7f8',color:'#07385f'}}>
-        <div style={{display:'grid',placeItems:'center',padding:'clamp(20px, 4vw, 56px)',background:'#fff'}}>
+      <div className="flowsim-login-shell" style={{minHeight:'100vh',display:'grid',gridTemplateColumns:'minmax(0, 1.1fr) minmax(320px, 0.9fr)',fontFamily:'Arial, sans-serif',background:'#f1f7f8',color:'#07385f'}}>
+        <div className="flowsim-login-brand" style={{display:'grid',placeItems:'center',padding:'clamp(20px, 4vw, 56px)',background:'#fff'}}>
           <img
             src="/flowsim-logo.svg"
             alt="FlowSIM – simulera, planera, förbättra hela vårdkedjan"
             style={{display:'block',width:'100%',maxWidth:720,height:'auto',objectFit:'contain'}}
           />
         </div>
-        <div style={{display:'grid',placeItems:'center',padding:24,background:'#f1f7f8'}}>
+        <div className="flowsim-login-panel" style={{display:'grid',placeItems:'center',padding:24,background:'#f1f7f8'}}>
           <div style={{width:'100%',maxWidth:420}}>
             <div style={{fontSize:13,fontWeight:700,color:'#087f91',textTransform:'uppercase',marginBottom:10}}>Välkommen</div>
             <h2 style={{fontSize:32,margin:'0 0 8px',color:'#07385f'}}>Logga in</h2>
@@ -1296,10 +1308,10 @@ export default function App() {
   }
 
   return (
-    <div style={{ fontFamily: 'Arial, sans-serif', padding: 20 }}>
+    <div className="flowsim-app-shell" style={{ fontFamily: 'Arial, sans-serif', padding: 20 }}>
       <h1>Flowsim</h1>
 
-      <div style={{ marginBottom: 12, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+      <div className="flowsim-session-header" style={{ marginBottom: 12, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
         <span style={{ padding: '4px 8px', borderRadius: 999, background: '#e3f2fd', border: '1px solid #90caf9', fontSize: 13 }}>
           Session: <b>{sessionAuth.sessionId}</b>
         </span>
@@ -1316,7 +1328,7 @@ export default function App() {
       </div>
 
       {/* Control panel header with buttons */}
-      <div style={{ marginBottom: 16, display: 'flex', gap: 10 }}>
+      <div className="flowsim-panel-tabs" style={{ marginBottom: 16, display: 'flex', gap: 10 }}>
         {sessionAuth.role === 'instructor' ? (
           <>
             <button
@@ -1354,7 +1366,7 @@ export default function App() {
       {/* Main control panel view (default) - hidden when Övningsvyer is active */}
       {sessionAuth.role === 'instructor' && !showExercisePanel && (
         <div style={{ marginBottom: 20 }}>
-          <div style={{marginBottom:12,display:'flex',alignItems:'center',gap:12}}>
+          <div className="flowsim-clock-controls" style={{marginBottom:12,display:'flex',alignItems:'center',gap:12}}>
             <span style={{fontWeight:'bold'}}>Veckodag:</span>
             <select
               value={simWeekday}
@@ -1420,7 +1432,7 @@ export default function App() {
           </button>
           {patientsError && <div style={{color:'red',marginBottom:8}}>{patientsError}</div>}
           <h2>Välj sjukhus</h2>
-          <div style={{ display: 'flex', gap: 10 }}>
+          <div className="flowsim-hospital-buttons" style={{ display: 'flex', gap: 10 }}>
             {hospitals.map(name => (
               <button
                 key={name}
@@ -1987,7 +1999,7 @@ export default function App() {
 
       {/* Exercise panel: shows buttons that open windows */}
       {showExercisePanel && (
-        <div style={{ marginBottom: 20, padding: 12, border: '1px solid #e0e0e0', borderRadius: 6 }}>
+        <div className="flowsim-exercise-selector" style={{ marginBottom: 20, padding: 12, border: '1px solid #e0e0e0', borderRadius: 6 }}>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {renderExerciseButton('Prehospital')}
             {renderExerciseButton('Paratus')}

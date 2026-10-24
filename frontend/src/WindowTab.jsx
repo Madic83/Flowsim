@@ -1319,8 +1319,27 @@ export default function WindowTab() {
     return () => window.removeEventListener('getPatientById', handleGetPatientById);
   }, [departmentPatients]);
 
+  function returnToExerciseViews() {
+    if (window.opener && !window.opener.closed) {
+      window.opener.postMessage({ type: 'returnToExerciseViews' }, window.location.origin);
+      window.opener.focus();
+      window.close();
+      return;
+    }
+    window.location.assign('/?view=exercises');
+  }
+
   return (
-    <div style={{padding:24, fontFamily:'Arial, sans-serif'}}>
+    <div className="flowsim-window-shell" style={{padding:24, fontFamily:'Arial, sans-serif'}}>
+      <div className="flowsim-window-back" style={{display:'flex',justifyContent:'flex-start',marginBottom:12}}>
+        <button
+          type="button"
+          onClick={returnToExerciseViews}
+          style={{padding:'8px 12px',border:'1px solid #087f91',borderRadius:5,background:'#fff',color:'#075078',fontWeight:600,cursor:'pointer'}}
+        >
+          ← Tillbaka till övningsvyer
+        </button>
+      </div>
       {title === 'Prehospital' ? (
         <div style={{width:'100%',height:'calc(100vh - 48px)'}}>
           <div style={{display:'flex',alignItems:'center',gap:16,marginBottom:8}}>
