@@ -1,6 +1,7 @@
 import React, { useRef, useState, useCallback } from 'react'
+import { getWeatherPresentation } from '../weatherDisplay';
 
-export default function Window({ id, title, onClose, children, simTime, simWeekday }){
+export default function Window({ id, title, onClose, children, simTime, simWeekday, weather }){
   // Drag state
   const [pos, setPos] = useState({
     x: 80 + Math.min(300, (id.charCodeAt(1) % 7) * 30),
@@ -75,6 +76,7 @@ export default function Window({ id, title, onClose, children, simTime, simWeekd
   // Visa simulerad tid (HH:MM, 24-timmarsformat) om prop finns
   const clock = simTime || '';
   const weekday = simWeekday || '';
+  const weatherPresentation = getWeatherPresentation(weather);
 
   // Drag handlers
   // Gör handlers stabila med useCallback
@@ -106,6 +108,10 @@ export default function Window({ id, title, onClose, children, simTime, simWeekd
       <div style={headerStyle} onMouseDown={onHeaderMouseDown}>
         <div>{title}</div>
         <div style={{display:'flex',alignItems:'center',gap:16}}>
+          <span title={`Utomhus: ${weatherPresentation.label}`} aria-label={`Utomhus: ${weatherPresentation.label}`} style={{display:'inline-flex',alignItems:'center',gap:6,fontSize:14,whiteSpace:'nowrap'}}>
+            <span aria-hidden="true" style={{fontSize:18}}>{weatherPresentation.icon}</span>
+            {weatherPresentation.label}
+          </span>
           <span style={{fontFamily:'monospace',fontSize:18}}>
             {weekday && <span style={{marginRight:8}}>{weekday}</span>}
             {clock}

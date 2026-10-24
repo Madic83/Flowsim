@@ -4,11 +4,35 @@ import Hem from './components/Hem'
 import ControlPanelMap from './components/ControlPanelMap';
 import { vehicleTypes, personnelCategories, getTotalPersonnel, getAvailablePersonnel } from './components/prehospitalResources';
 import { startPrehospitalAutomationLoop, initializeCollectionPoints } from './prehospitalAutomation';
+import { getPatientDeteriorationFactor, getStaffEfficiency, getVehicleSpeedFactor, isDarkAtTime } from './weatherImpact';
+import { applyDepartmentOccupancyLevel } from './departmentOccupancy';
+import { assignInitialAcuteStartTimes, hasDistinctStartTimes } from './acuteStartTimes';
 
 // Tabellcell-stilar
 const th = {border:'1px solid #ccc',padding:'4px 8px',background:'#e0e0e0',fontWeight:'bold'}
 const td = {border:'1px solid #ccc',padding:'4px 8px'}
 const SESSION_STORAGE_KEY = 'flowsimSessionAuth'
+const DEFAULT_PERSONNEL_CONFIG = {
+  akutläkare: 4,
+  akutsjuksköterskor: 4,
+  narkoslakare: 2,
+  narkosskoterskor: 2,
+  ivaskoterskor: 4,
+  operationsskoterskor: 2,
+  kirurger: 1,
+  ortopeder: 1,
+  usk_akut: 5,
+  usk_op: 2,
+  usk_iva: 4
+};
+const DEFAULT_SIMULATION_ENVIRONMENT = {
+  weather: 'clear',
+  temperatureC: 15,
+  windSpeed: 0,
+  forceDarkness: false,
+  lighting: true,
+  surface: 'asphalt'
+};
 
 // Komponent för att visa när fordon kommer tillbaka
 function VehicleReturnCountdown({ vehicles, simTime }) {
@@ -76,6 +100,34 @@ function VehicleReturnCountdown({ vehicles, simTime }) {
   );
 }
 
+function PersonnelCountControl({ label, value, onChange, onAdd, addDisabled = false }) {
+  return (
+    <div>
+      <label style={{display:'block',marginBottom:4,fontWeight:600}}>{label}:</label>
+      <div style={{display:'flex',alignItems:'center',gap:5}}>
+        <input
+          type="number"
+          min="0"
+          max="500"
+          value={value}
+          onChange={onChange}
+          style={{fontSize:16,padding:'4px 8px',width:60}}
+        />
+        <button
+          type="button"
+          aria-label={`Lägg till ${label.toLocaleLowerCase('sv')}`}
+          title={`Lägg till en ${label.toLocaleLowerCase('sv')}`}
+          disabled={value >= 500}
+          onClick={onAdd}
+          style={{width:30,height:30,padding:0,border:'1px solid #087f91',borderRadius:4,background:'#fff',color:'#087f91',fontSize:20,fontWeight:700,lineHeight:1,cursor:value >= 500 ? 'not-allowed' : 'pointer'}}
+        >
+          +
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [sessionAuth, setSessionAuth] = useState(() => {
     try {
@@ -85,9 +137,10 @@ export default function App() {
       return null;
     }
   });
-  const [authForm, setAuthForm] = useState({ role: 'participant', sessionId: '', displayName: '' });
+  const [authForm, setAuthForm] = useState({ role: 'participant', username: '', password: '', sessionId: '' });
   const [authError, setAuthError] = useState('');
   const [authLoading, setAuthLoading] = useState(false);
+  const [connectedParticipantCount, setConnectedParticipantCount] = useState(null);
 
   useEffect(() => {
     if (sessionAuth) {
@@ -118,6 +171,126 @@ export default function App() {
   const [medicalDirective, setMedicalDirective] = useState(() => {
     return localStorage.getItem('medicalDirective') || 'Inget inriktningsbeslut';
   });
+  const [departmentOccupancyLevel, setDepartmentOccupancyLevel] = useState(() => (
+    localStorage.getItem('departmentOccupancyLevel') || ''
+  ));
+  const [departmentOccupancyStatus, setDepartmentOccupancyStatus] = useState('');
+  const appliedOccupancyPresetRef = useRef('');
+  const [initialAcutePatientCount, setInitialAcutePatientCount] = useState(() => (
+    Number(localStorage.getItem('initialAcutePatientCount') ?? 20)
+  ));
+  const [acuteAdmissionsPerHour, setAcuteAdmissionsPerHour] = useState(() => (
+    Number(localStorage.getItem('acuteAdmissionsPerHour') ?? 2)
+  ));
+  const [simulationStarted, setSimulationStarted] = useState(() => localStorage.getItem('simulationStarted') === 'true');
+  const [acuteAdmissionStatus, setAcuteAdmissionStatus] = useState('');
+  const acuteAdmissionRemainderRef = useRef(Number(localStorage.getItem('acuteAdmissionRemainder') || 0));
+  const acuteAdmissionSequenceRef = useRef(Number(localStorage.getItem('acuteAdmissionSequence') || 0));
+  const lastAcuteAdmissionSimTimeRef = useRef(null);
+
+  useEffect(() => {
+    localStorage.setItem('initialAcutePatientCount', String(initialAcutePatientCount));
+  }, [initialAcutePatientCount]);
+
+  useEffect(() => {
+    localStorage.setItem('acuteAdmissionsPerHour', String(acuteAdmissionsPerHour));
+  }, [acuteAdmissionsPerHour]);
+
+  function getOccupancyPresetKey(level) {
+    return `${sessionAuth?.sessionId || 'local'}:${selectedHospital}:${level}`;
+  }
+
+  function handleDepartmentOccupancyChange(level) {
+    setDepartmentOccupancyLevel(level);
+    localStorage.setItem('departmentOccupancyLevel', level);
+    if (!level || selectedHospital !== 'Norrlands universitetssjukhus') return;
+
+    let currentDepartments = {};
+    try {
+      currentDepartments = JSON.parse(localStorage.getItem('departmentPatients') || '{}');
+    } catch {}
+
+    const result = applyDepartmentOccupancyLevel(currentDepartments, level, simTime, departmentPatientPool);
+    if (result.missingPatientPool) {
+      setDepartmentOccupancyStatus('Patientlistan har inte laddats ännu. Försök igen om en liten stund.');
+      return;
+    }
+    appliedOccupancyPresetRef.current = getOccupancyPresetKey(level);
+    const serializedDepartments = JSON.stringify(result.departmentPatients);
+    localStorage.setItem('departmentPatients', serializedDepartments);
+    window.dispatchEvent(new CustomEvent('departmentPatientsUpdated', {
+      detail: { departmentPatients: result.departmentPatients }
+    }));
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: 'departmentPatients',
+      newValue: serializedDepartments
+    }));
+    localStorage.setItem('departmentOccupancyLevel', level);
+    if (sessionAuth?.role === 'instructor' && sessionAuth.sessionId) {
+      fetch(`/api/sessions/${encodeURIComponent(sessionAuth.sessionId)}/departments`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ departmentPatients: result.departmentPatients })
+      }).catch(() => {});
+    }
+    openWindowsRef.current = openWindowsRef.current.filter(win => win && !win.closed);
+    for (const win of openWindowsRef.current) {
+      try {
+        win.postMessage({
+          type: 'departmentOccupancyUpdate',
+          departmentOccupancyLevel: level,
+          departmentPatients: result.departmentPatients
+        }, '*');
+      } catch {}
+    }
+
+    const levelName = { low: 'Låg', medium: 'Medel', high: 'Hög' }[level];
+    const preservedWarning = result.departmentsOverTarget
+      ? ` ${result.departmentsOverTarget} avdelningar har fler riktiga patienter än presetmålet; de har behållits.`
+      : '';
+    const invalidPatientWarning = result.invalidPatientCount
+      ? ` ${result.invalidPatientCount} ofullständiga eller felplacerade patientposter togs bort från avdelningslistorna.`
+      : '';
+    const missingWarning = result.unfilledDepartments.length
+      ? ` Matchande patientdata saknas för: ${result.unfilledDepartments.map(item => `${item.department} (${item.missing})`).join(', ')}.`
+      : '';
+    setDepartmentOccupancyStatus(`${levelName} beläggning vald. ${result.createdPatients} matchande simulerade patienter placerades ut.${preservedWarning}${invalidPatientWarning}${missingWarning}`);
+  }
+
+  const [simulationEnvironment, setSimulationEnvironment] = useState(() => {
+    try {
+      return {
+        weather: 'clear',
+        temperatureC: 15,
+        windSpeed: 0,
+        forceDarkness: false,
+        lighting: true,
+        surface: 'asphalt',
+        ...(() => {
+          const saved = JSON.parse(localStorage.getItem('simulationEnvironment') || '{}');
+          return { ...saved, forceDarkness: saved.forceDarkness ?? saved.darkness ?? false };
+        })()
+      };
+    } catch {
+      return { weather: 'clear', temperatureC: 15, windSpeed: 0, forceDarkness: false, lighting: true, surface: 'asphalt' };
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem('simulationEnvironment', JSON.stringify(simulationEnvironment));
+    window.dispatchEvent(new CustomEvent('simulationEnvironmentChanged', { detail: simulationEnvironment }));
+    openWindowsRef.current = openWindowsRef.current.filter(win => win && !win.closed);
+    for (const win of openWindowsRef.current) {
+      try { win.postMessage({ type: 'simulationEnvironment', simulationEnvironment }, '*'); } catch {}
+    }
+    if (sessionAuth?.role === 'instructor' && sessionAuth.sessionId) {
+      fetch(`/api/sessions/${encodeURIComponent(sessionAuth.sessionId)}/environment`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ environment: simulationEnvironment })
+      }).catch(() => {});
+    }
+  }, [simulationEnvironment, sessionAuth?.role, sessionAuth?.sessionId]);
   
   // Automatisering av övningsvyer
   const [automatedViews, setAutomatedViews] = useState(() => {
@@ -139,13 +312,96 @@ export default function App() {
       setShowExercisePanel(true);
     }
   }, [sessionAuth]);
+
+  useEffect(() => {
+    if (sessionAuth?.role !== 'participant' || !sessionAuth.memberId || !sessionAuth.sessionId || sessionAuth.sessionId === 'ÖPPEN') {
+      return undefined;
+    }
+
+    const sendHeartbeat = () => {
+      fetch(`/api/sessions/${encodeURIComponent(sessionAuth.sessionId)}/heartbeat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ memberId: sessionAuth.memberId })
+      }).catch(() => {});
+    };
+
+    const syncEnvironment = async () => {
+      try {
+        const response = await fetch(`/api/sessions/${encodeURIComponent(sessionAuth.sessionId)}/status`);
+        if (response.status === 404) {
+          setAuthError('Sessionen finns inte längre. Be instruktören skapa en ny session och anslut med den nya koden.');
+          setSessionAuth(null);
+          return;
+        }
+        if (!response.ok) return;
+        const status = await response.json();
+        if (status.environment) {
+          setSimulationEnvironment(previous => (
+            JSON.stringify(previous) === JSON.stringify(status.environment) ? previous : status.environment
+          ));
+        }
+        if (status.departmentPatients) {
+          const serializedDepartments = JSON.stringify(status.departmentPatients);
+          if (localStorage.getItem('departmentPatients') !== serializedDepartments) {
+            localStorage.setItem('departmentPatients', serializedDepartments);
+            window.dispatchEvent(new CustomEvent('departmentPatientsUpdated', {
+              detail: { departmentPatients: status.departmentPatients }
+            }));
+          }
+        }
+        if (status.acutePatients) {
+          const serializedAcutePatients = JSON.stringify(status.acutePatients);
+          if (localStorage.getItem('akutPatients') !== serializedAcutePatients) {
+            localStorage.setItem('akutPatients', serializedAcutePatients);
+            window.dispatchEvent(new CustomEvent('akutSync', {
+              detail: { akutPatients: status.acutePatients }
+            }));
+          }
+        }
+      } catch {}
+    };
+
+    sendHeartbeat();
+    syncEnvironment();
+    const heartbeatInterval = setInterval(sendHeartbeat, 15000);
+    const environmentInterval = setInterval(syncEnvironment, 5000);
+    return () => {
+      clearInterval(heartbeatInterval);
+      clearInterval(environmentInterval);
+    };
+  }, [sessionAuth]);
+
+  useEffect(() => {
+    if (sessionAuth?.role !== 'instructor' || !sessionAuth.sessionId) {
+      setConnectedParticipantCount(null);
+      return undefined;
+    }
+
+    let isActive = true;
+    const refreshParticipantCount = async () => {
+      try {
+        const response = await fetch(`/api/sessions/${encodeURIComponent(sessionAuth.sessionId)}/status`);
+        if (!response.ok) return;
+        const status = await response.json();
+        if (isActive) setConnectedParticipantCount(status.participantCount);
+      } catch {}
+    };
+
+    refreshParticipantCount();
+    const interval = setInterval(refreshParticipantCount, 10000);
+    return () => {
+      isActive = false;
+      clearInterval(interval);
+    };
+  }, [sessionAuth]);
   
   // Starta automatiseringsloop för prehospital
   useEffect(() => {
     const interval = startPrehospitalAutomationLoop();
     return () => clearInterval(interval);
   }, []);
-  
+
   // Personalinställningar för sjukhus
   const [hospitalPersonnel, setHospitalPersonnel] = useState(() => {
     const saved = localStorage.getItem('hospitalPersonnelConfig');
@@ -159,7 +415,8 @@ export default function App() {
       kirurger: 1,
       ortopeder: 1,
       usk_akut: 5,
-      usk_op: 2
+      usk_op: 2,
+      usk_iva: 4
     };
     let parsed = {};
     if (saved) {
@@ -174,6 +431,122 @@ export default function App() {
     });
     return merged;
   });
+  const [hospitalPersonnelExtraCounts, setHospitalPersonnelExtraCounts] = useState(() => {
+    try {
+      const savedExtraCounts = localStorage.getItem('hospitalPersonnelExtraCounts');
+      if (savedExtraCounts) return JSON.parse(savedExtraCounts) || {};
+      const savedConfig = JSON.parse(localStorage.getItem('hospitalPersonnelConfig') || '{}');
+      const initialCounts = {
+        akutläkare: 4,
+        akutsjuksköterskor: 4,
+        narkoslakare: 2,
+        narkosskoterskor: 2,
+        ivaskoterskor: 4,
+        operationsskoterskor: 2,
+        kirurger: 1,
+        ortopeder: 1,
+        usk_akut: 5,
+        usk_op: 2,
+        usk_iva: 4
+      };
+      return Object.fromEntries(Object.entries(initialCounts).map(([key, initialCount]) => [
+        key,
+        Math.max(0, (Number(savedConfig[key]) || initialCount) - initialCount)
+      ]));
+    } catch {
+      return {};
+    }
+  });
+  const [updatingPersonnelCategory, setUpdatingPersonnelCategory] = useState('');
+  const [personnelUpdateNotice, setPersonnelUpdateNotice] = useState('');
+  const hospitalPersonnelRef = useRef(hospitalPersonnel);
+  const hospitalPersonnelExtraCountsRef = useRef(hospitalPersonnelExtraCounts);
+  const personnelRegenerationQueueRef = useRef({ running: false, requested: false, categoryKey: '', categoryLabel: '' });
+
+  useEffect(() => {
+    hospitalPersonnelRef.current = hospitalPersonnel;
+  }, [hospitalPersonnel]);
+
+  useEffect(() => {
+    hospitalPersonnelExtraCountsRef.current = hospitalPersonnelExtraCounts;
+  }, [hospitalPersonnelExtraCounts]);
+
+  function getPersonnelGeneratorCounts(config) {
+    return {
+      'Akutläkare': config.akutläkare,
+      'Anestesiläkare': config.narkoslakare,
+      'Ortopeder': config.ortopeder,
+      'Kirurger': config.kirurger,
+      'Narkossköterskor': config.narkosskoterskor,
+      'Undersköterskor operation': config.usk_op,
+      'Operationssköterskor': config.operationsskoterskor,
+      'Akutsjuksköterskor': config.akutsjuksköterskor,
+      'Undersköterskor akuten': config.usk_akut,
+      'IVA-sköterskor': config.ivaskoterskor,
+      'Avdelningssköterskor': config.avdelningsskoterskor ?? 50,
+      'Undersköterskor IVA': config.usk_iva,
+      'Undersköterskor avdelning': config.usk_avd ?? 50
+    };
+  }
+
+  async function flushPersonnelRegenerationQueue() {
+    const queue = personnelRegenerationQueueRef.current;
+    if (queue.running) return;
+    queue.running = true;
+    setUpdatingPersonnelCategory(queue.categoryKey);
+    try {
+      while (queue.requested) {
+        queue.requested = false;
+        const latestConfig = hospitalPersonnelRef.current;
+        const categoryLabel = queue.categoryLabel;
+        const response = await fetch('/api/regenerate-personnel', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ counts: getPersonnelGeneratorCounts(latestConfig), cacheBust: Date.now() })
+        });
+        if (!response.ok) throw new Error('Kunde inte uppdatera personalregistret.');
+        localStorage.setItem('hospitalPersonnelRosterVersion', `${Date.now()}-${Math.random()}`);
+        window.dispatchEvent(new CustomEvent('hospitalPersonnelRosterChanged'));
+        if (categoryLabel) setPersonnelUpdateNotice(`En ${categoryLabel.toLocaleLowerCase('sv')} har lagts till.`);
+      }
+    } catch (error) {
+      setPersonnelUpdateNotice(error.message || 'Kunde inte uppdatera personalregistret.');
+    } finally {
+      queue.running = false;
+      setUpdatingPersonnelCategory('');
+      if (queue.requested) flushPersonnelRegenerationQueue();
+    }
+  }
+
+  async function addHospitalPersonnel(categoryKey, categoryLabel) {
+    const currentConfig = hospitalPersonnelRef.current;
+    if (currentConfig[categoryKey] >= 500) return;
+    const updatedConfig = { ...currentConfig, [categoryKey]: currentConfig[categoryKey] + 1 };
+    const updatedExtraCounts = {
+      ...hospitalPersonnelExtraCountsRef.current,
+      [categoryKey]: (Number(hospitalPersonnelExtraCountsRef.current[categoryKey]) || 0) + 1
+    };
+
+    hospitalPersonnelRef.current = updatedConfig;
+    hospitalPersonnelExtraCountsRef.current = updatedExtraCounts;
+    setHospitalPersonnel(updatedConfig);
+    setHospitalPersonnelExtraCounts(updatedExtraCounts);
+    localStorage.setItem('hospitalPersonnelConfig', JSON.stringify(updatedConfig));
+    localStorage.setItem('hospitalPersonnelExtraCounts', JSON.stringify(updatedExtraCounts));
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: 'hospitalPersonnelExtraCounts',
+      newValue: JSON.stringify(updatedExtraCounts)
+    }));
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: 'hospitalPersonnelConfig',
+      newValue: JSON.stringify(updatedConfig)
+    }));
+    setPersonnelUpdateNotice('');
+    personnelRegenerationQueueRef.current.requested = true;
+    personnelRegenerationQueueRef.current.categoryKey = categoryKey;
+    personnelRegenerationQueueRef.current.categoryLabel = categoryLabel;
+    flushPersonnelRegenerationQueue();
+  }
   
   // Spara personalinställningar när de ändras
   useEffect(() => {
@@ -195,6 +568,10 @@ export default function App() {
     let weekdayIndex = jsDay === 0 ? 6 : jsDay - 1;
     return weekdayIndex;
   });
+  const effectiveSimulationEnvironment = {
+    ...simulationEnvironment,
+    darkness: Boolean(simulationEnvironment.forceDarkness) || isDarkAtTime(simTime)
+  };
   // Timer för att öka tiden varje minut (justeras av simSpeed)
   useEffect(() => {
     const timer = setInterval(() => {
@@ -218,9 +595,32 @@ export default function App() {
   }, [simTime]);
   const [windows, setWindows] = useState([])
   const [allPatients, setAllPatients] = useState([])
+  const [departmentSourcePatients, setDepartmentSourcePatients] = useState([])
+  const [departmentSourcePatientsLoading, setDepartmentSourcePatientsLoading] = useState(true)
   const [numPatients, setNumPatients] = useState(0)
   const [loadingPatients, setLoadingPatients] = useState(false)
   const [patientsError, setPatientsError] = useState(null)
+
+  useEffect(() => {
+    const previousTime = lastAcuteAdmissionSimTimeRef.current;
+    lastAcuteAdmissionSimTimeRef.current = simTime;
+    if (!simulationStarted || !previousTime || acuteAdmissionsPerHour <= 0 || allPatients.length === 0) return;
+
+    const toMinutes = value => {
+      const [hours, minutes] = value.split(':').map(Number);
+      return hours * 60 + minutes;
+    };
+    const elapsedMinutes = (toMinutes(simTime) - toMinutes(previousTime) + 1440) % 1440;
+    if (elapsedMinutes === 0) return;
+
+    const accumulated = acuteAdmissionRemainderRef.current + elapsedMinutes * acuteAdmissionsPerHour / 60;
+    const arrivalsDue = Math.floor(accumulated);
+    acuteAdmissionRemainderRef.current = accumulated - arrivalsDue;
+    localStorage.setItem('acuteAdmissionRemainder', String(acuteAdmissionRemainderRef.current));
+    if (arrivalsDue === 0) return;
+
+    addSpontaneousAcuteArrivals(selectedHospital, arrivalsDue, simTime);
+  }, [simTime, simulationStarted, acuteAdmissionsPerHour, allPatients, selectedHospital]);
   
   // Prehospital resurshantering
   const [vehicles, setVehicles] = useState(() => {
@@ -338,6 +738,54 @@ export default function App() {
   
   const totalPersonnel = getTotalPersonnel(vehicles.filter(v => v.status === 'available'));
 
+  const departmentPatientPool = Array.from(
+    new Map([...allPatients, ...departmentSourcePatients].filter(patient => patient?.id).map(patient => [patient.id, patient])).values()
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+    const sourceFiles = [
+      '/patients_department_specialties.json',
+      '/patients_explosion_150.json',
+      '/patients_ammoniak_200.json',
+      '/patients_burn_200.json',
+      '/patients_gunshot_150.json'
+    ];
+
+    Promise.all(sourceFiles.map(async file => {
+      try {
+        const response = await fetch(file);
+        if (!response.ok) return [];
+        const patients = await response.json();
+        return Array.isArray(patients) ? patients : [];
+      } catch {
+        return [];
+      }
+    })).then(pools => {
+      if (!cancelled) setDepartmentSourcePatients(pools.flat());
+    }).finally(() => {
+      if (!cancelled) setDepartmentSourcePatientsLoading(false);
+    });
+
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
+    if (sessionAuth?.role !== 'instructor' || selectedHospital !== 'Norrlands universitetssjukhus') return;
+    if (!departmentOccupancyLevel || loadingPatients || departmentSourcePatientsLoading || allPatients.length === 0) return;
+    if (appliedOccupancyPresetRef.current === getOccupancyPresetKey(departmentOccupancyLevel)) return;
+    handleDepartmentOccupancyChange(departmentOccupancyLevel);
+  }, [
+    sessionAuth?.role,
+    sessionAuth?.sessionId,
+    selectedHospital,
+    departmentOccupancyLevel,
+    loadingPatients,
+    departmentSourcePatientsLoading,
+    allPatients.length,
+    departmentSourcePatients.length
+  ]);
+
   // Ladda alla patienter vid start, men visa ingen i tabellen förrän man trycker på knappen
   // Spara alla patienter separat, och visa bara numPatients st
   useEffect(() => {
@@ -375,12 +823,158 @@ export default function App() {
     openWindowsRef.current.push(win);
     setTimeout(() => {
       try { win.postMessage({ type: 'simTime', simTime }, '*'); } catch {}
+      try { win.postMessage({ type: 'simulationEnvironment', simulationEnvironment }, '*'); } catch {}
+      try {
+        win.postMessage({
+          type: 'departmentOccupancyUpdate',
+          departmentOccupancyLevel,
+          departmentPatients: JSON.parse(localStorage.getItem('departmentPatients') || '{}')
+        }, '*');
+      } catch {}
       if (title === 'Akutmottagning') {
         const akutPatients = JSON.parse(localStorage.getItem('akutPatients') || '{}');
         try { win.postMessage({ type: 'akutSync', akutPatients }, '*'); } catch {}
         akutWindowRef.current = win;
       }
     }, 300);
+  }
+
+  function persistAcutePatientLists(acutePatientsByHospital) {
+    const serialized = JSON.stringify(acutePatientsByHospital);
+    localStorage.setItem('akutPatients', serialized);
+    window.dispatchEvent(new CustomEvent('akutSync', { detail: { akutPatients: acutePatientsByHospital } }));
+    if (sessionAuth?.role === 'instructor' && sessionAuth.sessionId) {
+      fetch(`/api/sessions/${encodeURIComponent(sessionAuth.sessionId)}/acute-patients`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ acutePatients: acutePatientsByHospital })
+      }).catch(() => {});
+    }
+    openWindowsRef.current = openWindowsRef.current.filter(win => win && !win.closed);
+    for (const win of openWindowsRef.current) {
+      try { win.postMessage({ type: 'akutSync', akutPatients: acutePatientsByHospital }, '*'); } catch {}
+    }
+  }
+
+  function createNonSceneAcutePatients(count, hospital, arrivalTime = simTime, initialCensus = false) {
+    if (!allPatients.length || count <= 0) return [];
+    return Array.from({ length: count }, () => {
+      const sequence = acuteAdmissionSequenceRef.current;
+      acuteAdmissionSequenceRef.current += 1;
+      const source = allPatients[sequence % allPatients.length];
+      return {
+        ...source,
+        id: `${source.id}-NONSCENE-${Date.now()}-${sequence}`,
+        originalId: source.id,
+        startTime: arrivalTime,
+        currentHospital: hospital,
+        location: 'Akutmottagning',
+        arrivalSource: 'egen transport',
+        prehospital: false,
+        initialAcuteCensus: initialCensus
+      };
+    });
+  }
+
+  function getAcuteStartTimeVersionKey(hospital = selectedHospital) {
+    return `acuteStartTimesVersion:${sessionAuth?.sessionId || 'local'}:${hospital}`;
+  }
+
+  function repairInitialAcutePatientStartTimes(hospital = selectedHospital) {
+    let acutePatientsByHospital = {};
+    try {
+      acutePatientsByHospital = JSON.parse(localStorage.getItem('akutPatients') || '{}');
+    } catch {}
+    const hospitalPatients = acutePatientsByHospital[hospital] || [];
+    let initialPatients = hospitalPatients.filter(patient => patient.initialAcuteCensus);
+
+    if (initialPatients.length === 0) {
+      initialPatients = hospitalPatients
+        .filter(patient => (
+          patient.prehospital === false &&
+          ['egen transport', 'spontan ankomst'].includes(String(patient.arrivalSource || '').toLocaleLowerCase('sv'))
+        ))
+        .slice(0, Math.max(0, initialAcutePatientCount));
+    }
+
+    const versionKey = getAcuteStartTimeVersionKey(hospital);
+    if (initialPatients.length === 0) {
+      localStorage.setItem(versionKey, '1');
+      return false;
+    }
+
+    if (hasDistinctStartTimes(initialPatients)) {
+      localStorage.setItem(versionKey, '1');
+      return false;
+    }
+
+    const simulationStartTime = localStorage.getItem('acuteSimulationStartTime') || initialPatients[0]?.startTime || simTime;
+    const backdatedPatients = assignInitialAcuteStartTimes(initialPatients, simulationStartTime)
+      .map(patient => ({ ...patient, initialAcuteCensus: true }));
+    const updatedById = new Map(backdatedPatients.map(patient => [patient.id, patient]));
+    acutePatientsByHospital[hospital] = hospitalPatients.map(patient => updatedById.get(patient.id) || patient);
+    localStorage.setItem('acuteInitialCensusIds', JSON.stringify(backdatedPatients.map(patient => patient.id)));
+    localStorage.setItem(versionKey, '1');
+    persistAcutePatientLists(acutePatientsByHospital);
+    return true;
+  }
+
+  useEffect(() => {
+    if (!simulationStarted) return;
+    repairInitialAcutePatientStartTimes(selectedHospital);
+  }, [simulationStarted, selectedHospital, sessionAuth?.sessionId, initialAcutePatientCount, simTime]);
+
+  function addSpontaneousAcuteArrivals(hospital, count, arrivalTime = simTime) {
+    if (count <= 0) return [];
+    const acutePatients = JSON.parse(localStorage.getItem('akutPatients') || '{}');
+    const arrivals = createNonSceneAcutePatients(count, hospital, arrivalTime);
+    acutePatients[hospital] = [...(acutePatients[hospital] || []), ...arrivals];
+    localStorage.setItem('acuteAdmissionSequence', String(acuteAdmissionSequenceRef.current));
+    persistAcutePatientLists(acutePatients);
+    return arrivals;
+  }
+
+  function startSimulationWithAcutePatients() {
+    if (allPatients.length === 0) {
+      setAcuteAdmissionStatus('Patientunderlaget laddas fortfarande. Vänta tills det är klart och försök igen.');
+      return false;
+    }
+    if (simulationStarted) {
+      repairInitialAcutePatientStartTimes(selectedHospital);
+      return true;
+    }
+
+    const acutePatients = JSON.parse(localStorage.getItem('akutPatients') || '{}');
+    const initialPatients = assignInitialAcuteStartTimes(
+      createNonSceneAcutePatients(initialAcutePatientCount, selectedHospital, simTime, true),
+      simTime
+    );
+    acutePatients[selectedHospital] = initialPatients;
+    localStorage.setItem('acuteSimulationStartTime', simTime);
+    localStorage.setItem('acuteInitialCensusIds', JSON.stringify(initialPatients.map(patient => patient.id)));
+    localStorage.setItem(getAcuteStartTimeVersionKey(), '1');
+    localStorage.setItem('acuteAdmissionSequence', String(acuteAdmissionSequenceRef.current));
+    persistAcutePatientLists(acutePatients);
+    acuteAdmissionRemainderRef.current = 0;
+    localStorage.setItem('acuteAdmissionRemainder', '0');
+    lastAcuteAdmissionSimTimeRef.current = simTime;
+    setSimulationStarted(true);
+    localStorage.setItem('simulationStarted', 'true');
+    setAcuteAdmissionStatus(`${acutePatients[selectedHospital].length} patienter på Akutmottagningen vid start. Spontant inflöde: ${acuteAdmissionsPerHour} per timme.`);
+    return true;
+  }
+
+  function renderExerciseButton(title) {
+    return (
+      <button
+        key={title}
+        type="button"
+        onClick={() => openWindow(title)}
+        style={panelBtn}
+      >
+        {title}
+      </button>
+    );
   }
 
   // Lägg till nästa patient i Akutmottagning-tabellen
@@ -392,35 +986,28 @@ export default function App() {
   });
 
   function addNextPatient(hospital) {
-    setAllPatients(pats => {
-      let idx = hospitalPatientIndexes[hospital] || 0;
-      let foundIdx = -1;
-      for (let i = idx; i < pats.length; i++) {
-        if (!pats[i].currentHospital) {
-          foundIdx = i;
-          break;
-        }
+    let foundIdx = -1;
+    const startIndex = hospitalPatientIndexes[hospital] || 0;
+    for (let index = startIndex; index < allPatients.length; index++) {
+      if (!allPatients[index].currentHospital) {
+        foundIdx = index;
+        break;
       }
-      if (foundIdx === -1) return pats;
-      const updated = [...pats];
-      updated[foundIdx] = { ...updated[foundIdx], startTime: simTime, currentHospital: hospital };
-      setHospitalPatientIndexes(prev => ({ ...prev, [hospital]: foundIdx + 1 }));
-      
-      // Lägg till den nya patienten till befintliga patienter i akutmottagningen
-      const allAkut = JSON.parse(localStorage.getItem('akutPatients') || '{}');
-      const newAkut = { ...allAkut };
-      const existingHospitalPatients = newAkut[hospital] || [];
-      const newPatient = updated[foundIdx];
-      
-      // Kontrollera att patienten inte redan finns
-      if (!existingHospitalPatients.some(p => p.id === newPatient.id)) {
-        newAkut[hospital] = [...existingHospitalPatients, newPatient];
-        localStorage.setItem('akutPatients', JSON.stringify(newAkut));
-        window.dispatchEvent(new CustomEvent('akutSync', { detail: { akutPatients: newAkut } }));
-      }
-      
-      return updated;
-    });
+    }
+    if (foundIdx === -1) return;
+
+    const updatedPatients = [...allPatients];
+    const newPatient = { ...updatedPatients[foundIdx], startTime: simTime, currentHospital: hospital };
+    updatedPatients[foundIdx] = newPatient;
+    setAllPatients(updatedPatients);
+    setHospitalPatientIndexes(previous => ({ ...previous, [hospital]: foundIdx + 1 }));
+
+    const acutePatients = JSON.parse(localStorage.getItem('akutPatients') || '{}');
+    const hospitalPatients = acutePatients[hospital] || [];
+    if (!hospitalPatients.some(patient => patient.id === newPatient.id)) {
+      acutePatients[hospital] = [...hospitalPatients, newPatient];
+      persistAcutePatientLists(acutePatients);
+    }
   }
 
   // generatePatients används ej längre
@@ -480,43 +1067,138 @@ export default function App() {
     }));
   }
 
+  async function resetSimulationData({ session = sessionAuth, resetServerSession = true } = {}) {
+    if (resetServerSession && session?.role === 'instructor' && session.sessionId && session.sessionId !== 'ÖPPEN') {
+      const sessionUrl = `/api/sessions/${encodeURIComponent(session.sessionId)}`;
+      const sharedResetRequests = [
+        fetch(`${sessionUrl}/departments`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ departmentPatients: {} }) }),
+        fetch(`${sessionUrl}/acute-patients`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ acutePatients: {} }) }),
+        fetch(`${sessionUrl}/catastrophe-roster`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ catastropheRoster: {} }) }),
+        fetch(`${sessionUrl}/environment`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ environment: DEFAULT_SIMULATION_ENVIRONMENT }) })
+      ];
+      await Promise.allSettled(sharedResetRequests);
+    }
+
+    const now = new Date();
+    const resetTime = now.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit', hour12: false }).padStart(5, '0');
+    const resetWeekday = now.getDay() === 0 ? 6 : now.getDay() - 1;
+    localStorage.clear();
+    if (session) localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(session));
+    localStorage.setItem('hospitalPersonnelConfig', JSON.stringify(DEFAULT_PERSONNEL_CONFIG));
+    localStorage.setItem('hospitalPersonnelExtraCounts', '{}');
+    localStorage.setItem('simulationEnvironment', JSON.stringify(DEFAULT_SIMULATION_ENVIRONMENT));
+    localStorage.setItem('automatedViews', '{}');
+    localStorage.setItem('medicalDirective', 'Inget inriktningsbeslut');
+    localStorage.setItem('selectedHospital', hospitals[0]);
+    localStorage.setItem('simTime', resetTime);
+    localStorage.setItem('initialAcutePatientCount', '20');
+    localStorage.setItem('acuteAdmissionsPerHour', '2');
+    localStorage.setItem('departmentOccupancyLevel', '');
+
+    setHospitalPersonnel(DEFAULT_PERSONNEL_CONFIG);
+    hospitalPersonnelRef.current = DEFAULT_PERSONNEL_CONFIG;
+    setHospitalPersonnelExtraCounts({});
+    hospitalPersonnelExtraCountsRef.current = {};
+    personnelRegenerationQueueRef.current.requested = false;
+    setUpdatingPersonnelCategory('');
+    setPersonnelUpdateNotice('');
+    setSimulationEnvironment(DEFAULT_SIMULATION_ENVIRONMENT);
+    setAutomatedViews({});
+    setMedicalDirective('Inget inriktningsbeslut');
+    setSelectedHospital(hospitals[0]);
+    setDepartmentOccupancyLevel('');
+    setDepartmentOccupancyStatus('');
+    appliedOccupancyPresetRef.current = '';
+    setInitialAcutePatientCount(20);
+    setAcuteAdmissionsPerHour(2);
+    setSimulationStarted(false);
+    setAcuteAdmissionStatus('');
+    acuteAdmissionRemainderRef.current = 0;
+    acuteAdmissionSequenceRef.current = 0;
+    lastAcuteAdmissionSimTimeRef.current = null;
+    setSimTime(resetTime);
+    setSimSpeed(1);
+    setSimWeekday(resetWeekday);
+    setVehicles([]);
+    setSelectedVehicleType('ambulance');
+    setEventType('explosion');
+    setWindows([]);
+    setNumPatients(0);
+    setAllPatients([]);
+    setPatientsError(null);
+    setShowExercisePanel(false);
+
+    personnelRegenerationQueueRef.current.requested = true;
+    personnelRegenerationQueueRef.current.categoryKey = '';
+    personnelRegenerationQueueRef.current.categoryLabel = '';
+    flushPersonnelRegenerationQueue();
+
+    openWindowsRef.current = openWindowsRef.current.filter(win => win && !win.closed);
+    for (const win of openWindowsRef.current) {
+      try { win.location.reload(); } catch {}
+    }
+    openWindowsRef.current = [];
+
+    try {
+      setLoadingPatients(true);
+      const response = await fetch('/api/patients');
+      if (!response.ok) throw new Error('Kunde inte hämta patienter');
+      const patients = await response.json();
+      for (let index = patients.length - 1; index > 0; index--) {
+        const swapIndex = Math.floor(Math.random() * (index + 1));
+        [patients[index], patients[swapIndex]] = [patients[swapIndex], patients[index]];
+      }
+      setAllPatients(patients);
+    } catch (error) {
+      setPatientsError(error.message);
+    } finally {
+      setLoadingPatients(false);
+    }
+  }
+
   async function handleLogin(e) {
     e.preventDefault();
     setAuthError('');
+
+    const enteredSessionId = (authForm.sessionId || '').trim().toUpperCase();
+    if (authForm.role === 'participant' && !enteredSessionId) {
+      setSessionAuth({ sessionId: 'ÖPPEN', role: 'participant', displayName: 'Deltagare' });
+      return;
+    }
+
     setAuthLoading(true);
     try {
-      const displayName = (authForm.displayName || '').trim() || (authForm.role === 'instructor' ? 'Instruktor' : 'Deltagare');
-      const enteredSessionId = (authForm.sessionId || '').trim().toUpperCase();
-
-      let response;
-      if (authForm.role === 'instructor' && !enteredSessionId) {
-        response = await fetch('/api/sessions/create', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ displayName })
-        });
-      } else {
-        response = await fetch('/api/sessions/join', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            sessionId: enteredSessionId,
-            role: authForm.role,
-            displayName
-          })
-        });
-      }
+      const isInstructor = authForm.role === 'instructor';
+      const response = await fetch(isInstructor ? '/api/sessions/create' : '/api/sessions/join', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(isInstructor ? {
+          username: authForm.username,
+          password: authForm.password,
+          displayName: 'Instruktör',
+          environment: DEFAULT_SIMULATION_ENVIRONMENT
+        } : {
+          sessionId: enteredSessionId,
+          role: 'participant',
+          displayName: 'Deltagare'
+        })
+      });
 
       const payload = await response.json();
       if (!response.ok) {
         throw new Error(payload?.error || 'Kunde inte logga in');
       }
 
-      setSessionAuth({
+      const nextSession = {
         sessionId: payload.sessionId,
         role: payload.role,
-        displayName: payload.displayName
-      });
+        displayName: payload.displayName,
+        memberId: payload.memberId
+      };
+      if (isInstructor) {
+        await resetSimulationData({ session: nextSession, resetServerSession: false });
+      }
+      setSessionAuth(nextSession);
     } catch (err) {
       setAuthError(err.message || 'Kunde inte logga in');
     } finally {
@@ -531,50 +1213,83 @@ export default function App() {
 
   if (!sessionAuth) {
     return (
-      <div style={{ fontFamily: 'Arial, sans-serif', padding: 20, maxWidth: 520, margin: '0 auto' }}>
-        <h1>Flowsim</h1>
-        <div style={{ border: '1px solid #ddd', borderRadius: 8, padding: 16, background: '#fff' }}>
-          <h2 style={{ marginTop: 0 }}>Logga in till session</h2>
-          <p style={{ color: '#555', marginTop: 0 }}>Instruktör kan skapa session eller ansluta till befintlig. Deltagare ansluter till befintlig session.</p>
-          <form onSubmit={handleLogin}>
-            <div style={{ marginBottom: 12 }}>
-              <label style={{ display: 'block', fontWeight: 600, marginBottom: 4 }}>Roll</label>
-              <select
-                value={authForm.role}
-                onChange={e => setAuthForm(prev => ({ ...prev, role: e.target.value }))}
-                style={{ width: '100%', padding: '8px 10px', fontSize: 14 }}
+      <div style={{minHeight:'100vh',display:'grid',gridTemplateColumns:'minmax(0, 1.1fr) minmax(320px, 0.9fr)',fontFamily:'Arial, sans-serif',background:'#f1f7f8',color:'#07385f'}}>
+        <div style={{display:'grid',placeItems:'center',padding:'clamp(20px, 4vw, 56px)',background:'#fff'}}>
+          <img
+            src="/flowsim-logo.svg"
+            alt="FlowSIM – simulera, planera, förbättra hela vårdkedjan"
+            style={{display:'block',width:'100%',maxWidth:720,height:'auto',objectFit:'contain'}}
+          />
+        </div>
+        <div style={{display:'grid',placeItems:'center',padding:24,background:'#f1f7f8'}}>
+          <div style={{width:'100%',maxWidth:420}}>
+            <div style={{fontSize:13,fontWeight:700,color:'#087f91',textTransform:'uppercase',marginBottom:10}}>Välkommen</div>
+            <h2 style={{fontSize:32,margin:'0 0 8px',color:'#07385f'}}>Logga in</h2>
+            <p style={{color:'#4d6878',margin:'0 0 28px'}}>Välj hur du vill delta i övningen.</p>
+            <div role="group" aria-label="Välj roll" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:6,padding:5,background:'#dceef1',borderRadius:8,marginBottom:24}}>
+              {[
+                { value: 'participant', label: 'Deltagare' },
+                { value: 'instructor', label: 'Instruktör' }
+              ].map(option => (
+                <button
+                  key={option.value}
+                  type="button"
+                  aria-pressed={authForm.role === option.value}
+                  onClick={() => {
+                    setAuthForm(prev => ({ ...prev, role: option.value, username: '', password: '' }));
+                    setAuthError('');
+                  }}
+                  style={{padding:'11px 12px',border:0,borderRadius:6,background:authForm.role === option.value ? '#fff' : 'transparent',color:'#07385f',fontSize:15,fontWeight:authForm.role === option.value ? 700 : 500,cursor:'pointer',boxShadow:authForm.role === option.value ? '0 1px 4px #07385f24' : 'none'}}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+            <form onSubmit={handleLogin}>
+              {authForm.role === 'instructor' && (
+                <>
+                  <label htmlFor="login-username" style={{display:'block',fontSize:14,fontWeight:600,marginBottom:6}}>Användarnamn</label>
+                  <input
+                    id="login-username"
+                    autoComplete="username"
+                    value={authForm.username}
+                    onChange={e => setAuthForm(prev => ({...prev, username:e.target.value}))}
+                    style={{boxSizing:'border-box',width:'100%',padding:'12px 13px',fontSize:16,border:'1px solid #b7cbd4',borderRadius:6,marginBottom:16,background:'#fff',color:'#07385f'}}
+                  />
+                  <label htmlFor="login-password" style={{display:'block',fontSize:14,fontWeight:600,marginBottom:6}}>Lösenord</label>
+                  <input
+                    id="login-password"
+                    type="password"
+                    autoComplete="current-password"
+                    value={authForm.password}
+                    onChange={e => setAuthForm(prev => ({...prev, password:e.target.value}))}
+                    style={{boxSizing:'border-box',width:'100%',padding:'12px 13px',fontSize:16,border:'1px solid #b7cbd4',borderRadius:6,marginBottom:16,background:'#fff',color:'#07385f'}}
+                  />
+                </>
+              )}
+              {authForm.role === 'participant' && (
+                <>
+                  <label htmlFor="login-session" style={{display:'block',fontSize:14,fontWeight:600,marginBottom:6}}>Instruktörens sessionskod</label>
+                  <input
+                    id="login-session"
+                    autoComplete="off"
+                    value={authForm.sessionId}
+                    onChange={e => setAuthForm(prev => ({...prev, sessionId:e.target.value.toUpperCase()}))}
+                    placeholder="Lämna tomt för att logga in utan session"
+                    style={{boxSizing:'border-box',width:'100%',padding:'12px 13px',fontSize:16,border:'1px solid #b7cbd4',borderRadius:6,marginBottom:16,background:'#fff',color:'#07385f',textTransform:'uppercase'}}
+                  />
+                </>
+              )}
+              {authError && <div role="alert" style={{color:'#a52b28',fontSize:14,marginBottom:14}}>{authError}</div>}
+              <button
+                type="submit"
+                disabled={authLoading}
+                style={{width:'100%',padding:'13px 16px',border:0,borderRadius:6,background:'linear-gradient(100deg, #07385f, #087f91 72%, #08aeb0)',color:'#fff',fontSize:16,fontWeight:700,cursor:authLoading ? 'wait' : 'pointer',boxShadow:'0 5px 14px #0750782b'}}
               >
-                <option value="instructor">Instruktör</option>
-                <option value="participant">Deltagare</option>
-              </select>
-            </div>
-            <div style={{ marginBottom: 12 }}>
-              <label style={{ display: 'block', fontWeight: 600, marginBottom: 4 }}>Namn</label>
-              <input
-                value={authForm.displayName}
-                onChange={e => setAuthForm(prev => ({ ...prev, displayName: e.target.value }))}
-                placeholder={authForm.role === 'instructor' ? 'Instruktörens namn' : 'Deltagarens namn'}
-                style={{ width: '100%', padding: '8px 10px', fontSize: 14 }}
-              />
-            </div>
-            <div style={{ marginBottom: 12 }}>
-              <label style={{ display: 'block', fontWeight: 600, marginBottom: 4 }}>Session-ID</label>
-              <input
-                value={authForm.sessionId}
-                onChange={e => setAuthForm(prev => ({ ...prev, sessionId: e.target.value.toUpperCase() }))}
-                placeholder={authForm.role === 'instructor' ? 'Lämna tomt för att skapa ny session' : 'Ange session-ID från instruktör'}
-                style={{ width: '100%', padding: '8px 10px', fontSize: 14, textTransform: 'uppercase' }}
-              />
-            </div>
-            {authError && <div style={{ color: '#c62828', marginBottom: 10 }}>{authError}</div>}
-            <button
-              type="submit"
-              disabled={authLoading}
-              style={{ padding: '10px 14px', borderRadius: 6, border: '1px solid #007acc', background: '#007acc', color: '#fff', cursor: 'pointer' }}
-            >
-              {authLoading ? 'Loggar in...' : 'Logga in'}
-            </button>
-          </form>
+                {authLoading ? 'Loggar in...' : authForm.role === 'participant' ? 'Logga in som deltagare' : 'Logga in som instruktör'}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     );
@@ -617,113 +1332,18 @@ export default function App() {
               Övningsvyer
             </button>
           </>
-        ) : (
-          <div style={{ padding: '10px 14px', borderRadius: 6, border: '1px solid #e0e0e0', background: '#f9f9f9', fontSize: 14 }}>
-            Deltagarläge: endast övningsfönster är tillgängliga
+        ) : null}
+        {sessionAuth.role === 'instructor' && !showExercisePanel && connectedParticipantCount !== null && (
+          <div aria-live="polite" style={{display:'flex',alignItems:'center',gap:8,marginLeft:'auto',padding:'8px 12px',border:'1px solid #b7d9d7',borderRadius:6,background:'#eff9f8',color:'#075078',fontSize:14,fontWeight:600}}>
+            <span aria-hidden="true" style={{width:8,height:8,borderRadius:'50%',background:'#08a7a0'}} />
+            Anslutna deltagare: {connectedParticipantCount}
           </div>
         )}
         {/* Nollställningsknapp */}
         {sessionAuth.role === 'instructor' && !showExercisePanel && (
           <button
             style={{marginLeft:20,padding:'10px 16px',fontSize:14,borderRadius:6,border:'1px solid #e53935',background:'#fff',color:'#e53935',fontWeight:'bold',cursor:'pointer'}}
-            onClick={async () => {
-              // 1. Ta bort och återställ personalinställningar till utgångsvärden
-              localStorage.removeItem('hospitalPersonnelConfig');
-              const defaultPersonnelConfig = {
-                narkoslakare: 2,
-                narkosskoterskor: 2,
-                operationsskoterskor: 2,
-                usk_op: 2,
-                kirurger: 2,
-                ortopeder: 2
-              };
-              setTimeout(() => {
-                localStorage.setItem('hospitalPersonnelConfig', JSON.stringify(defaultPersonnelConfig));
-                setHospitalPersonnel(defaultPersonnelConfig);
-                window.dispatchEvent(new StorageEvent('storage', { key: 'hospitalPersonnelConfig', newValue: JSON.stringify(defaultPersonnelConfig) }));
-              }, 100);
-              let config = defaultPersonnelConfig;
-              // Mappa till generate_personnel.js format
-              let counts = { "Narkosläkare": config.narkoslakare, "Narkossköterskor": config.narkosskoterskor, "Operationssköterskor": config.operationsskoterskor, "Undersköterska operation": config.usk_op, "Kirurger": config.kirurger, "Ortopeder": config.ortopeder };
-              try {
-                // Lägg till cache-busting för att alltid hämta ny fil
-                await fetch('/api/regenerate-personnel', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ counts, cacheBust: Date.now() })
-                });
-              } catch (e) {
-                alert('Kunde inte generera ny personal!');
-              }
-              // 2. Rensa all lokal data som tidigare
-              localStorage.removeItem('departmentPatients');
-              localStorage.removeItem('movedPatientIds');
-              localStorage.removeItem('prehospitalPatients');
-              localStorage.removeItem('prehospitalVehicles');
-              localStorage.removeItem('prehospitalTransportTasks');
-              localStorage.removeItem('paratusPatients');
-              localStorage.removeItem('collectionPointMarker');
-              localStorage.removeItem('deadCollectionPointMarker');
-                            localStorage.removeItem('hospitalPersonnelConfig');
-              localStorage.removeItem('prehospitalMapMarker');
-              setVehicles([]);
-              window.dispatchEvent(new StorageEvent('storage', { key: 'departmentPatients', newValue: null }));
-              window.dispatchEvent(new StorageEvent('storage', { key: 'movedPatientIds', newValue: null }));
-              window.dispatchEvent(new StorageEvent('storage', { key: 'prehospitalVehicles', newValue: '[]' }));
-              window.dispatchEvent(new StorageEvent('storage', { key: 'prehospitalTransportTasks', newValue: '{}' }));
-              window.dispatchEvent(new Event('paratusUpdated'));
-              setAllPatients([]);
-              setNumPatients(0);
-              // Ladda om patientlistan från servern
-              try {
-                setLoadingPatients(true);
-                setPatientsError(null);
-                const res = await fetch('/api/patients');
-                if (!res.ok) throw new Error('Kunde inte hämta patienter');
-                let data = await res.json();
-                // Blanda patienterna (Fisher-Yates shuffle)
-                for (let i = data.length - 1; i > 0; i--) {
-                  const j = Math.floor(Math.random() * (i + 1));
-                  [data[i], data[j]] = [data[j], data[i]];
-                }
-                setAllPatients(data);
-                setNumPatients(0);
-              } catch (e) {
-                setPatientsError(e.message);
-              } finally {
-                setLoadingPatients(false);
-              }
-              // Broadcast till alla öppna övningsfönster
-              openWindowsRef.current = openWindowsRef.current.filter(win => win && !win.closed);
-              for (const win of openWindowsRef.current) {
-                try { win.postMessage({ type: 'resetAll' }, '*'); } catch {}
-              }
-              // Rensa ALL lokal data
-              localStorage.removeItem('akutPatients');
-              localStorage.removeItem('departmentPatients');
-              localStorage.removeItem('movedPatientIds');
-              localStorage.removeItem('paratusPatients');
-              localStorage.removeItem('prehospitalPatients');
-              localStorage.removeItem('prehospitalVehicles');
-              localStorage.removeItem('prehospitalTransportTasks');
-              localStorage.removeItem('prehospitalCompletedActions');
-              localStorage.removeItem('collectionPointMarker');
-              localStorage.removeItem('deadCollectionPointMarker');
-              localStorage.removeItem('prehospitalMapMarker');
-              localStorage.removeItem('postopAkutlista');
-              // Behåll simTime - tid behövs för övningarna
-              
-              // Uppdatera vehicles-state lokalt
-              setVehicles([]);
-              
-              // Dispatcha events så alla komponenter uppdateras
-              window.dispatchEvent(new Event('paratusUpdated'));
-              window.dispatchEvent(new CustomEvent('prehospitalVehiclesUpdated', { detail: [] }));
-              window.dispatchEvent(new Event('storage'));
-              
-              console.log('All data nollställd');
-              console.log('prehospitalVehicles efter reset:', JSON.parse(localStorage.getItem('prehospitalVehicles') || '[]'));
-            }}
+            onClick={() => resetSimulationData()}
             title="Nollställ alla patientlistor och flyttade patienter i alla övningsvyer"
           >
             Nollställ all data
@@ -830,49 +1450,198 @@ export default function App() {
             ))}
           </div>
 
+          <h2 style={{marginTop:32}}>Akutmottagning – spontana patienter</h2>
+          <div style={{display:'flex',flexWrap:'wrap',alignItems:'end',gap:18,marginBottom:12}}>
+            <div>
+              <label htmlFor="initial-acute-patients" style={{display:'block',marginBottom:4,fontWeight:600}}>Patienter på plats vid start:</label>
+              <input
+                id="initial-acute-patients"
+                type="number"
+                min="0"
+                max="150"
+                value={initialAcutePatientCount}
+                onChange={event => setInitialAcutePatientCount(Math.min(150, Math.max(0, Number(event.target.value) || 0)))}
+                style={{fontSize:16,padding:'8px 10px',width:100}}
+              />
+            </div>
+            <div>
+              <label htmlFor="acute-admissions-rate" style={{display:'block',marginBottom:4,fontWeight:600}}>Nya spontana patienter per timme:</label>
+              <input
+                id="acute-admissions-rate"
+                type="number"
+                min="0"
+                max="60"
+                value={acuteAdmissionsPerHour}
+                onChange={event => setAcuteAdmissionsPerHour(Math.min(60, Math.max(0, Number(event.target.value) || 0)))}
+                style={{fontSize:16,padding:'8px 10px',width:100}}
+              />
+            </div>
+            <span style={{fontSize:13,color:'#53616a',paddingBottom:8}}>Patienterna skapas direkt på Akutmottagningen och kommer inte från skadeplatsen.</span>
+            <button
+              type="button"
+              onClick={startSimulationWithAcutePatients}
+              disabled={simulationStarted || loadingPatients}
+              style={{padding:'9px 14px',fontSize:14,borderRadius:5,border:0,background:simulationStarted ? '#7b8a8b' : '#087f91',color:'#fff',fontWeight:700,cursor:simulationStarted || loadingPatients ? 'default' : 'pointer'}}
+            >
+              {simulationStarted ? 'Simulering startad' : 'Starta simulering'}
+            </button>
+          </div>
+          {acuteAdmissionStatus && <div role="status" style={{marginBottom:12,color:'#245a43',fontSize:13}}>{acuteAdmissionStatus}</div>}
+
+          <h2 style={{marginTop:32}}>Beläggning på avdelningar</h2>
+          <div style={{display:'flex',flexWrap:'wrap',alignItems:'center',gap:14,marginBottom:12}}>
+            <div>
+              <label htmlFor="department-occupancy" style={{display:'block',marginBottom:4,fontWeight:600}}>Beläggningsnivå:</label>
+              <select
+                id="department-occupancy"
+                value={departmentOccupancyLevel}
+                disabled={selectedHospital !== 'Norrlands universitetssjukhus' || departmentSourcePatientsLoading}
+                onChange={e => handleDepartmentOccupancyChange(e.target.value)}
+                style={{fontSize:16,padding:'8px 12px',minWidth:210}}
+              >
+                <option value="">Välj beläggningsnivå</option>
+                <option value="low">Låg beläggning</option>
+                <option value="medium">Medel beläggning (referensbild)</option>
+                <option value="high">Hög beläggning</option>
+              </select>
+            </div>
+            <div style={{fontSize:13,color:'#53616a',maxWidth:540}}>
+              Låg: cirka 50% beläggning. Medel: beläggningen från referensbilden. Hög: minst 120% beläggning.
+            </div>
+          </div>
+          {departmentSourcePatientsLoading && (
+            <div role="status" style={{marginBottom:12,color:'#59646b',fontSize:13}}>Laddar patientunderlag för avdelningarna…</div>
+          )}
+          {selectedHospital !== 'Norrlands universitetssjukhus' && (
+            <div role="status" style={{marginBottom:12,color:'#59646b',fontSize:13}}>
+              Fasta kapacitetsvärden finns ännu bara för Norrlands universitetssjukhus.
+            </div>
+          )}
+          {departmentOccupancyStatus && selectedHospital === 'Norrlands universitetssjukhus' && (
+            <div role="status" style={{marginBottom:12,color:'#245a43',fontSize:13}}>{departmentOccupancyStatus}</div>
+          )}
+
           {/* Personalinställningar */}
           <h2 style={{marginTop:32}}>Tillgänglig personal</h2>
           <div style={{display:'flex',flexWrap:'wrap',gap:20,marginBottom:16}}>
+            <PersonnelCountControl label="Akutläkare" value={hospitalPersonnel.akutläkare} onChange={e => setHospitalPersonnel({...hospitalPersonnel, akutläkare: Math.max(0, parseInt(e.target.value) || 0)})} onAdd={() => addHospitalPersonnel('akutläkare', 'Akutläkare')} addDisabled={Boolean(updatingPersonnelCategory)} />
+            <PersonnelCountControl label="Akutsjuksköterskor" value={hospitalPersonnel.akutsjuksköterskor} onChange={e => setHospitalPersonnel({...hospitalPersonnel, akutsjuksköterskor: Math.max(0, parseInt(e.target.value) || 0)})} onAdd={() => addHospitalPersonnel('akutsjuksköterskor', 'Akutsjuksköterska')} addDisabled={Boolean(updatingPersonnelCategory)} />
+            <PersonnelCountControl label="Narkosläkare" value={hospitalPersonnel.narkoslakare} onChange={e => setHospitalPersonnel({...hospitalPersonnel, narkoslakare: Math.max(0, parseInt(e.target.value) || 0)})} onAdd={() => addHospitalPersonnel('narkoslakare', 'Narkosläkare')} addDisabled={Boolean(updatingPersonnelCategory)} />
+            <PersonnelCountControl label="Narkossköterskor" value={hospitalPersonnel.narkosskoterskor} onChange={e => setHospitalPersonnel({...hospitalPersonnel, narkosskoterskor: Math.max(0, parseInt(e.target.value) || 0)})} onAdd={() => addHospitalPersonnel('narkosskoterskor', 'Narkossköterska')} addDisabled={Boolean(updatingPersonnelCategory)} />
+            <PersonnelCountControl label="IVA sköterskor" value={hospitalPersonnel.ivaskoterskor} onChange={e => setHospitalPersonnel({...hospitalPersonnel, ivaskoterskor: Math.max(0, parseInt(e.target.value) || 0)})} onAdd={() => addHospitalPersonnel('ivaskoterskor', 'IVA-sköterska')} addDisabled={Boolean(updatingPersonnelCategory)} />
+            <PersonnelCountControl label="Operationssköterskor" value={hospitalPersonnel.operationsskoterskor} onChange={e => setHospitalPersonnel({...hospitalPersonnel, operationsskoterskor: Math.max(0, parseInt(e.target.value) || 0)})} onAdd={() => addHospitalPersonnel('operationsskoterskor', 'Operationssköterska')} addDisabled={Boolean(updatingPersonnelCategory)} />
+            <PersonnelCountControl label="Kirurger" value={hospitalPersonnel.kirurger} onChange={e => setHospitalPersonnel({...hospitalPersonnel, kirurger: Math.max(0, parseInt(e.target.value) || 0)})} onAdd={() => addHospitalPersonnel('kirurger', 'Kirurg')} addDisabled={Boolean(updatingPersonnelCategory)} />
+            <PersonnelCountControl label="Ortopeder" value={hospitalPersonnel.ortopeder} onChange={e => setHospitalPersonnel({...hospitalPersonnel, ortopeder: Math.max(0, parseInt(e.target.value) || 0)})} onAdd={() => addHospitalPersonnel('ortopeder', 'Ortoped')} addDisabled={Boolean(updatingPersonnelCategory)} />
+            <PersonnelCountControl label="Undersköterskor akutmottagningen" value={hospitalPersonnel.usk_akut} onChange={e => setHospitalPersonnel({...hospitalPersonnel, usk_akut: Math.max(0, parseInt(e.target.value) || 0)})} onAdd={() => addHospitalPersonnel('usk_akut', 'Undersköterska akuten')} addDisabled={Boolean(updatingPersonnelCategory)} />
+            <PersonnelCountControl label="Undersköterskor operation" value={hospitalPersonnel.usk_op} onChange={e => setHospitalPersonnel({...hospitalPersonnel, usk_op: Math.max(0, parseInt(e.target.value) || 0)})} onAdd={() => addHospitalPersonnel('usk_op', 'Undersköterska operation')} addDisabled={Boolean(updatingPersonnelCategory)} />
+            <PersonnelCountControl label="Undersköterskor IVA" value={hospitalPersonnel.usk_iva} onChange={e => setHospitalPersonnel({...hospitalPersonnel, usk_iva: Math.max(0, parseInt(e.target.value) || 0)})} onAdd={() => addHospitalPersonnel('usk_iva', 'Undersköterska IVA')} addDisabled={Boolean(updatingPersonnelCategory)} />
+          </div>
+          {personnelUpdateNotice && <div role="status" style={{marginTop:-8,marginBottom:14,color:personnelUpdateNotice.startsWith('Kunde') ? '#a12622' : '#245a43',fontSize:13}}>{personnelUpdateNotice}</div>}
+
+          {/* Väder och temperatur för övningen */}
+          <h2 style={{marginTop:32}}>Väder och temperatur</h2>
+          <div style={{display:'flex',flexWrap:'wrap',alignItems:'end',gap:16,marginBottom:16}}>
             <div>
-              <label style={{display:'block',marginBottom:4,fontWeight:600}}>Akutläkare:</label>
-              <input type="number" min="0" max="50" value={hospitalPersonnel.akutläkare} onChange={e => setHospitalPersonnel({...hospitalPersonnel, akutläkare: parseInt(e.target.value) || 0})} style={{fontSize:16,padding:'4px 8px',width:60}} />
+              <label htmlFor="simulation-weather" style={{display:'block',marginBottom:4,fontWeight:600}}>Väder:</label>
+              <select
+                id="simulation-weather"
+                value={simulationEnvironment.weather}
+                onChange={e => setSimulationEnvironment(prev => ({...prev, weather: e.target.value}))}
+                style={{fontSize:16,padding:'8px 12px',minWidth:180}}
+              >
+                <option value="clear">Klart</option>
+                <option value="cloudy">Molnigt</option>
+                <option value="lightRain">Lätt regn</option>
+                <option value="heavyRain">Kraftigt regn</option>
+                <option value="snow">Snöfall</option>
+                <option value="heavySnow">Kraftigt snöfall</option>
+                <option value="storm">Storm</option>
+                <option value="fog">Dimma</option>
+              </select>
             </div>
             <div>
-              <label style={{display:'block',marginBottom:4,fontWeight:600}}>Akutsjuksköterskor:</label>
-              <input type="number" min="0" max="50" value={hospitalPersonnel.akutsjuksköterskor} onChange={e => setHospitalPersonnel({...hospitalPersonnel, akutsjuksköterskor: parseInt(e.target.value) || 0})} style={{fontSize:16,padding:'4px 8px',width:60}} />
+              <label htmlFor="simulation-temperature" style={{display:'block',marginBottom:4,fontWeight:600}}>Temperatur:</label>
+              <div style={{display:'flex',alignItems:'center',gap:8}}>
+                <input
+                  id="simulation-temperature"
+                  type="number"
+                  min="-40"
+                  max="50"
+                  value={simulationEnvironment.temperatureC}
+                  onChange={e => {
+                    const value = Number(e.target.value);
+                    if (e.target.value !== '' && Number.isFinite(value)) {
+                      setSimulationEnvironment(prev => ({...prev, temperatureC: Math.min(50, Math.max(-40, value))}));
+                    }
+                  }}
+                  style={{fontSize:16,padding:'8px 12px',width:90}}
+                />
+                <span>°C</span>
+              </div>
             </div>
             <div>
-              <label style={{display:'block',marginBottom:4,fontWeight:600}}>Narkosläkare:</label>
-              <input type="number" min="0" max="50" value={hospitalPersonnel.narkoslakare} onChange={e => setHospitalPersonnel({...hospitalPersonnel, narkoslakare: parseInt(e.target.value) || 0})} style={{fontSize:16,padding:'4px 8px',width:60}} />
+              <label htmlFor="simulation-wind" style={{display:'block',marginBottom:4,fontWeight:600}}>Vind:</label>
+              <div style={{display:'flex',alignItems:'center',gap:8}}>
+                <input
+                  id="simulation-wind"
+                  type="number"
+                  min="0"
+                  max="50"
+                  value={simulationEnvironment.windSpeed}
+                  onChange={e => {
+                    const value = Number(e.target.value);
+                    if (e.target.value !== '' && Number.isFinite(value)) {
+                      setSimulationEnvironment(prev => ({...prev, windSpeed: Math.min(50, Math.max(0, value))}));
+                    }
+                  }}
+                  style={{fontSize:16,padding:'8px 12px',width:90}}
+                />
+                <span>m/s</span>
+              </div>
             </div>
             <div>
-              <label style={{display:'block',marginBottom:4,fontWeight:600}}>Narkossköterskor:</label>
-              <input type="number" min="0" max="50" value={hospitalPersonnel.narkosskoterskor} onChange={e => setHospitalPersonnel({...hospitalPersonnel, narkosskoterskor: parseInt(e.target.value) || 0})} style={{fontSize:16,padding:'4px 8px',width:60}} />
+              <label htmlFor="simulation-surface" style={{display:'block',marginBottom:4,fontWeight:600}}>Underlag:</label>
+              <select
+                id="simulation-surface"
+                value={simulationEnvironment.surface}
+                onChange={e => setSimulationEnvironment(prev => ({...prev, surface: e.target.value}))}
+                style={{fontSize:16,padding:'8px 12px'}}
+              >
+                <option value="asphalt">Asfalt / ambulans</option>
+                <option value="grass">Gräs</option>
+                <option value="snow">Snö</option>
+                <option value="ice">Is</option>
+                <option value="wet">Våt mark</option>
+                <option value="water">Vatten</option>
+              </select>
             </div>
-            <div>
-              <label style={{display:'block',marginBottom:4,fontWeight:600}}>IVA sköterskor:</label>
-              <input type="number" min="0" max="50" value={hospitalPersonnel.ivaskoterskor} onChange={e => setHospitalPersonnel({...hospitalPersonnel, ivaskoterskor: parseInt(e.target.value) || 0})} style={{fontSize:16,padding:'4px 8px',width:60}} />
-            </div>
-            <div>
-              <label style={{display:'block',marginBottom:4,fontWeight:600}}>Operationssköterskor:</label>
-              <input type="number" min="0" max="50" value={hospitalPersonnel.operationsskoterskor} onChange={e => setHospitalPersonnel({...hospitalPersonnel, operationsskoterskor: parseInt(e.target.value) || 0})} style={{fontSize:16,padding:'4px 8px',width:60}} />
-            </div>
-            <div>
-              <label style={{display:'block',marginBottom:4,fontWeight:600}}>Kirurger:</label>
-              <input type="number" min="0" max="50" value={hospitalPersonnel.kirurger} onChange={e => setHospitalPersonnel({...hospitalPersonnel, kirurger: parseInt(e.target.value) || 0})} style={{fontSize:16,padding:'4px 8px',width:60}} />
-            </div>
-            <div>
-              <label style={{display:'block',marginBottom:4,fontWeight:600}}>Ortopeder:</label>
-              <input type="number" min="0" max="50" value={hospitalPersonnel.ortopeder} onChange={e => setHospitalPersonnel({...hospitalPersonnel, ortopeder: parseInt(e.target.value) || 0})} style={{fontSize:16,padding:'4px 8px',width:60}} />
-            </div>
-            <div>
-              <label style={{display:'block',marginBottom:4,fontWeight:600}}>Undersköterskor akutmottagningen:</label>
-              <input type="number" min="0" max="50" value={hospitalPersonnel.usk_akut} onChange={e => setHospitalPersonnel({...hospitalPersonnel, usk_akut: parseInt(e.target.value) || 0})} style={{fontSize:16,padding:'4px 8px',width:60}} />
-            </div>
-            <div>
-              <label style={{display:'block',marginBottom:4,fontWeight:600}}>Undersköterskor operation:</label>
-              <input type="number" min="0" max="50" value={hospitalPersonnel.usk_op} onChange={e => setHospitalPersonnel({...hospitalPersonnel, usk_op: parseInt(e.target.value) || 0})} style={{fontSize:16,padding:'4px 8px',width:60}} />
-            </div>
+            <label style={{display:'flex',alignItems:'center',gap:8,cursor:'pointer',paddingBottom:8}}>
+              <input
+                type="checkbox"
+                checked={simulationEnvironment.forceDarkness}
+                onChange={e => setSimulationEnvironment(prev => ({...prev, forceDarkness: e.target.checked}))}
+              />
+              Tvinga mörker
+            </label>
+            <span style={{alignSelf:'center',paddingBottom:8}}>
+              Mörker just nu: <strong>{effectiveSimulationEnvironment.darkness ? 'Ja' : 'Nej'}</strong>
+              {simulationEnvironment.forceDarkness ? ' (manuellt)' : ' (automatiskt, 20:00–06:00)'}
+            </span>
+            {effectiveSimulationEnvironment.darkness && (
+              <label style={{display:'flex',alignItems:'center',gap:8,cursor:'pointer',paddingBottom:8}}>
+                <input
+                  type="checkbox"
+                  checked={simulationEnvironment.lighting}
+                  onChange={e => setSimulationEnvironment(prev => ({...prev, lighting: e.target.checked}))}
+                />
+                Belysning finns
+              </label>
+            )}
+          </div>
+          <div style={{display:'flex',flexWrap:'wrap',gap:20,padding:'10px 12px',borderLeft:'4px solid #1976d2',background:'#f4f7fa',marginBottom:16}}>
+            <span>Personalens arbetsförmåga: <strong>{Math.round(getStaffEfficiency(effectiveSimulationEnvironment) * 100)}%</strong></span>
+            <span>Patienters försämring: <strong>{getPatientDeteriorationFactor(simulationEnvironment).toFixed(2).replace('.', ',')}×</strong></span>
+            <span>Fordonshastighet: <strong>{Math.round(getVehicleSpeedFactor(simulationEnvironment) * 100)}%</strong></span>
           </div>
 
           {/* Medicinska inriktningsbeslut */}
@@ -918,6 +1687,39 @@ export default function App() {
                 />
                 <span style={{fontSize:16,fontWeight:500}}>Prehospital (automatisk omhändertagande och transport till valt sjukhus)</span>
               </label>
+              <label style={{display:'flex',alignItems:'center',gap:8,cursor:'pointer'}}>
+                <input
+                  type="checkbox"
+                  checked={automatedViews.Akutmottagning || false}
+                  onChange={(e) => {
+                    setAutomatedViews({...automatedViews, Akutmottagning: e.target.checked});
+                  }}
+                  style={{width:18,height:18,cursor:'pointer'}}
+                />
+                <span style={{fontSize:16,fontWeight:500}}>Akutmottagning (automatisk vård av patienter som har tilldelad läkare och sjuksköterska)</span>
+              </label>
+              <label style={{display:'flex',alignItems:'center',gap:8,cursor:'pointer'}}>
+                <input
+                  type="checkbox"
+                  checked={automatedViews.Operation || false}
+                  onChange={(e) => {
+                    setAutomatedViews({...automatedViews, Operation: e.target.checked});
+                  }}
+                  style={{width:18,height:18,cursor:'pointer'}}
+                />
+                <span style={{fontSize:16,fontWeight:500}}>Operation (automatisk operation av patienter som har tilldelad kirurg och anestesiläkare)</span>
+              </label>
+              <label style={{display:'flex',alignItems:'center',gap:8,cursor:'pointer'}}>
+                <input
+                  type="checkbox"
+                  checked={automatedViews.Intensivvard || false}
+                  onChange={(e) => {
+                    setAutomatedViews({...automatedViews, Intensivvard: e.target.checked});
+                  }}
+                  style={{width:18,height:18,cursor:'pointer'}}
+                />
+                <span style={{fontSize:16,fontWeight:500}}>Intensivvård (automatisk vård av patienter som har tilldelad IVA-läkare och IVA-sköterska)</span>
+              </label>
             </div>
           </div>
 
@@ -949,6 +1751,10 @@ export default function App() {
             eventCount={numPatients}
             setEventCount={setNumPatients}
             onStartEvent={async (markerPosition, eventCount) => {
+              if (allPatients.length === 0) {
+                setAcuteAdmissionStatus('Patientunderlaget laddas fortfarande. Vänta tills det är klart och starta sedan övningen igen.');
+                return;
+              }
               // Sparar skadeplatsmarkör för senare bruk
               localStorage.setItem('prehospitalMapMarker', JSON.stringify(markerPosition));
               window.dispatchEvent(new Event('storage'));
@@ -1006,8 +1812,10 @@ export default function App() {
               
               // Initialisera uppsamlingsplats EFTER att patienter skapas
               initializeCollectionPoints();
-              
-              alert(`${selected.length} patienter skapade vid skadeplatsen!`);
+
+              if (!startSimulationWithAcutePatients()) return;
+              const acutePatients = JSON.parse(localStorage.getItem('akutPatients') || '{}');
+              alert(`${selected.length} patienter skapade vid skadeplatsen. ${acutePatients[selectedHospital].length} patienter finns på Akutmottagningen från start.`);
             }}
           />
 
@@ -1181,23 +1989,24 @@ export default function App() {
       {showExercisePanel && (
         <div style={{ marginBottom: 20, padding: 12, border: '1px solid #e0e0e0', borderRadius: 6 }}>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <button onClick={() => openWindow('Prehospital')} style={panelBtn}>Prehospital</button>
-            <button onClick={() => openWindow('Paratus')} style={panelBtn}>Paratus</button>
-            <button onClick={() => openWindow('Akutmottagning')} style={panelBtn}>Akutmottagning</button>
-            <button onClick={() => openWindow('OP')} style={panelBtn}>OP</button>
-            <button onClick={() => openWindow('IVA')} style={panelBtn}>IVA</button>
-            <button onClick={() => openWindow('POSTOP')} style={panelBtn}>POSTOP</button>
-            <button onClick={() => openWindow('Mottagningar')} style={panelBtn}>Mottagningar</button>
-            <button onClick={() => openWindow('Avdelningar')} style={panelBtn}>Avdelningar</button>
-            <button onClick={() => openWindow('Hem')} style={panelBtn}>Hem</button>
-            <button onClick={() => openWindow('Personal')} style={panelBtn}>Personal</button>
+            {renderExerciseButton('Prehospital')}
+            {renderExerciseButton('Paratus')}
+            {renderExerciseButton('Akutmottagning')}
+            {renderExerciseButton('OP')}
+            {renderExerciseButton('IVA')}
+            {renderExerciseButton('POSTOP')}
+            {renderExerciseButton('Mottagningar')}
+            {renderExerciseButton('Avdelningar')}
+            {renderExerciseButton('Katastrofliggare')}
+            {renderExerciseButton('Hem')}
+            {renderExerciseButton('Personal')}
           </div>
         </div>
       )}
 
       {/* Render open windows */}
       {windows.map(w => (
-        <Window key={w.id} id={w.id} title={w.title} onClose={() => closeWindow(w.id)} simTime={simTime} simWeekday={weekdays[simWeekday]}>
+        <Window key={w.id} id={w.id} title={w.title} onClose={() => closeWindow(w.id)} simTime={simTime} simWeekday={weekdays[simWeekday]} weather={simulationEnvironment.weather}>
           {w.title === 'Akutmottagning' ? (
             <div>
               <div style={{fontWeight:'bold',marginBottom:8}}>

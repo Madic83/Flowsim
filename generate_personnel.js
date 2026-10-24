@@ -72,7 +72,7 @@ try {
 
 const personnel = [];
 for (const category of categories) {
-  const count = categoryCounts[category.name] || 50;
+  const count = categoryCounts[category.name] ?? 50;
   const usedNames = new Set();
   for (let i = 1; i <= count; i++) {
     const { firstName, lastName } = getRandomName(usedNames);

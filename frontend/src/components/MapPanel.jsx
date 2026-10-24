@@ -1,6 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { prehospitalActionDurations } from './prehospitalActionDurations';
+import { getVehicleSpeedFactor, isDarkAtTime, scalePrehospitalWorkMinutes, scalePrehospitalWorkSeconds } from '../weatherImpact';
+import { advancePrehospitalPatient } from '../prehospitalDeterioration.js';
+import { addSimulationMinutes, elapsedSimulationMinutes } from '../simulationTime.js';
+import { getReadyAmbulanceCrew, setTransportCrewStatus } from '../prehospitalTransportEligibility.js';
 import { vehicleTypes, personnelCategories, getTotalPersonnel, getAvailablePersonnel, allocateTransportPersonnel, allocateActionPersonnel, releasePersonnel, markPersonnelBusy, actionRequirements } from './prehospitalResources';
+import { buildTransportCarePlan } from '../prehospitalTransportCare.js';
+import { movePatientToParatus } from '../prehospitalDispatch.js';
 import { MapContainer, Marker, TileLayer, useMap, Popup, CircleMarker, useMapEvent } from 'react-leaflet';
 // Komponent som lyssnar på klick på kartan och placerar uppsamlingsplats
 function CollectionPointPlacer({ placing, onPlace }) {
@@ -35,287 +42,119 @@ function PrehospitalMapSyncMarker() {
   return marker ? <Marker position={marker} /> : null;
 }
 
+function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpenActionPatient, openTriagePatient, setOpenTriagePatient, setHospitalSelectPatient, hospitalDispatchHandlerRef, totalPersonnel, availablePersonnel, actionTimers, setActionTimers, transportTasks, setTransportTasks, simTime, simulationEnvironment }) {
+  const previousSimTimeRef = useRef(null);
+  const [patients, setPatients] = useState([]);
+  const [completedActions, setCompletedActions] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('prehospitalCompletedActions') || '{}');
+    } catch {
+      return {};
+    }
+  });
 
-function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpenActionPatient, openTriagePatient, setOpenTriagePatient, hospitalSelectPatient, setHospitalSelectPatient, totalPersonnel, availablePersonnel, actionTimers, setActionTimers, transportTasks, setTransportTasks, simTime }) {
-          console.log('[PrehospitalPatientsMarkers] Komponent renderas');
-        // Automatisk försämring/förbättring av vitalparametrar
-        // Vitalparametrar uppdateras endast när simTime ändras (en övningsminut)
-        const prevSimTimeRef = useRef();
-        useEffect(() => {
-          if (prevSimTimeRef.current === simTime) return;
-          prevSimTimeRef.current = simTime;
-          // Logga hela localStorage.getItem('prehospitalPatients')
-          const raw = localStorage.getItem('prehospitalPatients');
-          console.log('[prehospitalPatients] localStorage:', raw);
-          let allPatients = JSON.parse(raw || '[]');
-          allPatients.forEach(p => {
-            console.log('[Patient]', {
-              id: p.id,
-              injuryDescription: p.injuryDescription,
-              XABCDE: p.XABCDE,
-              treatment: p.treatment,
-              requiredTreatment: p.requiredTreatment
-            });
-          });
-          let anyChanged = false;
-          const updated = allPatients.map(p => {
-            // Stöd både XABCDE och ABCDE
-            let newXABCDE = p.XABCDE ? JSON.parse(JSON.stringify(p.XABCDE)) : (p.ABCDE ? JSON.parse(JSON.stringify(p.ABCDE)) : undefined);
-            let status = p.status || 'stabil';
-            const hasTreatment = typeof p.treatment === 'string' && p.treatment.length > 0;
-            const correctTreatment = hasTreatment && p.requiredTreatment && p.treatment === p.requiredTreatment;
-            const injury = (p.injuryDescription || '').toLowerCase();
-            let changed = false;
-            // FÖRSÄMRING sker nu bara varannan minut (dubbelt så lång tid)
-            const minute = parseInt(simTime.split(':')[1], 10);
-            if ((!hasTreatment || !correctTreatment) && minute % 2 === 0) {
-              // FÖRSÄMRING mot fysiologiskt sämsta gräns, ännu långsammare takt
-              if (newXABCDE?.B?.Sat !== undefined) {
-                const before = newXABCDE.B.Sat;
-                newXABCDE.B.Sat = Math.max(70, newXABCDE.B.Sat - 1);
-                if (newXABCDE.B.Sat !== before) changed = true;
-              }
-              if (newXABCDE?.B?.AF !== undefined) {
-                const before = newXABCDE.B.AF;
-                newXABCDE.B.AF = Math.min(40, newXABCDE.B.AF + 1);
-                if (newXABCDE.B.AF !== before) changed = true;
-              }
-              if (newXABCDE?.C?.Puls !== undefined) {
-                const before = newXABCDE.C.Puls;
-                newXABCDE.C.Puls = Math.min(180, newXABCDE.C.Puls + 2);
-                if (newXABCDE.C.Puls !== before) changed = true;
-              }
-              if (newXABCDE?.C?.BT !== undefined) {
-                let [sys, dia] = (typeof newXABCDE.C.BT === 'string' ? newXABCDE.C.BT.split('/') : [null, null]);
-                const beforeSys = sys, beforeDia = dia;
-                sys = sys ? Math.max(60, parseInt(sys, 10) - 2) : 90;
-                dia = dia ? Math.max(40, parseInt(dia, 10) - 1) : 60;
-                newXABCDE.C.BT = `${sys}/${dia}`;
-                if (`${sys}` !== beforeSys || `${dia}` !== beforeDia) changed = true;
-              }
-              // GCS sänks endast var fjärde minut (ännu långsammare)
-              if (newXABCDE?.D?.GCS !== undefined) {
-                const before = newXABCDE.D.GCS;
-                if (minute % 4 === 0) {
-                  newXABCDE.D.GCS = Math.max(3, newXABCDE.D.GCS - 1);
-                }
-                if (newXABCDE.D.GCS !== before) changed = true;
-              }
-              status = 'försämras';
-            } else if (!hasTreatment || !correctTreatment) {
-              // Om udda minut, ingen försämring denna minut
-              status = 'försämras';
-            } else {
-              // FÖRBÄTTRING mot normalvärde
-              const normal = { BT: '120/70', Puls: 80, Sat: 98, AF: 16, GCS: 15 };
-              if (newXABCDE?.C?.BT !== undefined) {
-                let [sys, dia] = (typeof newXABCDE.C.BT === 'string' ? newXABCDE.C.BT.split('/') : [null, null]);
-                const beforeSys = sys, beforeDia = dia;
-                sys = sys ? Math.min(120, parseInt(sys, 10) + 2) : 120;
-                dia = dia ? Math.min(70, parseInt(dia, 10) + 1) : 70;
-                newXABCDE.C.BT = `${sys}/${dia}`;
-                if (`${sys}` !== beforeSys || `${dia}` !== beforeDia) changed = true;
-              }
-              if (newXABCDE?.C?.Puls !== undefined) {
-                const before = newXABCDE.C.Puls;
-                newXABCDE.C.Puls = Math.max(normal.Puls, newXABCDE.C.Puls - 2);
-                if (newXABCDE.C.Puls !== before) changed = true;
-              }
-              if (newXABCDE?.B?.Sat !== undefined) {
-                const before = newXABCDE.B.Sat;
-                newXABCDE.B.Sat = Math.min(normal.Sat, newXABCDE.B.Sat + 2);
-                if (newXABCDE.B.Sat !== before) changed = true;
-              }
-              if (newXABCDE?.B?.AF !== undefined) {
-                const before = newXABCDE.B.AF;
-                newXABCDE.B.AF = Math.max(normal.AF, newXABCDE.B.AF - 1);
-                if (newXABCDE.B.AF !== before) changed = true;
-              }
-              if (newXABCDE?.D?.GCS !== undefined) {
-                const before = newXABCDE.D.GCS;
-                newXABCDE.D.GCS = Math.min(normal.GCS, newXABCDE.D.GCS + 1);
-                if (newXABCDE.D.GCS !== before) changed = true;
-              }
-              status = 'förbättras';
-            }
-            if (status !== p.status) changed = true;
-            if (changed) {
-              anyChanged = true;
-              console.log('[Prehospital försämring/förbättring]', p.id, status, newXABCDE);
-              return { ...p, status, XABCDE: newXABCDE };
-            }
-            return p;
-          });
-          if (anyChanged) {
-            localStorage.setItem('prehospitalPatients', JSON.stringify(updated));
-            window.dispatchEvent(new Event('prehospitalPatientsUpdated'));
-          }
-          // Uppdatera även state så popupen alltid visar senaste versionen
-          setPatients(updated);
-        }, [simTime]);
-    const [patients, setPatients] = useState([]);
-    const [completedActions, setCompletedActions] = useState(() => {
+  useEffect(() => {
+    const updatePatients = () => {
       try {
-        return JSON.parse(localStorage.getItem('prehospitalCompletedActions') || '{}');
+        const storedPatients = JSON.parse(localStorage.getItem('prehospitalPatients') || '[]');
+        setPatients(Array.isArray(storedPatients) ? storedPatients : []);
       } catch {
-        return {};
+        setPatients([]);
+      }
+    };
+    updatePatients();
+    window.addEventListener('prehospitalPatientsCreated', updatePatients);
+    window.addEventListener('prehospitalPatientsUpdated', updatePatients);
+    window.addEventListener('storage', updatePatients);
+    return () => {
+      window.removeEventListener('prehospitalPatientsCreated', updatePatients);
+      window.removeEventListener('prehospitalPatientsUpdated', updatePatients);
+      window.removeEventListener('storage', updatePatients);
+    };
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('prehospitalTransportTasks', JSON.stringify(transportTasks));
+  }, [transportTasks]);
+
+  useEffect(() => {
+    localStorage.setItem('prehospitalCompletedActions', JSON.stringify(completedActions));
+  }, [completedActions]);
+
+  useEffect(() => {
+    if (previousSimTimeRef.current === simTime) return;
+    previousSimTimeRef.current = simTime;
+
+    const updatedActions = { ...actionTimers };
+    const personnelToRelease = [];
+    let actionsChanged = false;
+    Object.entries(updatedActions).forEach(([patientId, timer]) => {
+      if (timer.waitingForFollowUp) return;
+      const elapsed = elapsedSimulationMinutes(timer.startedAtSimTime || simTime, simTime);
+      const duration = Number(timer.durationMinutes) || 0;
+      if (elapsed >= duration) {
+        const timedActions = (timer.actions || []).filter(action => (prehospitalActionDurations[action] || 0) > 0);
+        if (timedActions.length) {
+          setCompletedActions(previous => ({
+            ...previous,
+            [patientId]: [...new Set([...(previous[patientId] || []), ...timedActions])]
+          }));
+        }
+        if (timer.airwayLocked) updatedActions[patientId] = { ...timer, remaining: 0, waitingForFollowUp: true };
+        else {
+          if (timer.allocatedPersonnel) personnelToRelease.push(timer.allocatedPersonnel);
+          delete updatedActions[patientId];
+        }
+        actionsChanged = true;
+      } else {
+        const remaining = Math.max(0, Math.ceil((duration - elapsed) * 60));
+        if (remaining !== timer.remaining) {
+          updatedActions[patientId] = { ...timer, remaining };
+          actionsChanged = true;
+        }
       }
     });
+    if (actionsChanged) setActionTimers(updatedActions);
 
-    useEffect(() => {
-      function updatePatients() {
-        console.log('updatePatients called');
-        const pats = JSON.parse(localStorage.getItem('prehospitalPatients') || '[]');
-        console.log('Loaded patients:', pats.length);
-        setPatients(Array.isArray(pats) ? pats : []);
+    const updatedTasks = { ...transportTasks };
+    const completedTransports = [];
+    const transportAllocations = [];
+    let tasksChanged = false;
+    Object.entries(updatedTasks).forEach(([patientId, task]) => {
+      const elapsed = elapsedSimulationMinutes(task.startedAtSimTime || simTime, simTime);
+      const duration = Number(task.durationMinutes) || 0;
+      if (elapsed >= duration && collectionPoint) {
+        completedTransports.push(patientId);
+        if (task.allocatedPersonnel) transportAllocations.push(task.allocatedPersonnel);
+        delete updatedTasks[patientId];
+        tasksChanged = true;
+      } else {
+        const remaining = Math.max(0, Math.ceil((duration - elapsed) * 60));
+        if (remaining !== task.remaining) {
+          updatedTasks[patientId] = { ...task, remaining };
+          tasksChanged = true;
+        }
       }
-      updatePatients();
-      window.addEventListener('prehospitalPatientsCreated', updatePatients);
-      window.addEventListener('prehospitalPatientsUpdated', updatePatients);
-      window.addEventListener('storage', updatePatients);
-      return () => {
-        window.removeEventListener('prehospitalPatientsCreated', updatePatients);
-        window.removeEventListener('prehospitalPatientsUpdated', updatePatients);
-        window.removeEventListener('storage', updatePatients);
-      };
-    }, []);
-    
-    // Spara transportTasks till localStorage när de ändras
-    useEffect(() => {
-      localStorage.setItem('prehospitalTransportTasks', JSON.stringify(transportTasks));
-    }, [transportTasks]);
+    });
+    if (tasksChanged) setTransportTasks(updatedTasks);
 
-    useEffect(() => {
-      localStorage.setItem('prehospitalCompletedActions', JSON.stringify(completedActions));
-    }, [completedActions]);
-
-    // Timer-effekt för att uppdatera nedräkning för både åtgärder och transport
-    useEffect(() => {
-      const interval = setInterval(() => {
-        const now = Date.now();
-        
-        // Uppdatera åtgärdstimers
-        setActionTimers(prev => {
-          const updated = { ...prev };
-          const completedActions = [];
-          
-          Object.keys(updated).forEach(pid => {
-            const timeLeft = updated[pid].endTime - now;
-            const rem = Math.max(0, Math.ceil(timeLeft / 1000));
-            
-            // Bara frigör personal när tiden faktiskt är ute (inte bara avrundad till 0)
-            if (timeLeft <= 0) {
-              // Markera tidsbestämda åtgärder som slutförda (även om personal är låst)
-              if (updated[pid].actions && Array.isArray(updated[pid].actions)) {
-                const timedActions = updated[pid].actions.filter(action => {
-                  const duration = prehospitalActionDurations[action];
-                  return duration > 0; // Endast tidsbestämda åtgärder
-                });
-                if (timedActions.length > 0) {
-                  setCompletedActions(prev => {
-                    const existing = prev[pid] || [];
-                    const newCompleted = [...new Set([...existing, ...timedActions])];
-                    return { ...prev, [pid]: newCompleted };
-                  });
-                }
-              }
-              
-              // Om personal är låst av luftvägsåtgärd, behåll timern men markera som väntar
-              if (updated[pid].airwayLocked) {
-                updated[pid] = { 
-                  ...updated[pid], 
-                  remaining: 0,
-                  waitingForFollowUp: true // Väntar på definitiv luftväg
-                };
-              } else {
-                // Åtgärd klar - spara allokerad personal för frigöring
-                if (updated[pid].allocatedPersonnel) {
-                  completedActions.push(updated[pid].allocatedPersonnel);
-                }
-                delete updated[pid];
-              }
-            } else {
-              updated[pid] = { ...updated[pid], remaining: rem };
-            }
-          });
-          
-          // Frigör personal efter att state-uppdateringen är klar
-          if (completedActions.length > 0) {
-            setTimeout(() => {
-              completedActions.forEach(allocated => {
-                const vehicles = JSON.parse(localStorage.getItem('prehospitalVehicles') || '[]');
-                const updatedVehicles = releasePersonnel(vehicles, allocated);
-                localStorage.setItem('prehospitalVehicles', JSON.stringify(updatedVehicles));
-                window.dispatchEvent(new CustomEvent('prehospitalVehiclesUpdated', { detail: updatedVehicles }));
-                console.log('Personal frigjord efter åtgärd:', allocated);
-              });
-            }, 0);
-          }
-          
-          return { ...updated };
-        });
-        
-        // Uppdatera transporttasks och flytta patienter när klart
-        setTransportTasks(prev => {
-          const updated = { ...prev };
-          let hasChanges = false;
-          const completedTransports = [];
-          const completedAllocations = [];
-          
-          Object.keys(updated).forEach(pid => {
-            const timeLeft = updated[pid].endTime - now;
-            const rem = Math.max(0, Math.ceil(timeLeft / 1000));
-            
-            // Bara frigör personal när tiden faktiskt är ute (inte bara avrundad till 0)
-            if (timeLeft <= 0) {
-              if (collectionPoint) {
-                // Transport till uppsamlingsplats klar - markera för flytt
-                console.log('Transport klar för patient', pid);
-                completedTransports.push(pid);
-                if (updated[pid].allocatedPersonnel) {
-                  completedAllocations.push(updated[pid].allocatedPersonnel);
-                }
-                delete updated[pid];
-                hasChanges = true;
-              }
-            } else if (rem > 0 && updated[pid].remaining !== rem) {
-              updated[pid] = { ...updated[pid], remaining: rem };
-              hasChanges = true;
-            }
-          });
-          
-          // Flytta patienter och frigör personal efter att state-uppdateringen är klar
-          if (completedTransports.length > 0) {
-            setTimeout(() => {
-              console.log('Flyttar patienter:', completedTransports);
-              const pats = JSON.parse(localStorage.getItem('prehospitalPatients') || '[]');
-              const updatedPats = pats.map(p => {
-                if (completedTransports.includes(p.id.toString())) {
-                  console.log('Flyttar patient', p.id, 'från', p.lat, p.lng, 'till', collectionPoint.lat, collectionPoint.lng);
-                  return { ...p, lat: collectionPoint.lat, lng: collectionPoint.lng, location: 'Uppsamlingsplats' };
-                }
-                return p;
-              });
-              localStorage.setItem('prehospitalPatients', JSON.stringify(updatedPats));
-              window.dispatchEvent(new Event('prehospitalPatientsUpdated'));
-              console.log('Patienter flyttade och event skickat');
-              
-              // Frigör personal
-              completedAllocations.forEach(allocated => {
-                const vehicles = JSON.parse(localStorage.getItem('prehospitalVehicles') || '[]');
-                const updatedVehicles = releasePersonnel(vehicles, allocated);
-                localStorage.setItem('prehospitalVehicles', JSON.stringify(updatedVehicles));
-                window.dispatchEvent(new CustomEvent('prehospitalVehiclesUpdated', { detail: updatedVehicles }));
-                console.log('Personal frigjord:', allocated);
-              });
-            }, 0);
-          }
-          
-          return hasChanges ? { ...updated } : prev;
-        });
-      }, 1000);
-      return () => clearInterval(interval);
-    }, [collectionPoint]);
+    if (completedTransports.length) {
+      const storedPatients = JSON.parse(localStorage.getItem('prehospitalPatients') || '[]');
+      const updatedPatients = storedPatients.map(patient => completedTransports.includes(String(patient.id))
+        ? { ...patient, lat: collectionPoint.lat, lng: collectionPoint.lng, location: 'Uppsamlingsplats' }
+        : patient
+      );
+      localStorage.setItem('prehospitalPatients', JSON.stringify(updatedPatients));
+      window.dispatchEvent(new Event('prehospitalPatientsUpdated'));
+    }
+    const allocationsToRelease = [...personnelToRelease, ...transportAllocations];
+    if (allocationsToRelease.length) {
+      let vehicles = JSON.parse(localStorage.getItem('prehospitalVehicles') || '[]');
+      allocationsToRelease.forEach(allocation => { vehicles = releasePersonnel(vehicles, allocation); });
+      localStorage.setItem('prehospitalVehicles', JSON.stringify(vehicles));
+      window.dispatchEvent(new CustomEvent('prehospitalVehiclesUpdated', { detail: vehicles }));
+    }
+  }, [simTime, collectionPoint]);
 
   // Spara triage och åtgärder i localStorage
   function updatePatientField(id, field, value) {
@@ -324,7 +163,11 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
         if (p.id === id) {
           // Om fältet är triage, spara det som ett objekt med scene-värdet
           if (field === 'triage') {
-            return { ...p, triage: { scene: value } };
+            return {
+              ...p,
+              prehospitalBaselineTriage: p.prehospitalBaselineTriage || p.triage?.scene || p.triage?.sorting || p.triage?.emergencyDept || (typeof p.triage === 'string' ? p.triage : ''),
+              triage: { scene: value }
+            };
           }
           return { ...p, [field]: value };
         }
@@ -342,106 +185,24 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
     if (!patient) return false;
 
     const vehicles = JSON.parse(localStorage.getItem('prehospitalVehicles') || '[]');
-    const triageValue = typeof patient.triage === 'object' ? null : patient.triage;
-    const isGreen = triageValue === 'Grön';
-    const isYellowOrRed = triageValue === 'Gul' || triageValue === 'Röd';
-
-    if (isYellowOrRed) {
-      // Röda och Gula patienter kräver ambulans med sjukvårdspersonal + 1 extra personal
-      const availableAmbulances = vehicles.filter(v => 
-        v.type === 'ambulance' && 
-        v.status !== 'away' &&
-        v.personnel && 
-        v.personnel.some(p => p.status === 'available')
-      );
-      
-      if (availableAmbulances.length === 0) {
-        alert('Ingen tillgänglig ambulans för transport av gul/röd patient till sjukhus!');
-        return false;
-      }
-      
-      // Kolla om det finns sjukvårdspersonal
-      const medicalCategories = ['paramedic', 'anesthesiaNurse', 'doctor'];
-      let hasMedicalPerson = false;
-      
-      for (const vehicle of availableAmbulances) {
-        if (!vehicle.personnel) continue;
-        for (const person of vehicle.personnel) {
-          if (person.status === 'available' && medicalCategories.includes(person.category)) {
-            hasMedicalPerson = true;
-            break;
-          }
-        }
-        if (hasMedicalPerson) break;
-      }
-      
-      if (!hasMedicalPerson) {
-        alert('Ingen tillgänglig sjukvårdspersonal (ambulanssjukvårdare/ambulanssjuksköterska/anestesisjuksköterska/läkare) för transport!');
-        return false;
-      }
-      
-      // Kolla om det finns ytterligare personal
-      const otherCategories = ['firefighter', 'police', 'emt', 'paramedic', 'anesthesiaNurse', 'doctor'];
-      let hasOtherPerson = false;
-      
-      for (const category of otherCategories) {
-        for (const vehicle of vehicles) {
-          if (!vehicle.personnel) continue;
-          for (const person of vehicle.personnel) {
-            if (person.status === 'available' && person.category === category) {
-              hasOtherPerson = true;
-              break;
-            }
-          }
-          if (hasOtherPerson) break;
-        }
-        if (hasOtherPerson) break;
-      }
-      
-      if (!hasOtherPerson) {
-        alert('Otillräcklig personal för transport! Behöver 2 personer.');
-        return false;
-      }
-      
-    } else {
-      // Gröna patienter kan åka med valfritt fordon och 1 valfri personal
-      const availableVehicles = vehicles.filter(v => 
-        v.status !== 'away' &&
-        v.personnel && 
-        v.personnel.some(p => p.status === 'available')
-      );
-      
-      if (availableVehicles.length === 0) {
-        alert('Inget tillgängligt fordon för transport till sjukhus!');
-        return false;
-      }
-      
-      // Kolla om det finns tillgänglig personal
-      let hasAvailablePerson = false;
-      for (const vehicle of availableVehicles) {
-        if (!vehicle.personnel) continue;
-        for (const person of vehicle.personnel) {
-          if (person.status === 'available') {
-            hasAvailablePerson = true;
-            break;
-          }
-        }
-        if (hasAvailablePerson) break;
-      }
-      
-      if (!hasAvailablePerson) {
-        alert('Ingen tillgänglig personal för transport!');
-        return false;
-      }
+    const hasReadyAmbulance = vehicles.some(vehicle => (
+        ['ambulance', 'helicopterAmbulance'].includes(vehicle.type) &&
+        getReadyAmbulanceCrew(vehicle, vehicles, patientId, actionTimers) !== null
+      ));
+    if (!hasReadyAmbulance) {
+      alert('Sjukhustransport kräver en ledig ambulans samt två personer: en vårdare och en förare.');
+      return false;
     }
-    
     return true;
   }
 
   function sendToHospital(id, selectedHospitalName) {
     // Hitta patienten först
     const patient = patients.find(p => p.id === id);
-    if (!patient) return;
+    if (!patient) {
+      alert('Patienten kunde inte hittas i skadeplatslistan. Uppdatera vyn och försök igen.');
+      return false;
+    }
     
     // Sjukhusens koordinater (Västerbotten, Sverige)
     const hospitals = {
@@ -456,7 +217,7 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
     
     if (!hospitalCoords) {
       alert('Ogiltigt sjukhus valt!');
-      return;
+      return false;
     }
     
     // Beräkna avstånd till valt sjukhus
@@ -483,107 +244,16 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
     // Hämta fordon från localStorage
     const vehicles = JSON.parse(localStorage.getItem('prehospitalVehicles') || '[]');
     
-    const triageValue = typeof patient.triage === 'object' ? null : patient.triage;
-    const isGreen = triageValue === 'Grön';
-    const isYellowOrRed = triageValue === 'Gul' || triageValue === 'Röd';
-    
-    let selectedVehicle = null;
-    let allocated = [];
-    
-    if (isYellowOrRed) {
-      // Röda och Gula patienter kräver ambulans eller helikopter med sjukvårdspersonal + 1 extra personal
-      const availableVehicles = vehicles.filter(v => 
-        (v.type === 'ambulance' || v.type === 'helicopterAmbulance') && 
-        v.status !== 'away' &&
-        v.personnel && 
-        v.personnel.some(p => p.status === 'available')
-      );
-      
-      if (availableVehicles.length === 0) {
-        alert('Ingen tillgänglig ambulans eller helikopter för transport av gul/röd patient till sjukhus!');
-        return;
-      }
-      
-      // Allokera personal: 1 sjukvårdspersonal (paramedic/anesthesiaNurse/doctor) + 1 valfri
-      const medicalCategories = ['paramedic', 'anesthesiaNurse', 'doctor'];
-      const otherCategories = ['firefighter', 'police', 'emt', 'paramedic', 'anesthesiaNurse', 'doctor'];
-      
-      let medicalPerson = null;
-      let otherPerson = null;
-      
-      // Hitta sjukvårdspersonal
-      for (const vehicle of availableVehicles) {
-        if (!vehicle.personnel) continue;
-        for (const person of vehicle.personnel) {
-          if (person.status === 'available' && medicalCategories.includes(person.category)) {
-            medicalPerson = { ...person, vehicleId: vehicle.id };
-            selectedVehicle = vehicle;
-            break;
-          }
-        }
-        if (medicalPerson) break;
-      }
-      
-      if (!medicalPerson) {
-        alert('Ingen tillgänglig sjukvårdspersonal (ambulanssjukvårdare/ambulanssjuksköterska/anestesisjuksköterska/läkare) för transport!');
-        return;
-      }
-      
-      // Hitta ytterligare personal i prioriterad ordning
-      for (const category of otherCategories) {
-        for (const vehicle of vehicles) {
-          if (!vehicle.personnel) continue;
-          for (const person of vehicle.personnel) {
-            if (person.status === 'available' && 
-                person.category === category && 
-                !(person.vehicleId === medicalPerson.vehicleId && person.id === medicalPerson.id)) {
-              otherPerson = { ...person, vehicleId: vehicle.id };
-              break;
-            }
-          }
-          if (otherPerson) break;
-        }
-        if (otherPerson) break;
-      }
-      
-      if (!otherPerson) {
-        alert('Otillräcklig personal för transport! Behöver 2 personer.');
-        return;
-      }
-      
-      allocated = [medicalPerson, otherPerson];
-      
-    } else {
-      // Gröna patienter kan åka med valfritt fordon och 1 valfri personal
-      const availableVehicles = vehicles.filter(v => 
-        v.status !== 'away' &&
-        v.personnel && 
-        v.personnel.some(p => p.status === 'available')
-      );
-      
-      if (availableVehicles.length === 0) {
-        alert('Inget tillgängligt fordon för transport till sjukhus!');
-        return;
-      }
-      
-      // Välj första tillgängliga fordon med personal
-      for (const vehicle of availableVehicles) {
-        if (!vehicle.personnel) continue;
-        for (const person of vehicle.personnel) {
-          if (person.status === 'available') {
-            allocated = [{ ...person, vehicleId: vehicle.id }];
-            selectedVehicle = vehicle;
-            break;
-          }
-        }
-        if (allocated.length > 0) break;
-      }
-      
-      if (allocated.length === 0) {
-        alert('Ingen tillgänglig personal för transport!');
-        return;
-      }
+    const assignment = vehicles
+      .filter(vehicle => ['ambulance', 'helicopterAmbulance'].includes(vehicle.type))
+      .map(vehicle => ({ vehicle, crew: getReadyAmbulanceCrew(vehicle, vehicles, id, actionTimers) }))
+      .find(candidate => candidate.crew);
+    if (!assignment) {
+      alert('Sjukhustransport kräver en ledig ambulans samt två personer: en vårdare och en förare.');
+      return false;
     }
+    const selectedVehicle = assignment.vehicle;
+    const allocated = assignment.crew;
     
     // Beräkna distans baserat på fordonstyp
     // Helikopter: Använd fågelvägen (direkt Haversine-distans)
@@ -595,28 +265,14 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
     // Helikopter: 200 km/h, Ambulans och andra: 80 km/h
     const speed = isHelicopter ? 200 : 80; // km/h
     const minTime = isHelicopter ? 15 : 5; // Helikopter: minst 15 min, andra: minst 5 min
-    const transportTime = Math.max(minTime, Math.ceil(actualDistance / speed * 60)); // minuter
+    const baseTransportTime = Math.max(minTime, Math.ceil(actualDistance / speed * 60));
+    const transportTime = Math.ceil(baseTransportTime / getVehicleSpeedFactor(simulationEnvironment));
     
     console.log(`Transport till ${nearestHospital} med ${vehicleTypes[selectedVehicle.type]?.label || selectedVehicle.type}: ${actualDistance.toFixed(1)} km (fågelväg: ${shortestDistance.toFixed(1)} km), ${transportTime} minuter (${speed} km/h)`);
     
     // Beräkna när fordonet kommer tillbaka (transporttid * 2 + 15 min)
     const returnTime = (transportTime * 2) + 15;
-    const expectedReturnTimestamp = Date.now() + (returnTime * 60 * 1000);
-    
-    // Markera fordonet som borta och spara när det kommer tillbaka
-    const updatedVehicles = vehicles.map(v => {
-      if (v.id === selectedVehicle.id) {
-        return {
-          ...v,
-          status: 'away',
-          expectedReturnTime: expectedReturnTimestamp,
-          returnTimeMinutes: returnTime
-        };
-      }
-      return v;
-    });
-    localStorage.setItem('prehospitalVehicles', JSON.stringify(updatedVehicles));
-    window.dispatchEvent(new CustomEvent('prehospitalVehiclesUpdated', { detail: updatedVehicles }));
+    const expectedReturnSimTime = addSimulationMinutes(simTime, returnTime);
     
     // Beräkna ankomsttid baserat på simTime + transportTime
     const calculateArrivalTime = (simTimeStr, minutesToAdd) => {
@@ -636,10 +292,10 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
     console.log(`  Destination: ${nearestHospital}`);
     
     // Lägg till patient i Paratus-listan
-    const paratusPatients = JSON.parse(localStorage.getItem('paratusPatients') || '[]');
     const patientCopy = {
       ...patient,
       expectedArrivalTime: arrivalTime,
+      hospitalArrivalSimTime: arrivalTime,
       destinationHospital: nearestHospital,
       distanceKm: actualDistance.toFixed(1),
       transportTime: transportTime, // Spara transporttid för destination-ändring
@@ -650,46 +306,45 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
       actualDistance: actualDistance, // Spara faktisk körsträcka (med väg-faktor för markfordon)
       straightLineDistance: shortestDistance, // Spara fågelvägen för referens
       startCoordinates: patient.lat && patient.lng ? { lat: patient.lat, lng: patient.lng } : { lat: 63.825, lng: 20.25 }, // Spara startkoordinater för destination-ändring
-      hospitalArrivalTime: new Date(Date.now() + transportTime * 60 * 1000).toISOString(),
-      transportStartTime: new Date().toISOString(),
       allocatedPersonnel: allocated,
       vehicleId: selectedVehicle.id,
-      unitNumber: selectedVehicle.unitNumber
+      unitNumber: selectedVehicle.unitNumber,
+      transportCarePlan: buildTransportCarePlan(patient, {
+        completedActionIds: JSON.parse(localStorage.getItem('prehospitalCompletedActions') || '{}')[patient.id] || patient.prehospitalCompletedActions || [],
+        transportMinutes: transportTime,
+        departureTime: simTime,
+        environment: simulationEnvironment
+      })
     };
-    paratusPatients.push(patientCopy);
-    localStorage.setItem('paratusPatients', JSON.stringify(paratusPatients));
-    window.dispatchEvent(new Event('paratusUpdated'));
-    
-    // Ta bort patienten från prehospital-kartan direkt
-    const currentPatients = JSON.parse(localStorage.getItem('prehospitalPatients') || '[]');
-    const updatedPatients = currentPatients.filter(p => p.id !== id);
+    const storedPatients = JSON.parse(localStorage.getItem('prehospitalPatients') || '[]');
+    const currentPatients = Array.from(new Map(
+      [...patients, ...storedPatients].filter(scenePatient => scenePatient?.id).map(scenePatient => [scenePatient.id, scenePatient])
+    ).values());
+    const currentParatusPatients = JSON.parse(localStorage.getItem('paratusPatients') || '[]');
+    const dispatch = movePatientToParatus(patientCopy, currentPatients, currentParatusPatients);
+    const updatedPatients = dispatch.prehospitalPatients;
     localStorage.setItem('prehospitalPatients', JSON.stringify(updatedPatients));
+    localStorage.setItem('paratusPatients', JSON.stringify(dispatch.paratusPatients));
     window.dispatchEvent(new Event('prehospitalPatientsUpdated'));
+    window.dispatchEvent(new Event('paratusUpdated'));
     setPatients(updatedPatients);
-    
-    // Schedulera återkomst av fordonet och personalen
-    setTimeout(() => {
-      const currentVehicles = JSON.parse(localStorage.getItem('prehospitalVehicles') || '[]');
-      // Återställ fordonet till available
-      const vehiclesReturned = currentVehicles.map(v => {
-        if (v.id === selectedVehicle.id) {
-          return {
-            ...v,
-            status: 'available',
-            expectedReturnTime: null,
-            returnTimeMinutes: null
-          };
-        }
-        return v;
-      });
-      localStorage.setItem('prehospitalVehicles', JSON.stringify(vehiclesReturned));
-      window.dispatchEvent(new CustomEvent('prehospitalVehiclesUpdated', { detail: vehiclesReturned }));
-      console.log(`Fordon ${selectedVehicle.unitNumber} och personal återvände till skadeplatsen efter ${returnTime} minuter (tur och retur + 15 min)`);
-    }, returnTime * 60 * 1000);
+
+    // Markera fordonet som borta först efter att patienten har flyttats till Paratus.
+    const updatedVehicles = vehicles.map(v => v.id === selectedVehicle.id
+      ? { ...v, status: 'away', expectedReturnSimTime, returnStartSimTime: simTime, returnTimeMinutes: returnTime, transportPersonnel: allocated }
+      : v
+    );
+    const reservedVehicles = setTransportCrewStatus(updatedVehicles, allocated, 'busy');
+    localStorage.setItem('prehospitalVehicles', JSON.stringify(reservedVehicles));
+    window.dispatchEvent(new CustomEvent('prehospitalVehiclesUpdated', { detail: reservedVehicles }));
     
     console.log(`Patient transporteras till ${nearestHospital} (${shortestDistance.toFixed(1)} km, ${transportTime} min):`, patient.id);
     console.log(`  simTime: ${simTime}, expectedArrivalTime: ${arrivalTime}, destinationHospital: ${nearestHospital}`);
+    alert(`Patienten transporteras till ${nearestHospital} och beräknas anlända kl. ${arrivalTime}.`);
+    return true;
   }
+
+  hospitalDispatchHandlerRef.current = sendToHospital;
   
   function sendToCollectionPoint(id) {
     if (!collectionPoint) return;
@@ -734,14 +389,16 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
     
     // Beräkna tid: För gröna patienter (går själv) 1.2 m/s (4.3 km/h), annars 0.83 m/s (3 km/h med patient), gånger 1.5
     const walkingSpeed = canWalk ? 1.2 : 0.83; // m/s
-    const timeInSeconds = Math.ceil((distance / walkingSpeed) * 1.5);
+    const baseTimeInSeconds = Math.ceil((distance / walkingSpeed) * 1.5);
+    const timeInSeconds = scalePrehospitalWorkSeconds(baseTimeInSeconds, simulationEnvironment);
     const transportTime = timeInSeconds * 1000; // millisekunder
     
     setTransportTasks(prev => ({
       ...prev,
       [id]: {
         type: canWalk ? 'walkToCollectionPoint' : 'carryToCollectionPoint',
-        endTime: Date.now() + transportTime,
+        startedAtSimTime: simTime,
+        durationMinutes: timeInSeconds / 60,
         remaining: timeInSeconds,
         personnel: personnelNeeded,
         distance: Math.round(distance),
@@ -799,13 +456,22 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
   // Hjälpfunktion för att summera åtgärdstid
   function getTotalActionTime(actions) {
     if (!Array.isArray(actions)) return 0;
-    return actions.reduce((sum, a) => sum + (prehospitalActionDurations[a] || 0), 0);
+    return actions.reduce((sum, action) => sum + getActionTimeMinutes(action), 0);
+  }
+
+  function getActionTimeMinutes(action) {
+    return scalePrehospitalWorkMinutes(prehospitalActionDurations[action] || 0, simulationEnvironment);
   }
 
   // Gemensam funktion för att rendera patientinformation (används av både Popup och Modal)
   function renderPatientInfo(p) {
     return (
       <>
+        {p.status === 'avliden' && (
+          <div role="status" style={{marginBottom:8,padding:'8px 12px',background:'#ffebee',border:'2px solid #b71c1c',borderRadius:6,color:'#b71c1c',fontWeight:700,textAlign:'center'}}>
+            AVLEDEN{p.deathTime ? ` kl. ${p.deathTime}` : ''}
+          </div>
+        )}
         {/* Slutförda åtgärder */}
         {completedActions[p.id] && completedActions[p.id].length > 0 && (
           <div style={{
@@ -1174,7 +840,9 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
                   )}
                 </span>
                 <span style={{marginLeft:8,color:'#888',fontSize:13}}>
-                  {(prehospitalActionDurations[opt.value] || 0) === 0 ? <span style={{fontSize:22}}>∞</span> : `${prehospitalActionDurations[opt.value]} min`}
+                  {(prehospitalActionDurations[opt.value] || 0) === 0
+                    ? <span style={{fontSize:22}}>∞</span>
+                    : `${getActionTimeMinutes(opt.value)} min`}
                 </span>
                 {isCompleted && <span style={{marginLeft:8,color:'#4caf50',fontWeight:700,fontSize:16}}>✓</span>}
                 {selected && !isCompleted && <span style={{marginLeft:8,color:'#1976d2',fontWeight:700}}>&#10003;</span>}
@@ -1312,7 +980,8 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
                     return {
                       ...prev,
                       [p.id]: {
-                        endTime: Date.now() + totalMin * 60 * 1000,
+                        startedAtSimTime: simTime,
+                        durationMinutes: totalMin,
                         remaining: totalMin * 60,
                         allocatedPersonnel: allocated,
                         airwayLocked: finalAirwayLock, // Behåller låset
@@ -1339,7 +1008,8 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
                 return {
                   ...prev,
                   [p.id]: {
-                    endTime: Date.now() + totalMin * 60 * 1000,
+                    startedAtSimTime: simTime,
+                    durationMinutes: totalMin,
                     remaining: totalMin * 60,
                     allocatedPersonnel: allocated,
                     airwayLocked: finalAirwayLock,
@@ -1376,121 +1046,21 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
         </div>
       </div>
     )
-  ]).flat().concat(
-    // Dialog för val av sjukhus (läggs till utanför patient-loopen)
-    hospitalSelectPatient ? (
-      <div key="hospital-select-dialog" style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 10000
-      }} onClick={(e) => {
-        if (e.target === e.currentTarget) {
-          setHospitalSelectPatient(null);
-        }
-      }}>
-        <div style={{
-          background: '#fff',
-          borderRadius: 8,
-          padding: 24,
-          minWidth: 400,
-          boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
-        }}>
-          <h3 style={{marginTop: 0, marginBottom: 20, fontSize: 20, fontWeight: 700, color: '#1976d2'}}>
-            Välj destination
-          </h3>
-          <div style={{marginBottom: 20}}>
-            {['Norrlands universitetssjukhus', 'Skellefteå sjukhus', 'Lycksele lasarett'].map(hospital => (
-              <button
-                key={hospital}
-                style={{
-                  width: '100%',
-                  padding: '12px 16px',
-                  marginBottom: 8,
-                  fontSize: 15,
-                  borderRadius: 6,
-                  border: '2px solid #1976d2',
-                  background: '#fff',
-                  color: '#1976d2',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  textAlign: 'left'
-                }}
-                onClick={() => {
-                  sendToHospital(hospitalSelectPatient, hospital);
-                  setHospitalSelectPatient(null);
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = '#1976d2';
-                  e.target.style.color = '#fff';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = '#fff';
-                  e.target.style.color = '#1976d2';
-                }}
-              >
-                {hospital}
-              </button>
-            ))}
-          </div>
-          <button
-            style={{
-              width: '100%',
-              padding: '10px 16px',
-              fontSize: 14,
-              borderRadius: 6,
-              border: '1px solid #ccc',
-              background: '#f5f5f5',
-              color: '#333',
-              fontWeight: 600,
-              cursor: 'pointer'
-            }}
-            onClick={(e) => {
-              console.log('Avbryt clicked!', e);
-              e.stopPropagation();
-              setHospitalSelectPatient(null);
-            }}
-          >
-            Avbryt
-          </button>
-        </div>
-      </div>
-    ) : null
-  );
+  ]).flat();
 }
 
 // Komponent för att visa grupperade fordon med nedräkningstimer
-function VehicleGroupDisplay({ type, vehicles, vType }) {
+function VehicleGroupDisplay({ type, vehicles, vType, simTime }) {
   const availableVehicles = vehicles.filter(v => v.status !== 'away');
   const awayVehicles = vehicles.filter(v => v.status === 'away');
   const availableCount = availableVehicles.length;
   const awayCount = awayVehicles.length;
   
-  // Hitta tidigaste återkomsttid för fordon på transport
-  const earliestReturn = awayCount > 0
-    ? Math.min(...awayVehicles.map(v => v.expectedReturnTime).filter(t => t))
-    : null;
-  
-  const [timeRemaining, setTimeRemaining] = useState(
-    earliestReturn ? Math.max(0, Math.ceil((earliestReturn - Date.now()) / 1000 / 60)) : 0
-  );
-  
-  useEffect(() => {
-    if (!earliestReturn) return;
-    
-    const interval = setInterval(() => {
-      const remaining = Math.max(0, Math.ceil((earliestReturn - Date.now()) / 1000 / 60));
-      setTimeRemaining(remaining);
-    }, 1000);
-    
-    return () => clearInterval(interval);
-  }, [earliestReturn]);
+  const timeRemaining = awayCount > 0
+    ? Math.min(...awayVehicles.map(vehicle => Math.max(0,
+      (Number(vehicle.returnTimeMinutes) || 0) - elapsedSimulationMinutes(vehicle.returnStartSimTime || simTime, simTime)
+    )))
+    : 0;
   
   return (
     <>
@@ -1543,6 +1113,34 @@ export default function MapPanel({ simTime: propSimTime }) {
     const now = new Date();
     return now.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit', hour12: false }).padStart(5, '0');
   });
+
+  const [simulationEnvironment, setSimulationEnvironment] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('simulationEnvironment') || '{}');
+    } catch {
+      return {};
+    }
+  });
+
+  useEffect(() => {
+    function updateEnvironment(event) {
+      if (event.detail) {
+        setSimulationEnvironment(event.detail);
+        return;
+      }
+      try {
+        setSimulationEnvironment(JSON.parse(localStorage.getItem('simulationEnvironment') || '{}'));
+      } catch {
+        setSimulationEnvironment({});
+      }
+    }
+    window.addEventListener('simulationEnvironmentChanged', updateEnvironment);
+    window.addEventListener('storage', updateEnvironment);
+    return () => {
+      window.removeEventListener('simulationEnvironmentChanged', updateEnvironment);
+      window.removeEventListener('storage', updateEnvironment);
+    };
+  }, []);
   
   // Uppdatera simTime när propen ändras
   useEffect(() => {
@@ -1550,10 +1148,16 @@ export default function MapPanel({ simTime: propSimTime }) {
       setSimTime(propSimTime);
     }
   }, [propSimTime]);
+
+  const effectiveSimulationEnvironment = {
+    ...simulationEnvironment,
+    darkness: Boolean(simulationEnvironment.forceDarkness) || isDarkAtTime(simTime)
+  };
   
   const [openActionPatient, setOpenActionPatient] = useState(null);
   const [openTriagePatient, setOpenTriagePatient] = useState(null);
   const [hospitalSelectPatient, setHospitalSelectPatient] = useState(null);
+  const hospitalDispatchHandlerRef = useRef(null);
   const [placingCollectionPoint, setPlacingCollectionPoint] = useState(false);
   const [collectionPoint, setCollectionPoint] = useState(() => {
     try {
@@ -1667,13 +1271,12 @@ export default function MapPanel({ simTime: propSimTime }) {
             const carrySpeed = 0.7; // m/s
             const speed = task.type === 'walkToCollectionPoint' ? walkSpeed : carrySpeed;
             const newTimeSeconds = Math.ceil(newDistance / speed);
-            const newEndTime = Date.now() + (newTimeSeconds * 1000);
-            
             updatedTransportTasks[patientId] = {
               ...task,
+              startedAtSimTime: simTime,
+              durationMinutes: newTimeSeconds / 60,
               remaining: newTimeSeconds,
-              distance: Math.round(newDistance),
-              endTime: newEndTime
+              distance: Math.round(newDistance)
             };
             
             console.log(`Patient ${patientId} omdirigerad till ny uppsamlingsplats: ${Math.round(newDistance)}m, ${newTimeSeconds}s`);
@@ -1697,13 +1300,12 @@ export default function MapPanel({ simTime: propSimTime }) {
           const newDistance = calculateDistance(sourcePos.lat, sourcePos.lng, latlng.lat, latlng.lng);
           const carrySpeed = 0.7; // m/s
           const newTimeSeconds = Math.ceil(newDistance / carrySpeed) * 2; // Tur och retur
-          const newEndTime = Date.now() + (newTimeSeconds * 1000);
-          
           updatedTransportTasks[patientId] = {
             ...task,
+            startedAtSimTime: simTime,
+            durationMinutes: newTimeSeconds / 60,
             remaining: newTimeSeconds,
             distance: Math.round(newDistance),
-            endTime: newEndTime,
             sourceLocation: sourcePos // Behåll ursprungliga platsen
           };
           
@@ -1798,11 +1400,10 @@ export default function MapPanel({ simTime: propSimTime }) {
           const newTransportTasks = { ...transportTasks };
           patientsAtOldLocation.forEach((patient, index) => {
             const startDelay = timePerTrip * index; // Varje patient börjar efter föregående vända
-            const endTimeForPatient = Date.now() + (startDelay * 1000) + (timePerTrip * 1000);
-            
             newTransportTasks[patient.id] = {
               type: 'relocateToNewCollectionPoint',
-              endTime: endTimeForPatient,
+              startedAtSimTime: addSimulationMinutes(simTime, startDelay / 60),
+              durationMinutes: timePerTrip / 60,
               remaining: startDelay + timePerTrip,
               personnel: 2,
               distance: Math.round(relocateDistance),
@@ -1878,6 +1479,7 @@ export default function MapPanel({ simTime: propSimTime }) {
   }, []);
 
   return (
+    <>
     <div style={{ height: '90vh', width: '100%', marginTop: 16, borderRadius: 8, overflow: 'hidden', boxShadow: '0 2px 8px #0002', display: 'flex', flexDirection: 'row' }}>
       {/* Informationspanel till vänster */}
       <div style={{ width: 320, minWidth: 220, background: '#f7faff', borderRight: '1px solid #e0e0e0', padding: 24, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
@@ -1987,6 +1589,7 @@ export default function MapPanel({ simTime: propSimTime }) {
                         type={type}
                         vehicles={vehiclesOfType}
                         vType={vType}
+                        simTime={simTime}
                       />
                     );
                   });
@@ -2119,8 +1722,8 @@ export default function MapPanel({ simTime: propSimTime }) {
             setOpenActionPatient={setOpenActionPatient}
             openTriagePatient={openTriagePatient}
             setOpenTriagePatient={setOpenTriagePatient}
-            hospitalSelectPatient={hospitalSelectPatient}
             setHospitalSelectPatient={setHospitalSelectPatient}
+            hospitalDispatchHandlerRef={hospitalDispatchHandlerRef}
             totalPersonnel={totalPersonnel}
             availablePersonnel={availablePersonnel}
             actionTimers={actionTimers}
@@ -2128,6 +1731,7 @@ export default function MapPanel({ simTime: propSimTime }) {
             transportTasks={transportTasks}
             setTransportTasks={setTransportTasks}
             simTime={simTime}
+            simulationEnvironment={effectiveSimulationEnvironment}
           />
           {collectionPoint && (
             <Marker position={collectionPoint} icon={window.L && window.L.icon ? window.L.icon({
@@ -2216,6 +1820,46 @@ export default function MapPanel({ simTime: propSimTime }) {
         </MapContainer>
       </div>
     </div>
+    {hospitalSelectPatient && createPortal(
+      <div
+        role="presentation"
+        style={{position:'fixed',inset:0,zIndex:10000,background:'rgba(0,0,0,0.5)',display:'flex',alignItems:'center',justifyContent:'center'}}
+        onClick={event => {
+          if (event.target === event.currentTarget) setHospitalSelectPatient(null);
+        }}
+      >
+        <div role="dialog" aria-modal="true" aria-labelledby="hospital-destination-title" style={{background:'#fff',borderRadius:8,padding:24,width:'min(440px, calc(100vw - 32px))',boxShadow:'0 4px 20px rgba(0,0,0,0.3)'}}>
+          <h3 id="hospital-destination-title" style={{margin:'0 0 20px',fontSize:20,color:'#1976d2'}}>Välj destination</h3>
+          {['Norrlands universitetssjukhus', 'Skellefteå sjukhus', 'Lycksele lasarett'].map(hospital => (
+            <button
+              key={hospital}
+              type="button"
+              style={{display:'block',width:'100%',padding:'12px 16px',marginBottom:8,fontSize:15,borderRadius:6,border:'2px solid #1976d2',background:'#fff',color:'#1976d2',fontWeight:600,cursor:'pointer',textAlign:'left'}}
+              onClick={() => {
+                const dispatch = hospitalDispatchHandlerRef.current;
+                if (!dispatch) {
+                  alert('Transportfunktionen är inte redo. Stäng rutan och försök igen.');
+                  return;
+                }
+                try {
+                  if (dispatch(hospitalSelectPatient, hospital)) setHospitalSelectPatient(null);
+                } catch (error) {
+                  console.error('Kunde inte skicka patienten till sjukhuset:', error);
+                  alert(`Transporten kunde inte starta: ${error?.message || 'okänt fel'}`);
+                }
+              }}
+            >
+              {hospital}
+            </button>
+          ))}
+          <button type="button" style={{width:'100%',padding:'10px 16px',fontSize:14,borderRadius:6,border:'1px solid #ccc',background:'#f5f5f5',color:'#333',fontWeight:600,cursor:'pointer'}} onClick={() => setHospitalSelectPatient(null)}>
+            Avbryt
+          </button>
+        </div>
+      </div>,
+      document.body
+    )}
+    </>
   );
 }
 

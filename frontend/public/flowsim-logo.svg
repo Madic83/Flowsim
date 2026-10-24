@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 768" role="img" aria-labelledby="title desc">
+  <title id="title">FlowSIM</title>
+  <desc id="desc">Flowsim-logotyp med symboler för vårdkedjans olika delar.</desc>
+  <defs>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#07385f"/>
+      <stop offset="0.55" stop-color="#075878"/>
+      <stop offset="1" stop-color="#08b9b8"/>
+    </linearGradient>
+    <linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00799b"/>
+      <stop offset="0.5" stop-color="#12c7c4"/>
+      <stop offset="1" stop-color="#075078"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0abdbb" stop-opacity=".68"/>
+      <stop offset="1" stop-color="#0b5e86" stop-opacity=".2"/>
+    </linearGradient>
+  </defs>
+  <rect width="768" height="768" fill="#fff"/>
+  <circle cx="386" cy="256" r="168" fill="none" stroke="url(#ring)" stroke-width="13"/>
+  <circle cx="386" cy="267" r="94" fill="none" stroke="url(#ring)" stroke-width="13"/>
+  <path d="M28 256 C88 256 88 217 143 217 S195 294 251 294 S306 218 361 218 S417 294 473 294 S529 218 585 218 S639 294 694 294 S726 256 740 256" fill="none" stroke="url(#ribbon)" stroke-width="17"/>
+  <path d="M28 268 C88 268 89 231 143 231 S196 307 251 307 S306 232 361 232 S417 307 473 307 S530 232 585 232 S639 307 694 307 S726 269 740 269" fill="none" stroke="#08a7b0" stroke-opacity=".65" stroke-width="5"/>
+
+  <g font-family="Arial, sans-serif" text-anchor="middle" fill="#07385f">
+    <g transform="translate(58 255)">
+      <circle r="43" fill="#f8fcfc" stroke="url(#brand)" stroke-width="8"/>
+      <circle cy="-13" r="7" fill="#075078"/><path d="M-7-2 Q0-7 7-2 L10 19 H5 L4 37 H-4 L-5 19 H-10Z" fill="#075078"/>
+      <text y="70" font-size="13">Hjälpbehov</text>
+    </g>
+    <g transform="translate(145 255)">
+      <circle r="43" fill="#075078" stroke="url(#brand)" stroke-width="8"/>
+      <path d="M-13-19 Q-19-14-13-4 Q-5 11 10 17 Q20 20 22 12 L13 5 Q10 3 7 7 L3 9 Q-4 5-8-3 L-5-7 Q-3-10-5-13Z" fill="#fff"/>
+      <text y="22" font-size="20" font-weight="700" fill="#fff">112</text>
+      <text y="70" font-size="13">Larm</text>
+    </g>
+    <g transform="translate(251 255)">
+      <circle r="43" fill="#f8fcfc" stroke="url(#brand)" stroke-width="8"/>
+      <path d="M-27 2 H-17 L-11-12 H12 L22 0 H29 V17 H-27Z" fill="#075078"/>
+      <path d="M-9-8 H9 L16 1 H-14Z" fill="#fff"/><circle cx="-14" cy="17" r="6" fill="#075078"/><circle cx="17" cy="17" r="6" fill="#075078"/>
+      <path d="M4-20 V-12 M0-16 H8" stroke="#075078" stroke-width="3"/>
+      <text y="70" font-size="13">Prehospital</text><text y="85" font-size="13">vård</text>
+    </g>
+    <g transform="translate(386 255)">
+      <circle r="47" fill="#fff" stroke="url(#brand)" stroke-width="9"/>
+      <path d="M-27-10 H-8 V-23 H8 V-10 H27 V26 H-27Z" fill="#075078"/>
+      <path d="M-5-18 H5 V-9 H14 V-1 H5 V8 H-5 V-1 H-14 V-9 H-5Z" fill="#fff"/>
+      <path d="M-20 1 H-12 V9 H-20 M12 1 H20 V9 H12 M-19 15 H-9 V26 H-19 M9 15 H19 V26 H9" fill="#fff"/>
+      <text y="70" font-size="13">Akutmottagning</text>
+    </g>
+    <g transform="translate(506 255)">
+      <circle r="43" fill="#f8fcfc" stroke="url(#brand)" stroke-width="8"/>
+      <path d="M-24 14 H25 M-17 14 V-4 H18 V14 M-12-4 L-7-15 H8 L13-4" fill="none" stroke="#075078" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="-9" cy="-12" r="3" fill="#075078"/><circle cx="9" cy="-12" r="3" fill="#075078"/>
+      <path d="M-14 5 H15 M-8 0 V10 M7 0 V10" stroke="#075078" stroke-width="3"/>
+      <text y="70" font-size="13">Operation</text>
+    </g>
+    <g transform="translate(612 255)">
+      <circle r="43" fill="#075078" stroke="url(#brand)" stroke-width="8"/>
+      <path d="M-25 13 H25 M-19 13 V-6 H18 V13 M-11-6 L-7-14 H8 L13-6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+      <path d="M-13 2 H-4 L0-4 L5 7 L10-1 H17" fill="none" stroke="#fff" stroke-width="2.5"/>
+      <text y="70" font-size="13">Intensivvård</text><text y="85" font-size="13">Vårdavdelning</text>
+    </g>
+    <g transform="translate(710 255)">
+      <circle r="43" fill="#f8fcfc" stroke="url(#brand)" stroke-width="8"/>
+      <path d="M-22 0 L0-20 L22 0 V20 H7 V6 H-7 V20 H-22Z" fill="#075078"/>
+      <text y="70" font-size="13">Rehabilitering</text><text y="85" font-size="13">Hemgång</text>
+    </g>
+  </g>
+
+  <text x="384" y="565" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="158" font-weight="800" letter-spacing="-8" fill="url(#brand)">FlowSIM</text>
+  <path d="M45 614 H112 M656 614 H723" stroke="#07385f" stroke-width="2"/>
+  <text x="384" y="622" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="6" fill="#07385f">SIMULERA · PLANERA · FÖRBÄTTRA</text>
+  <text x="384" y="661" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" letter-spacing="4" fill="#07385f">HELA VÅRDKEDJAN. STÖRRE MÖJLIGHETER.</text>
+</svg>

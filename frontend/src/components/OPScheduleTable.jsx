@@ -1,5 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
+function persistDepartmentPatients(departmentPatients) {
+  localStorage.setItem('departmentPatients', JSON.stringify(departmentPatients));
+  window.dispatchEvent(new CustomEvent('departmentPatientsUpdated', { detail: { departmentPatients } }));
+  try {
+    const sessionAuth = JSON.parse(localStorage.getItem('flowsimSessionAuth') || 'null');
+    if (sessionAuth?.sessionId && sessionAuth.sessionId !== 'ÖPPEN') {
+      fetch(`/api/sessions/${encodeURIComponent(sessionAuth.sessionId)}/departments`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ departmentPatients })
+      }).catch(() => {});
+    }
+  } catch {}
+}
+
 export default function OPScheduleTable({ activeDep, simTime }) {
       // Läs in sal-data från localStorage vid start och när localStorage ändras
       useEffect(() => {
@@ -28,8 +43,7 @@ export default function OPScheduleTable({ activeDep, simTime }) {
             if (!opList.some(p => p.id === patientId)) {
               departmentPatients['OP'] = [...opList, patientObj];
             }
-            localStorage.setItem('departmentPatients', JSON.stringify(departmentPatients));
-            window.dispatchEvent(new CustomEvent('departmentPatientsUpdated', { detail: { departmentPatients } }));
+            persistDepartmentPatients(departmentPatients);
             // Uppdatera salPatients direkt
             setSalPatients(prev => {
               let newState = { ...prev };
@@ -125,7 +139,7 @@ export default function OPScheduleTable({ activeDep, simTime }) {
         // Remove from OP list
         const opList = departmentPatients['OP'] || [];
         departmentPatients['OP'] = opList.filter(p => p.id !== patient.id);
-        localStorage.setItem('departmentPatients', JSON.stringify(departmentPatients));
+        persistDepartmentPatients(departmentPatients);
         window.dispatchEvent(new CustomEvent('removePatientFromOP', { detail: { patientId: patient.id } }));
         // Uppdatera salPatients direkt
         setSalPatients(prev => {
@@ -159,8 +173,7 @@ export default function OPScheduleTable({ activeDep, simTime }) {
           }
         }
       }
-      localStorage.setItem('departmentPatients', JSON.stringify(departmentPatients));
-      window.dispatchEvent(new CustomEvent('departmentPatientsUpdated', { detail: { departmentPatients } }));
+      persistDepartmentPatients(departmentPatients);
       window.dispatchEvent(new CustomEvent('requestRemovePatientFromAkut', { detail: { patientId: patient.id } }));
       window.dispatchEvent(new CustomEvent('removePatientFromOP', { detail: { patientId: patient.id } }));
       // Uppdatera salPatients direkt

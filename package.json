@@ -7,7 +7,9 @@
     "postinstall": "npm --prefix frontend install && npm --prefix frontend run build",
     "start": "node server.js",
     "start:frontend": "npm --prefix frontend run dev",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "generate:department-patients": "node generate_department_patients.js",
+    "test:department-occupancy": "node --test tests/department-occupancy.test.mjs"
   },
   "dependencies": {
     "cors": "^2.8.5",

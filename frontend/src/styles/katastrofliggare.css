@@ -1,0 +1,207 @@
+.catastrophe-sheet {
+  --sheet-line: #aab7a3;
+  --sheet-grid: #c6cec2;
+  --sheet-header: #548235;
+  --sheet-header-dark: #385723;
+  --sheet-paper: #f4f6f1;
+  min-width: 1040px;
+  padding: 14px;
+  color: #253326;
+  background:
+    linear-gradient(#e7ebe3 1px, transparent 1px),
+    linear-gradient(90deg, #e7ebe3 1px, transparent 1px),
+    var(--sheet-paper);
+  background-size: 18px 18px;
+  font-family: Calibri, "Segoe UI", sans-serif;
+}
+
+.catastrophe-sheet__toolbar {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 0 0 14px;
+  padding: 0 0 10px;
+  border-bottom: 2px solid var(--sheet-header-dark);
+}
+
+.catastrophe-sheet__toolbar h1 {
+  margin: 0;
+  color: #263c1b;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.catastrophe-sheet__eyebrow {
+  margin: 0 0 2px;
+  color: var(--sheet-header);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.catastrophe-sheet__hint {
+  padding-bottom: 3px;
+  color: #53624c;
+  font-size: 12px;
+}
+
+.catastrophe-grid {
+  display: grid;
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 14px;
+}
+
+.catastrophe-grid--top {
+  grid-template-columns: repeat(4, minmax(245px, 1fr));
+}
+
+.catastrophe-grid--bottom {
+  grid-template-columns: repeat(4, minmax(245px, 1fr));
+}
+
+.catastrophe-grid--bottom .catastrophe-section {
+  grid-column: span 2;
+}
+
+.catastrophe-section {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #718763;
+  background: #fff;
+  box-shadow: 0 1px 2px #27331d1a;
+}
+
+.catastrophe-section__title {
+  margin: 0;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--sheet-header-dark);
+  background: var(--sheet-header);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.catastrophe-responsibilities {
+  display: grid;
+  gap: 2px;
+  padding: 5px 7px;
+  border-bottom: 1px solid var(--sheet-grid);
+  background: #f7f9f5;
+}
+
+.catastrophe-responsibility {
+  display: grid;
+  grid-template-columns: minmax(92px, auto) 1fr;
+  align-items: center;
+  min-height: 24px;
+  gap: 5px;
+  color: #35422f;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.catastrophe-responsibility input,
+.catastrophe-responsibility select,
+.catastrophe-table input,
+.catastrophe-table select {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: 23px;
+  padding: 2px 4px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: #202820;
+  font: inherit;
+}
+
+.catastrophe-table select {
+  appearance: none;
+  cursor: pointer;
+}
+.catastrophe-responsibility select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.catastrophe-table select:focus {
+  outline: 2px solid #70ad47;
+  outline-offset: -2px;
+  background: #fff;
+}
+
+.catastrophe-responsibility input:focus,
+.catastrophe-responsibility select:focus,
+.catastrophe-table input:focus {
+  outline: 2px solid #70ad47;
+  outline-offset: -2px;
+  background: #fff;
+}
+
+.catastrophe-table-wrap {
+  max-height: 490px;
+  overflow: auto;
+}
+
+.catastrophe-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: #fff;
+  font-size: 11px;
+}
+
+.catastrophe-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 5px 4px;
+  border: 1px solid var(--sheet-header-dark);
+  background: var(--sheet-header-dark);
+  color: #fff;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+}
+
+.catastrophe-table td {
+  height: 24px;
+  padding: 0;
+  border: 1px solid var(--sheet-grid);
+}
+
+.catastrophe-table tbody tr:nth-child(even) {
+  background: #eff4e9;
+}
+
+.catastrophe-table tbody tr[draggable="true"] {
+  cursor: grab;
+}
+
+.catastrophe-table tbody tr[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+.catastrophe-notice {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  margin-bottom: 8px;
+  padding: 6px 9px;
+  border: 1px solid #8ca575;
+  background: #f2f8eb;
+  color: #385723;
+  font-size: 12px;
+}
+
+@media (max-width: 720px) {
+  .catastrophe-sheet__toolbar {
+    align-items: start;
+    flex-direction: column;
+    gap: 4px;
+  }
+}
