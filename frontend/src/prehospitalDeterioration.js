@@ -1,6 +1,6 @@
 import { getPatientDeteriorationFactor } from './weatherImpact.js';
+import { classifyBleedingSite, controlsPatientBleeding } from './prehospitalActions.js';
 
-const BLEEDING_ACTIONS = new Set(['tourniquet', 'tryckförband']);
 const AIRWAY_ACTIONS = new Set(['fri_luftvag', 'svalgtub', 'intubering', 'i-gel']);
 const CRITICAL_UNTREATED_MINUTES = 5;
 
@@ -16,15 +16,21 @@ function getTriageColor(patient) {
 
 function getLifeThreats(patient) {
   const xabcde = patient.XABCDE || patient.ABCDE || {};
-  const bleedingValues = [
+  const xBleedingValues = [
     xabcde.X?.Exanguination,
-    xabcde.X?.exanguination,
+    xabcde.X?.exanguination
+  ].map(normalize);
+  const cBleedingValues = [
     xabcde.C?.Bleeding,
     xabcde.C?.bleeding
   ].map(normalize);
   const airway = normalize(xabcde.A?.airway || xabcde.A?.Airway);
+  const severeBleeding = values => values.some(bleeding => (
+    ['massiv', 'riklig', 'aktiv blödning', 'massiv blödning'].some(value => bleeding.includes(value))
+  ));
+  const externalCompressibleSite = ['extremity', 'junctional'].includes(classifyBleedingSite(patient));
   return {
-    bleeding: bleedingValues.some(bleeding => ['massiv', 'riklig', 'aktiv blödning', 'massiv blödning'].some(value => bleeding.includes(value))),
+    bleeding: severeBleeding(cBleedingValues) || (externalCompressibleSite && severeBleeding(xBleedingValues)),
     airway: ['ej fri', 'ofri', 'hotad', 'blockerad', 'obstruerad'].some(value => airway.includes(value))
   };
 }
@@ -38,8 +44,8 @@ function getActionIds(patient, completedActions, activeActions) {
   ]);
 }
 
-function isLifeThreatManaged(threats, actionIds) {
-  const hasBleedingControl = [...actionIds].some(action => BLEEDING_ACTIONS.has(action));
+function isLifeThreatManaged(patient, threats, actionIds) {
+  const hasBleedingControl = controlsPatientBleeding(patient, actionIds);
   const hasAirwaySupport = [...actionIds].some(action => AIRWAY_ACTIONS.has(action));
   return (!threats.bleeding || hasBleedingControl) && (!threats.airway || hasAirwaySupport);
 }
@@ -162,7 +168,7 @@ export function advancePrehospitalPatient(patient, environment = {}, { completed
   let changed = false;
   const threats = getLifeThreats(patient);
   const actionIds = getActionIds(patient, completedActions, activeActions);
-  const untreatedThreat = (threats.bleeding || threats.airway) && !isLifeThreatManaged(threats, actionIds);
+  const untreatedThreat = (threats.bleeding || threats.airway) && !isLifeThreatManaged(patient, threats, actionIds);
   const lifeThreatManaged = (threats.bleeding || threats.airway) && !untreatedThreat;
   let criticalUntreatedMinutes = Number(patient.criticalUntreatedMinutes) || 0;
 
@@ -187,11 +193,13 @@ export function advancePrehospitalPatient(patient, environment = {}, { completed
   const triageColor = normalize(getTriageColor(patient));
   const greenPatient = triageColor === 'grön' && !untreatedThreat;
   const completedTreatment = patient.treatment && patient.requiredTreatment && patient.treatment === patient.requiredTreatment;
+  const completedPrehospitalCare = patient.bleedingControlled || patient.airwaySecured;
   let deteriorationProgress = Number(patient.weatherDeteriorationProgress) || 0;
   let gcsProgress = Number(patient.weatherGcsProgress) || 0;
   if (!greenPatient && !completedTreatment) {
     if (!lifeThreatManaged) {
-      const severityMultiplier = untreatedThreat ? 2 : triageColor === 'röd' ? 2 : triageColor === 'orange' ? 1.25 : triageColor === 'gul' ? 0.5 : 1;
+      const severityMultiplier = (untreatedThreat ? 2 : triageColor === 'röd' ? 2 : triageColor === 'orange' ? 1.25 : triageColor === 'gul' ? 0.5 : 1)
+        * (completedPrehospitalCare ? 0.5 : 1);
       deteriorationProgress += getPatientDeteriorationFactor(environment) * severityMultiplier / 2;
       const steps = Math.floor(deteriorationProgress);
       deteriorationProgress -= steps;

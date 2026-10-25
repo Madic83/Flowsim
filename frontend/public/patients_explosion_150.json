@@ -2783,7 +2783,7 @@
         },
         "XABCDE": {
             "X": {
-                "Exanguination": "Riklig"
+                "Exanguination": "-"
             },
             "A": {
                 "airway": "Fri"
@@ -2794,7 +2794,8 @@
             },
             "C": {
                 "Puls": 74,
-                "BT": "89/81"
+                "BT": "89/81",
+                "Bleeding": "Riklig"
             },
             "D": {
                 "GCS": 15
@@ -3052,7 +3053,7 @@
         },
         "XABCDE": {
             "X": {
-                "Exanguination": "Riklig"
+                "Exanguination": "-"
             },
             "A": {
                 "airway": "Fri"
@@ -3063,7 +3064,8 @@
             },
             "C": {
                 "Puls": 77,
-                "BT": "124/72"
+                "BT": "124/72",
+                "Bleeding": "Riklig"
             },
             "D": {
                 "GCS": 10
@@ -3549,7 +3551,7 @@
         },
         "XABCDE": {
              "X": {
-                "Exanguination": "Riklig"
+                "Exanguination": "-"
             },
             "A": {
                 "airway": "Hotad"
@@ -3560,7 +3562,8 @@
             },
             "C": {
                 "Puls": 68,
-                "BT": "108/42"
+                "BT": "108/42",
+                "Bleeding": "Riklig"
             },
             "D": {
                 "GCS": 9
@@ -3868,7 +3871,7 @@
         },
         "XABCDE": {
             "X": {
-                "Exanguination": "Massiv"
+                "Exanguination": "-"
             },
             "A": {
                 "airway": "Hotad"
@@ -3879,7 +3882,8 @@
             },
             "C": {
                 "Puls": 72,
-                "BT": "94/41"
+                "BT": "94/41",
+                "Bleeding": "Massiv"
             },
             "D": {
                 "GCS": 14
@@ -4083,7 +4087,7 @@
         },
         "XABCDE": {
             "X": {
-                "Exanguination": "Massiv"
+                "Exanguination": "-"
             },
             "A": {
                 "airway": "Fri"
@@ -4094,7 +4098,8 @@
             },
             "C": {
                 "Puls": 147,
-                "BT": "139/86"
+                "BT": "139/86",
+                "Bleeding": "Massiv"
             },
             "D": {
                 "GCS": 13
@@ -4345,7 +4350,7 @@
         },
         "XABCDE": {
             "X": {
-                "Exanguination": "Riklig"
+                "Exanguination": "-"
             },
             "A": {
                 "airway": "Hotad"
@@ -4356,7 +4361,8 @@
             },
             "C": {
                 "Puls": 154,
-                "BT": "120/52"
+                "BT": "120/52",
+                "Bleeding": "Riklig"
             },
             "D": {
                 "GCS": 13
@@ -4559,7 +4565,7 @@
         },
         "XABCDE": {
              "X": {
-                "Exanguination": "Massiv"
+                "Exanguination": "-"
             },
             "A": {
                 "airway": "Hotad"
@@ -4570,7 +4576,8 @@
             },
             "C": {
                 "Puls": 126,
-                "BT": "101/51"
+                "BT": "101/51",
+                "Bleeding": "Massiv"
             },
             "D": {
                 "GCS": 10
@@ -4941,7 +4948,7 @@
         },
         "XABCDE": {
              "X": {
-                "Exanguination": "Riklig"
+                "Exanguination": "-"
             },
             "A": {
                 "airway": "Fri"
@@ -4952,7 +4959,8 @@
             },
             "C": {
                 "Puls": 108,
-                "BT": "85/42"
+                "BT": "85/42",
+                "Bleeding": "Riklig"
             },
             "D": {
                 "GCS": 10
@@ -7228,7 +7236,7 @@
         },
         "XABCDE": {
             "X": {
-                "Exanguination": "Massiv"
+                "Exanguination": "-"
             },
             "A": {
                 "airway": "Hotad"
@@ -7239,7 +7247,8 @@
             },
             "C": {
                 "Puls": 79,
-                "BT": "81/83"
+                "BT": "81/83",
+                "Bleeding": "Massiv"
             },
             "D": {
                 "GCS": 8
@@ -7282,7 +7291,7 @@
         },
         "XABCDE": {
             "X": {
-                "Exanguination": "Massiv"
+                "Exanguination": "-"
             },
             "A": {
                 "airway": "Hotad"
@@ -7293,7 +7302,8 @@
             },
             "C": {
                 "Puls": 116,
-                "BT": "86/67"
+                "BT": "86/67",
+                "Bleeding": "Massiv"
             },
             "D": {
                 "GCS": 15
@@ -7833,7 +7843,7 @@
         },
         "XABCDE": {
             "X": {
-                "Exanguination": "Riklig"
+                "Exanguination": "-"
             },
             "A": {
                 "airway": "Fri"
@@ -7844,7 +7854,8 @@
             },
             "C": {
                 "Puls": 144,
-                "BT": "85/79"
+                "BT": "85/79",
+                "Bleeding": "Riklig"
             },
             "D": {
                 "GCS": 12
@@ -8102,7 +8113,7 @@
         },
         "XABCDE": {
             "X": {
-                "Exanguination": "Massiv"
+                "Exanguination": "-"
             },
             "A": {
                 "airway": "Fri"
@@ -8113,7 +8124,8 @@
             },
             "C": {
                 "Puls": 113,
-                "BT": "102/87"
+                "BT": "102/87",
+                "Bleeding": "Massiv"
             },
             "D": {
                 "GCS": 12

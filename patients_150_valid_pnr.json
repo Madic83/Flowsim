@@ -76,7 +76,7 @@
     "injuryDescription": "Huvudtrauma, medvetslös kort stund",
     "triage": {"scene": "Röd", "collectionPoint": "Röd", "emergencyDept": "Röd"},
     "XABCDE": {
-      "X": {"exanguination": "Massiv"},
+      "X": {"exanguination": "-"},
       "A": {"airway": "Hotad"},
       "B": {"AF": 8, "Sat": 86},
       "C": {"Puls": 130, "BT": "85/50", "Bleeding": "Massiv"},

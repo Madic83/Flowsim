@@ -63,6 +63,7 @@ app.post('/api/sessions/create', (req, res) => {
     departmentPatients: {},
     acutePatients: {},
     catastropheRoster: null,
+    hospitalEvents: [],
     environment: req.body?.environment || {
       weather: 'clear',
       temperatureC: 15,
@@ -143,6 +144,19 @@ app.put('/api/sessions/:sessionId/environment', (req, res) => {
   res.json({ status: 'ok' });
 });
 
+app.put('/api/sessions/:sessionId/hospital-events', (req, res) => {
+  const session = sessions.get(req.params.sessionId.toUpperCase());
+  if (!session) {
+    return res.status(404).json({ error: 'Session finns inte' });
+  }
+  if (!Array.isArray(req.body?.hospitalEvents)) {
+    return res.status(400).json({ error: 'Ogiltig händelselista' });
+  }
+
+  session.hospitalEvents = req.body.hospitalEvents;
+  res.json({ status: 'ok' });
+});
+
 app.put('/api/sessions/:sessionId/departments', (req, res) => {
   const session = sessions.get(req.params.sessionId.toUpperCase());
   if (!session) {
@@ -199,7 +213,8 @@ app.get('/api/sessions/:sessionId/status', (req, res) => {
     environment: session.environment,
     departmentPatients: session.departmentPatients,
     acutePatients: session.acutePatients,
-    catastropheRoster: session.catastropheRoster
+    catastropheRoster: session.catastropheRoster,
+    hospitalEvents: session.hospitalEvents
   });
 });
 

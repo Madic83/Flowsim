@@ -27,6 +27,7 @@ import { getTargetPatientCount, NORRLANDS_DEPARTMENT_BEDS } from './departmentOc
 import { actionRequirements } from './components/prehospitalResources';
 import { repairInitialAcuteStartTimes } from './acuteStartTimes.js';
 import Katastrofliggare from './components/Katastrofliggare';
+import LSSL from './components/LSSL';
 
 // Hjälpfunktion för att hitta patientobjekt i OP-listan
 function getPatientByIdFromOP(departmentPatients, id) {
@@ -1425,6 +1426,8 @@ export default function WindowTab() {
         </div>
       ) : title === 'Katastrofliggare' ? (
         <Katastrofliggare simTime={clock} />
+      ) : title === 'LSSL' ? (
+        <LSSL simTime={clock} hospital={selectedHospital} />
       ) : (
       <>
       <div style={{display:'flex',alignItems:'center',gap:16,marginBottom:8}}>

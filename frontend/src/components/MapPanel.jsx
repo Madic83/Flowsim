@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { prehospitalActionDurations } from './prehospitalActionDurations';
 import { getVehicleSpeedFactor, isDarkAtTime, scalePrehospitalWorkMinutes, scalePrehospitalWorkSeconds } from '../weatherImpact';
 import { advancePrehospitalPatient } from '../prehospitalDeterioration.js';
+import { applyCompletedPrehospitalActions, classifyBleedingSite, isPrehospitalActionApplicable } from '../prehospitalActions.js';
 import { addSimulationMinutes, elapsedSimulationMinutes } from '../simulationTime.js';
 import { getReadyAmbulanceCrew, setTransportCrewStatus } from '../prehospitalTransportEligibility.js';
 import { vehicleTypes, personnelCategories, getTotalPersonnel, getAvailablePersonnel, allocateTransportPersonnel, allocateActionPersonnel, releasePersonnel, markPersonnelBusy, actionRequirements } from './prehospitalResources';
@@ -87,18 +88,19 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
 
     const updatedActions = { ...actionTimers };
     const personnelToRelease = [];
+    const completedActionIdsByPatient = {};
     let actionsChanged = false;
     Object.entries(updatedActions).forEach(([patientId, timer]) => {
       if (timer.waitingForFollowUp) return;
       const elapsed = elapsedSimulationMinutes(timer.startedAtSimTime || simTime, simTime);
       const duration = Number(timer.durationMinutes) || 0;
       if (elapsed >= duration) {
-        const timedActions = (timer.actions || []).filter(action => (prehospitalActionDurations[action] || 0) > 0);
-        if (timedActions.length) {
-          setCompletedActions(previous => ({
-            ...previous,
-            [patientId]: [...new Set([...(previous[patientId] || []), ...timedActions])]
-          }));
+        const completedActionIds = timer.actions || [];
+        if (timer.previousAirwayPersonnelToRelease?.length) {
+          personnelToRelease.push(timer.previousAirwayPersonnelToRelease);
+        }
+        if (completedActionIds.length) {
+          completedActionIdsByPatient[patientId] = completedActionIds;
         }
         if (timer.airwayLocked) updatedActions[patientId] = { ...timer, remaining: 0, waitingForFollowUp: true };
         else {
@@ -115,6 +117,27 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
       }
     });
     if (actionsChanged) setActionTimers(updatedActions);
+    if (Object.keys(completedActionIdsByPatient).length) {
+      setCompletedActions(previous => {
+        const updated = { ...previous };
+        Object.entries(completedActionIdsByPatient).forEach(([patientId, actionIds]) => {
+          updated[patientId] = [...new Set([...(previous[patientId] || []), ...actionIds])];
+        });
+        return updated;
+      });
+      const storedPatients = JSON.parse(localStorage.getItem('prehospitalPatients') || '[]');
+      const updatedPatients = storedPatients.map(patient => {
+        const completedActionIds = completedActionIdsByPatient[patient.id];
+        if (!completedActionIds) return patient;
+        return {
+          ...applyCompletedPrehospitalActions(patient, completedActionIds),
+          actions: []
+        };
+      });
+      localStorage.setItem('prehospitalPatients', JSON.stringify(updatedPatients));
+      window.dispatchEvent(new Event('prehospitalPatientsUpdated'));
+      setPatients(updatedPatients);
+    }
 
     const updatedTasks = { ...transportTasks };
     const completedTransports = [];
@@ -465,6 +488,14 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
 
   // Gemensam funktion för att rendera patientinformation (används av både Popup och Modal)
   function renderPatientInfo(p) {
+    const completedActionIds = [...new Set([
+      ...(Array.isArray(completedActions[p.id]) ? completedActions[p.id] : []),
+      ...(Array.isArray(p.prehospitalCompletedActions) ? p.prehospitalCompletedActions : [])
+    ])];
+    const completedActionLabels = completedActionIds
+      .map(actionId => actionOptions.find(option => option.value === actionId)?.label)
+      .filter(Boolean);
+
     return (
       <>
         {p.status === 'avliden' && (
@@ -473,7 +504,7 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
           </div>
         )}
         {/* Slutförda åtgärder */}
-        {completedActions[p.id] && completedActions[p.id].length > 0 && (
+        {completedActionLabels.length > 0 && (
           <div style={{
             marginBottom:8,
             padding:'8px 12px',
@@ -486,12 +517,9 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
           }}>
             <div style={{marginBottom:6}}>✓ Slutförda åtgärder:</div>
             <div style={{fontSize:12,lineHeight:'1.6'}}>
-              {completedActions[p.id].map((actionId) => {
-                const actionOption = actionOptions.find(opt => opt.value === actionId);
-                return actionOption ? (
-                  <div key={actionId}>✓ {actionOption.label}</div>
-                ) : null;
-              })}
+              {completedActionLabels.map(actionLabel => (
+                <div key={actionLabel}>✓ {actionLabel}</div>
+              ))}
             </div>
           </div>
         )}
@@ -664,7 +692,16 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
     );
   }
 
-  return patients.map((p, i) => [
+  return patients.map((p, i) => {
+    const patientTimer = actionTimers[p.id];
+    const patientName = typeof p.name === 'object' ? (p.name?.name || p.personnummer || p.id) : (p.name || p.personnummer || p.id);
+    const completedFollowUpActions = patientTimer?.waitingForFollowUp
+      ? new Set(patientTimer.actions || [])
+      : new Set();
+    const selectedActions = (Array.isArray(p.actions) ? p.actions : [])
+      .filter(action => !completedFollowUpActions.has(action));
+
+    return [
     p.lat && p.lng ? (
       <CircleMarker
         key={p.id || i}
@@ -679,7 +716,7 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
       >
         {transportTasks[p.id] ? (
           <Popup minWidth={260} maxWidth={400}>
-            <div style={{fontWeight:700,fontSize:16,marginBottom:4}}>{typeof p.name === 'object' ? (p.name?.name || p.personnummer || p.id) : (p.name || p.personnummer || p.id)}</div>
+            <div style={{fontWeight:700,fontSize:16,marginBottom:4}}>{patientName}</div>
             <div style={{marginBottom:6,fontWeight:600,color:'#ff9800',fontSize:15}}>
               {transportTasks[p.id].type === 'hospital' ? '🚑 Transport till sjukhus' : 
                transportTasks[p.id].type === 'walkToCollectionPoint' ? '🚶 Går till uppsamlingsplats' : 
@@ -700,7 +737,7 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
           </Popup>
         ) : (
         <Popup minWidth={260} maxWidth={400}>
-          <div style={{fontWeight:700,fontSize:16,marginBottom:4}}>{typeof p.name === 'object' ? (p.name?.name || p.personnummer || p.id) : (p.name || p.personnummer || p.id)}</div>
+          <div style={{fontWeight:700,fontSize:16,marginBottom:4}}>{patientName}</div>
           {renderPatientInfo(p)}
         </Popup>
         )}
@@ -728,12 +765,12 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
         }}>
           <div style={{fontWeight:700,fontSize:17,marginBottom:10}}>Åtgärder för {typeof p.name === 'object' ? (p.name?.name || p.personnummer || p.id) : (p.name || p.personnummer || p.id)}</div>
           {actionOptions.map(opt => {
-            const selected = Array.isArray(p.actions) ? p.actions.includes(opt.value) : false;
+            const selected = selectedActions.includes(opt.value);
             const isCompleted = completedActions[p.id] && completedActions[p.id].includes(opt.value);
             const requirement = actionRequirements[opt.value];
+            const actionApplicable = isPrehospitalActionApplicable(p, opt.value);
             
             // Kolla om denna patient har låst personal
-            const patientTimer = actionTimers[p.id];
             const hasLockedPersonnel = patientTimer && patientTimer.airwayLocked && patientTimer.allocatedPersonnel;
             
             let hasEnoughPersonnel = false;
@@ -744,6 +781,12 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
                 // Om patienten har låst personal, kolla om den låsta personalen kan utföra åtgärden
                 const lockedCategories = patientTimer.allocatedPersonnel.map(ap => ap.category);
                 const lockedCanPerform = lockedCategories.some(cat => requirement.categories.includes(cat));
+                const isAirwayFollowUp = patientTimer.waitingForFollowUp && patientTimer.actions?.some(previousAction => (
+                  actionRequirements[previousAction]?.requiresFollowUp?.includes(opt.value)
+                ));
+                const availableQualifiedPersonnel = requirement.categories.reduce((sum, category) => (
+                  sum + (availablePersonnel[category] || 0)
+                ), 0);
                 
                 if (lockedCanPerform && patientTimer.allocatedPersonnel.length >= requirement.personnel) {
                   // Den låsta personalen kan utföra åtgärden och det finns tillräckligt många
@@ -752,6 +795,8 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
                   // Den låsta personalen kan utföra åtgärden men det behövs fler - kolla om det finns extra personal tillgänglig
                   const availableTotal = requirement.categories.reduce((sum, cat) => sum + (availablePersonnel[cat] || 0), 0);
                   hasEnoughPersonnel = availableTotal >= (requirement.personnel - patientTimer.allocatedPersonnel.length);
+                } else if (isAirwayFollowUp && availableQualifiedPersonnel >= requirement.personnel) {
+                  hasEnoughPersonnel = true;
                 } else {
                   // Den låsta personalen kan INTE utföra åtgärden
                   hasEnoughPersonnel = false;
@@ -788,10 +833,10 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
               <div
                 key={opt.value}
                 onClick={() => {
-                  if (!hasEnoughPersonnel && !selected) {
-                    return; // Kan inte välja om det saknas personal
+                  if ((!hasEnoughPersonnel || !actionApplicable) && !selected) {
+                    return;
                   }
-                  const newActions = Array.isArray(p.actions) ? [...p.actions] : [];
+                  const newActions = [...selectedActions];
                   if (!selected) {
                     newActions.push(opt.value);
                   } else {
@@ -802,13 +847,13 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
                 }}
                 style={{
                   display:'flex',alignItems:'center',marginBottom:6,fontSize:14,
-                  cursor: (!hasEnoughPersonnel && !selected) ? 'not-allowed' : (isCompleted ? 'default' : 'pointer'),
-                  background: isCompleted ? '#c8e6c9' : (selected ? '#e3f2fd' : (!hasEnoughPersonnel ? '#ffebee' : 'transparent')),
+                  cursor: ((!hasEnoughPersonnel || !actionApplicable) && !selected) ? 'not-allowed' : (isCompleted ? 'default' : 'pointer'),
+                  background: isCompleted ? '#c8e6c9' : (selected ? '#e3f2fd' : ((!hasEnoughPersonnel || !actionApplicable) ? '#ffebee' : 'transparent')),
                   borderRadius:4,
                   padding:'4px 8px',
-                  border: isCompleted ? '1.5px solid #4caf50' : (selected ? '1.5px solid #1976d2' : (!hasEnoughPersonnel ? '1.5px solid #f44336' : '1.5px solid transparent')),
+                  border: isCompleted ? '1.5px solid #4caf50' : (selected ? '1.5px solid #1976d2' : ((!hasEnoughPersonnel || !actionApplicable) ? '1.5px solid #f44336' : '1.5px solid transparent')),
                   fontWeight: (isCompleted || selected) ? 600 : 400,
-                  opacity: (!hasEnoughPersonnel && !selected) ? 0.5 : 1,
+                  opacity: ((!hasEnoughPersonnel || !actionApplicable) && !selected) ? 0.5 : 1,
                   transition:'background 0.15s,border 0.15s'
                 }}
                 tabIndex={0}
@@ -817,10 +862,10 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
                 onKeyDown={e => {
                   if (e.key === ' ' || e.key === 'Enter') {
                     e.preventDefault();
-                    const newActions = Array.isArray(p.actions) ? [...p.actions] : [];
-                    if (!selected) {
+                    const newActions = [...selectedActions];
+                    if (!selected && hasEnoughPersonnel && actionApplicable) {
                       newActions.push(opt.value);
-                    } else {
+                    } else if (selected) {
                       const idx = newActions.indexOf(opt.value);
                       if (idx > -1) newActions.splice(idx, 1);
                     }
@@ -830,6 +875,19 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
               >
                 <span style={{flex:1}}>
                   {opt.label}
+                  {!actionApplicable && (
+                    <div style={{fontSize:11,color:'#b3261e',marginTop:2}}>
+                      {classifyBleedingSite(p) === 'noncompressible'
+                        ? 'Buk-, thorax- och skallblödning är inte yttre X-blödning; dessa blödningsåtgärder passar inte.'
+                        : classifyBleedingSite(p) === 'unknown'
+                          ? 'Skadeplatsen behöver dokumenteras innan en yttre blödningsåtgärd väljs.'
+                          : opt.value === 'tourniquet'
+                            ? 'Tourniquet används bara vid blödning från arm eller ben.'
+                            : opt.value === 'sårpackning'
+                              ? 'Sårpackning används vid blödning från ljumske, armhåla eller hals.'
+                              : 'Tryckförband kräver en dokumenterad yttre, komprimerbar blödning.'}
+                    </div>
+                  )}
                   {requirement && (
                     <div style={{fontSize:11,color:hasEnoughPersonnel?'#666':'#f44336',marginTop:2}}>
                       👥 {requirement.personnel} person{requirement.personnel > 1 ? 'er' : ''}
@@ -850,23 +908,28 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
             );
           })}
           <div style={{marginTop:10,marginBottom:8,fontWeight:600,fontSize:15}}>
-            Total tid: <span style={{color:'#1976d2'}}>{getTotalActionTime(p.actions)} min</span>
+            Total tid: <span style={{color:'#1976d2'}}>{getTotalActionTime(selectedActions)} min</span>
           </div>
           {/* Utför-knapp */}
           <button
             style={{marginTop:8,padding:'6px 16px',borderRadius:5,border:'1px solid #388e3c',background:'#388e3c',color:'#fff',fontWeight:600,cursor:'pointer'}}
             onClick={() => {
-              const totalMin = getTotalActionTime(p.actions);
+              const totalMin = getTotalActionTime(selectedActions);
               // Kontrollera om det finns åtgärder att utföra
-              if (!Array.isArray(p.actions) || p.actions.length === 0) {
+              if (selectedActions.length === 0) {
+                return;
+              }
+              const inappropriateActions = selectedActions.filter(action => !isPrehospitalActionApplicable(p, action));
+              if (inappropriateActions.length > 0) {
+                alert('Vald blödningsåtgärd passar inte den dokumenterade skadeplatsen. Tourniquet används på arm/ben och sårpackning i ljumske, armhåla eller hals.');
                 return;
               }
               
               // Beräkna hur många personer som behövs för alla valda åtgärder
               let maxPersonnel = 0;
               const allCategories = new Set();
-              if (Array.isArray(p.actions)) {
-                p.actions.forEach(action => {
+              if (selectedActions.length) {
+                selectedActions.forEach(action => {
                   const req = actionRequirements[action];
                   if (req) {
                     maxPersonnel = Math.max(maxPersonnel, req.personnel);
@@ -881,6 +944,7 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
               let shouldReleaseOld = false;
               let lockedPersonnel = null;
               let needsAdditionalPersonnel = false;
+              let previousAirwayPersonnelToRelease = [];
               
               if (existingTimer && existingTimer.airwayLocked && existingTimer.allocatedPersonnel) {
                 // Det finns låst personal hos denna patient
@@ -890,8 +954,8 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
                 // Kolla om alla valda åtgärder kan utföras av den låsta personalen
                 let canPerformAll = true;
                 let missingCompetence = null;
-                if (Array.isArray(p.actions)) {
-                  for (const action of p.actions) {
+                if (selectedActions.length) {
+                  for (const action of selectedActions) {
                     const req = actionRequirements[action];
                     if (req) {
                       // Kolla om någon av de låsta personerna kan utföra denna specifika åtgärd
@@ -916,10 +980,19 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
                     console.log(`Behöver ${maxPersonnel - lockedPersonnel.length} extra person(er) utöver den låsta personalen`);
                   }
                 } else {
-                  // Den låsta personalen har inte rätt kompetens
-                  const lockedPersonName = personnelCategories[lockedCategories[0]]?.label || lockedCategories[0];
-                  alert(`Den låsta personalen (${lockedPersonName}) kan inte utföra "${missingCompetence}". Du måste transportera patienten först för att frigöra personalen.`);
-                  return;
+                  const isAirwayFollowUp = existingTimer.waitingForFollowUp && selectedActions.every(action => (
+                    existingTimer.actions?.some(previousAction => (
+                      actionRequirements[previousAction]?.requiresFollowUp?.includes(action)
+                    ))
+                  ));
+                  if (isAirwayFollowUp) {
+                    previousAirwayPersonnelToRelease = [...lockedPersonnel];
+                    lockedPersonnel = null;
+                  } else {
+                    const lockedPersonName = personnelCategories[lockedCategories[0]]?.label || lockedCategories[0];
+                    alert(`Den låsta personalen (${lockedPersonName}) kan inte utföra "${missingCompetence}". Du måste transportera patienten först för att frigöra personalen.`);
+                    return;
+                  }
                 }
               } else if (existingTimer && existingTimer.allocatedPersonnel) {
                 // Det finns en timer men den är inte låst, frigör den gamla personalen
@@ -951,7 +1024,7 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
               }
               
               // Kontrollera om någon åtgärd låser personal (t.ex. fri_luftväg, intubering, i-gel, ventilationsstöd)
-              const hasAirwayLock = Array.isArray(p.actions) && p.actions.some(action => {
+              const hasAirwayLock = selectedActions.some(action => {
                 const req = actionRequirements[action];
                 return req && req.locksPersonnel;
               });
@@ -984,9 +1057,10 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
                         durationMinutes: totalMin,
                         remaining: totalMin * 60,
                         allocatedPersonnel: allocated,
+                        previousAirwayPersonnelToRelease,
                         airwayLocked: finalAirwayLock, // Behåller låset
                         waitingForFollowUp: false, // Tar bort waiting-status under åtgärden
-                        actions: p.actions
+                        actions: selectedActions
                       }
                     };
                   } else {
@@ -998,7 +1072,7 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
                         ...existingTimer,
                         allocatedPersonnel: allocated,
                         airwayLocked: finalAirwayLock,
-                        actions: p.actions
+                        actions: selectedActions
                       }
                     };
                   }
@@ -1012,8 +1086,9 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
                     durationMinutes: totalMin,
                     remaining: totalMin * 60,
                     allocatedPersonnel: allocated,
+                    previousAirwayPersonnelToRelease,
                     airwayLocked: finalAirwayLock,
-                    actions: p.actions
+                    actions: selectedActions
                   }
                 };
               });
@@ -1046,7 +1121,8 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
         </div>
       </div>
     )
-  ]).flat();
+  ];
+  }).flat();
 }
 
 // Komponent för att visa grupperade fordon med nedräkningstimer

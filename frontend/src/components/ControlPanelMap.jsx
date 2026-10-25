@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
+import { checkOpenStreetMapTileColor } from '../waterLocation.js';
 import 'leaflet/dist/leaflet.css';
 
-function LocationMarker({ markerPosition, setMarkerPosition, onMarkerSet }) {
-  useMapEvents({
+function LocationMarker({ markerPosition, onMapClick }) {
+  const map = useMapEvents({
     click(e) {
-      setMarkerPosition(e.latlng);
-      if (onMarkerSet) onMarkerSet(e.latlng);
+      onMapClick(e.latlng, map);
     },
   });
   return markerPosition ? <Marker position={markerPosition} /> : null;
@@ -14,7 +14,32 @@ function LocationMarker({ markerPosition, setMarkerPosition, onMarkerSet }) {
 
 function ControlPanelMap({ onMarkerSet, onStartEvent, eventCount, setEventCount, center }) {
   const [markerPosition, setMarkerPosition] = useState(null);
-  const mapRef = useRef();
+  const [locationStatus, setLocationStatus] = useState('');
+  const locationCheckRef = useRef(0);
+
+  async function handleMapClick(latlng, map) {
+    const checkId = ++locationCheckRef.current;
+    setMarkerPosition(null);
+    setLocationStatus('Kontrollerar kartfärgen …');
+    try {
+      const isWater = await checkOpenStreetMapTileColor(map, latlng);
+      if (checkId !== locationCheckRef.current) return;
+      if (isWater === null) {
+        setLocationStatus('Kartplattan kunde inte färgkontrolleras. Vänta tills kartan laddat och försök igen.');
+        return;
+      }
+      if (isWater) {
+        setLocationStatus('Kan inte placera markören i vatten');
+        return;
+      }
+      setMarkerPosition(latlng);
+      setLocationStatus('Platsen är vald.');
+      onMarkerSet?.(latlng);
+    } catch {
+      if (checkId !== locationCheckRef.current) return;
+      setLocationStatus('Kartplattan kunde inte färgkontrolleras. Vänta tills kartan laddat och försök igen.');
+    }
+  }
 
   return (
     <div>
@@ -24,15 +49,19 @@ function ControlPanelMap({ onMarkerSet, onStartEvent, eventCount, setEventCount,
           center={center || [63.8258, 20.2630]}
           zoom={12}
           style={{ width: '100%', height: '100%' }}
-          whenCreated={mapInstance => (mapRef.current = mapInstance)}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <LocationMarker markerPosition={markerPosition} setMarkerPosition={setMarkerPosition} onMarkerSet={onMarkerSet} />
+          <LocationMarker markerPosition={markerPosition} onMapClick={handleMapClick} />
         </MapContainer>
       </div>
+      {locationStatus && (
+        <div role="status" aria-live="polite" style={{margin:'8px 0',fontSize:14,color:locationStatus.startsWith('Platsen är vald') ? '#246b3d' : locationStatus.startsWith('Kontrollerar') ? '#53616a' : '#a52b28'}}>
+          {locationStatus}
+        </div>
+      )}
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 12 }}>
         <label style={{ fontWeight: 600 }}>Antal patienter:</label>
         <input
@@ -45,7 +74,7 @@ function ControlPanelMap({ onMarkerSet, onStartEvent, eventCount, setEventCount,
         />
         <button
           style={{ padding: '8px 18px', fontSize: 16, borderRadius: 6, background: '#1976d2', color: '#fff', border: 'none', fontWeight: 700, cursor: 'pointer' }}
-          disabled={!markerPosition || eventCount < 1}
+          disabled={!markerPosition || locationStatus !== 'Platsen är vald.' || eventCount < 1}
           onClick={() => onStartEvent(markerPosition, eventCount)}
         >
           Starta händelse

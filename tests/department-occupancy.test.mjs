@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
-import { applyDepartmentOccupancyLevel, getPatientAge, getTargetPatientCount, isCompleteDepartmentPatient, matchesDepartment } from '../frontend/src/departmentOccupancy.js';
+import { applyDepartmentOccupancyLevel, getPatientAge, getTargetPatientCount, isCompleteDepartmentPatient, matchesDepartment, NORRLANDS_DEPARTMENT_BEDS } from '../frontend/src/departmentOccupancy.js';
 
 const root = path.resolve(import.meta.dirname, '..');
 const patientFiles = [
@@ -124,6 +124,14 @@ test('BB occupancy only selects women with pregnancy or childbirth-related reaso
   assert.ok(bbPatients.every(patient => patient.sex === 'kvinna'));
   assert.ok(bbPatients.every(patient => /gravid|förloss|obstetr|postpartum|antenatal|maternell/i.test(patient.cause)));
   assert.equal(bbPatients.some(patient => patient.id === malePregnancyRecord.id), false);
+});
+
+test('low occupancy targets 65 percent of the medium occupancy count', () => {
+  for (const department of ['Barnavdelning 2', 'Onkologavdelning CDE', 'Medicincentrum specialistvårdsavdelning']) {
+    const capacity = NORRLANDS_DEPARTMENT_BEDS[department];
+    const mediumTarget = getTargetPatientCount(department, capacity, 'medium');
+    assert.equal(getTargetPatientCount(department, capacity, 'low'), Math.floor(mediumTarget * 0.65));
+  }
 });
 
 test('low, medium, and high occupancy can fill every department with complete, uniquely placed patients', () => {

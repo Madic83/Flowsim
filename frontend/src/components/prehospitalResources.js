@@ -79,12 +79,19 @@ export const actionRequirements = {
     label: 'Tourniquet',
     order: 1
   },
+  'sårpackning': {
+    personnel: 1,
+    duration: 4,
+    categories: ['emt', 'paramedic', 'firefighter', 'police', 'anesthesiaNurse', 'doctor'],
+    label: 'Sårpackning (ljumske/armhåla/hals)',
+    order: 2
+  },
   'tryckförband': {
     personnel: 1,
     duration: 3,
     categories: ['police', 'firefighter', 'emt', 'paramedic', 'anesthesiaNurse', 'doctor'],
     label: 'Tryckförband',
-    order: 2
+    order: 3
   },
   
   // A - Airway (Luftväg)
@@ -93,16 +100,16 @@ export const actionRequirements = {
     duration: 1,
     categories: ['police', 'firefighter', 'emt', 'paramedic', 'anesthesiaNurse', 'doctor'],
     label: 'Fri luftväg',
-    order: 3,
+    order: 4,
     locksPersonnel: true, // Låser personal tills definitiv luftväg säkrats
     requiresFollowUp: ['svalgtub', 'intubering', 'i-gel'] // Kräver en av dessa åtgärder för att frigöra personal
   },
   'svalgtub': {
     personnel: 1,
     duration: 2,
-    categories: ['paramedic', 'anesthesiaNurse', 'doctor'],
+    categories: ['emt', 'paramedic', 'anesthesiaNurse', 'doctor'],
     label: 'Svalgtub/Näskantarell',
-    order: 4,
+    order: 5,
     resolvesAirwayLock: true // Frigör personal som är låst vid fri luftväg
   },
   'intubering': {
@@ -110,7 +117,7 @@ export const actionRequirements = {
     duration: 5,
     categories: ['doctor', 'anesthesiaNurse'],
     label: 'Intubering',
-    order: 5,
+    order: 6,
     locksPersonnel: true // Låser personal tills patienten transporteras
   },
   'i-gel': {
@@ -118,7 +125,7 @@ export const actionRequirements = {
     duration: 3,
     categories: ['paramedic', 'anesthesiaNurse', 'doctor'],
     label: 'I-gel',
-    order: 6,
+    order: 7,
     locksPersonnel: true // Låser personal tills patienten transporteras
   },
   

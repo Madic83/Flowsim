@@ -2,6 +2,7 @@
 export const prehospitalActionDurations = {
   // X - Exsanguination
   'tourniquet': 2,
+  'sårpackning': 4,
   'tryckförband': 3,
   'pelvic_binder': 4,
   

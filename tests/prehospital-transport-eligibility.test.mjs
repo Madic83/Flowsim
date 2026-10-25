@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { getReadyAmbulanceCrew, setTransportCrewStatus } from '../frontend/src/prehospitalTransportEligibility.js';
+import { actionRequirements } from '../frontend/src/components/prehospitalResources.js';
+
+test('ambulance care assistants can perform svalgtub/näskantarell', () => {
+  assert.ok(actionRequirements.svalgtub.categories.includes('emt'));
+});
 
 function vehicle(id, type, personnel, status = 'available') {
   return { id, type, personnel, status };

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { advancePrehospitalPatient } from '../frontend/src/prehospitalDeterioration.js';
+import { applyCompletedPrehospitalActions } from '../frontend/src/prehospitalActions.js';
 
 function patient(overrides = {}) {
   return {
@@ -119,6 +120,7 @@ test('a threatened airway from scenario data starts the same critical timer', ()
 
 test('airway support or bleeding control stops the corresponding five-minute timer', () => {
   const bleedingPatient = patient({
+    injuryDescription: 'Skottskada arm',
     XABCDE: {
       X: { Exanguination: 'Riklig' },
       A: { airway: 'Fri' },
@@ -154,6 +156,7 @@ test('airway support or bleeding control stops the corresponding five-minute tim
 
 test('treating one of two life threats does not stop the other critical timer', () => {
   let patientWithTwoThreats = patient({
+    injuryDescription: 'Skottskada ben och blockerad luftväg',
     XABCDE: {
       X: { Exanguination: 'Massiv' },
       A: { airway: 'Blockerad' },
@@ -229,4 +232,49 @@ test('patients inside an ambulance do not cool from outdoor temperature', () => 
     ambulancePatient = advancePrehospitalPatient(ambulancePatient, { temperatureC: -10 });
   }
   assert.equal(ambulancePatient.XABCDE.E.Temp, 36);
+});
+
+test('completed hemorrhage control prevents further deterioration on later simulated minutes', () => {
+  const initial = patient({
+    triage: { scene: 'Röd' },
+    injuryDescription: 'Skottskada ben',
+    XABCDE: {
+      X: { Exanguination: 'Massiv' },
+      A: { airway: 'Fri' },
+      B: { AF: 20, Sat: 94 },
+      C: { Puls: 120, BT: '90/60', Bleeding: 'Massiv' },
+      D: { GCS: 14 },
+      E: { Temp: 36 }
+    }
+  });
+  const treated = applyCompletedPrehospitalActions(initial, ['tourniquet']);
+  let treatedProgress = treated;
+  let untreatedProgress = initial;
+  for (let minute = 0; minute < 4; minute += 1) {
+    treatedProgress = advancePrehospitalPatient(treatedProgress, { temperatureC: 15 });
+    untreatedProgress = advancePrehospitalPatient(untreatedProgress, { temperatureC: 15 });
+  }
+
+  assert.ok(treatedProgress.XABCDE.B.Sat > untreatedProgress.XABCDE.B.Sat);
+  assert.ok(treatedProgress.XABCDE.C.Puls < untreatedProgress.XABCDE.C.Puls);
+  assert.equal(treatedProgress.criticalUntreatedMinutes, 0);
+  assert.equal(untreatedProgress.criticalUntreatedMinutes, 4);
+});
+
+test('massive X on an abdominal injury is not treated as external compressible hemorrhage', () => {
+  const internalBleeding = patient({
+    injuryDescription: 'Penetrerande skada buk',
+    XABCDE: {
+      X: { Exanguination: 'Massiv' },
+      A: { airway: 'Fri' },
+      B: { AF: 20, Sat: 94 },
+      C: { Puls: 120, BT: '90/60', Bleeding: 'Ingen' },
+      D: { GCS: 14 },
+      E: { Temp: 36 }
+    }
+  });
+
+  const afterOneMinute = advancePrehospitalPatient(internalBleeding, { temperatureC: 15 });
+  assert.equal(afterOneMinute.criticalUntreatedMinutes, 0);
+  assert.notEqual(afterOneMinute.status, 'avliden');
 });

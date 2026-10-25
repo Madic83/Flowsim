@@ -73,7 +73,8 @@ export function getTargetPatientCount(department, capacity, occupancyLevel) {
     return Math.max(0, capacity - (MEDIUM_FREE_BEDS[department] ?? -3));
   }
   if (occupancyLevel === 'low') {
-    return Math.floor(capacity * 0.5);
+    const mediumPatientCount = Math.max(0, capacity - (MEDIUM_FREE_BEDS[department] ?? -3));
+    return Math.floor(mediumPatientCount * 0.65);
   }
   const mediumPatientCount = Math.max(0, capacity - (MEDIUM_FREE_BEDS[department] ?? -3));
   return Math.max(Math.ceil(capacity * 1.2), mediumPatientCount + Math.ceil(capacity * 0.2));

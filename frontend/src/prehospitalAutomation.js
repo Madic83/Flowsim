@@ -6,6 +6,7 @@ import { advanceTransportCare, buildTransportCarePlan } from './prehospitalTrans
 import { movePatientToParatus } from './prehospitalDispatch.js';
 import { elapsedSimulationMinutes } from './simulationTime.js';
 import { getReadyAmbulanceCrew, setTransportCrewStatus } from './prehospitalTransportEligibility.js';
+import { getRecommendedBleedingAction } from './prehospitalActions.js';
 
 // Hjälpfunktion för att konvertera tid till minuter
 function timeToMinutes(timeStr) {
@@ -36,9 +37,12 @@ function determineRequiredTreatment(patient) {
   // Prioritera i ordning X > A > B > C > D
   
   // X - Blödning
-  const exang = xabcde.X?.Exanguination || '';
-  if (exang === 'Aktiv blödning' || exang === 'Riklig') {
-    return 'tourniquet';
+  const exang = xabcde.X?.Exanguination || xabcde.X?.exanguination || '';
+  const bleeding = xabcde.C?.Bleeding || xabcde.C?.bleeding || '';
+  if ([exang, bleeding].some(value => ['Aktiv blödning', 'Riklig', 'Massiv'].includes(value))) {
+    const bleedingAction = getRecommendedBleedingAction(patient);
+    if (bleedingAction) return bleedingAction;
+    return null;
   }
   if (exang === 'Pelvic instability' || exang === 'Måttlig') {
     return 'pelvic_binder';

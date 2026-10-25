@@ -7,6 +7,7 @@ import { startPrehospitalAutomationLoop, initializeCollectionPoints } from './pr
 import { getPatientDeteriorationFactor, getStaffEfficiency, getVehicleSpeedFactor, isDarkAtTime } from './weatherImpact';
 import { applyDepartmentOccupancyLevel } from './departmentOccupancy';
 import { assignInitialAcuteStartTimes, hasDistinctStartTimes } from './acuteStartTimes';
+import { createHospitalEvent, HOSPITAL_EVENT_TYPES, readHospitalEvents, writeHospitalEvents } from './hospitalEvents.js';
 
 // Tabellcell-stilar
 const th = {border:'1px solid #ccc',padding:'4px 8px',background:'#e0e0e0',fontWeight:'bold'}
@@ -151,10 +152,16 @@ export default function App() {
   }, [sessionAuth]);
   // Händelsetyp används endast i logik, inte i renderad output
   const [eventType, setEventType] = useState('explosion');
+  const [hospitalEventType, setHospitalEventType] = useState('power-outage');
+  const [hospitalEventSeverity, setHospitalEventSeverity] = useState('high');
+  const [hospitalEventTitle, setHospitalEventTitle] = useState('');
+  const [hospitalEventDescription, setHospitalEventDescription] = useState('');
+  const [hospitalEvents, setHospitalEvents] = useState(readHospitalEvents);
   const exerciseViews = [
     { title: 'Akutmottagning', component: Window },
     { title: 'Hem', component: Hem },
     { title: 'Personal', component: (props) => <PersonalView hospitalPersonnel={hospitalPersonnel} {...props} /> },
+    { title: 'LSSL', component: Window },
     // Lägg till fler vyer här vid behov
   ];
   const hospitals = [
@@ -166,6 +173,49 @@ export default function App() {
   const [showExercisePanel, setShowExercisePanel] = useState(() => new URLSearchParams(window.location.search).get('view') === 'exercises')
   const [selectedHospital, setSelectedHospital] = useState(hospitals[0]);
   const controlPanelMapRef = useRef();
+
+  useEffect(() => {
+    const syncHospitalEvents = event => {
+      setHospitalEvents(Array.isArray(event?.detail) ? event.detail : readHospitalEvents());
+    };
+    window.addEventListener('hospitalEventsChanged', syncHospitalEvents);
+    window.addEventListener('storage', syncHospitalEvents);
+    return () => {
+      window.removeEventListener('hospitalEventsChanged', syncHospitalEvents);
+      window.removeEventListener('storage', syncHospitalEvents);
+    };
+  }, []);
+
+  function handleCreateHospitalEvent() {
+    const event = createHospitalEvent({
+      type: hospitalEventType,
+      title: hospitalEventTitle,
+      hospital: selectedHospital,
+      severity: hospitalEventSeverity,
+      description: hospitalEventDescription,
+      simTime
+    });
+    if (!event) return;
+    const updated = [...hospitalEvents, event];
+    setHospitalEvents(updated);
+    writeHospitalEvents(updated);
+    setHospitalEventTitle('');
+    setHospitalEventDescription('');
+  }
+
+  function handleResolveHospitalEvent(eventId) {
+    const updated = hospitalEvents.map(event => event.id === eventId
+      ? {
+        ...event,
+        status: 'resolved',
+        resolvedAtSimTime: simTime,
+        ...(event.upsTimer ? { upsTimer: { ...event.upsTimer, status: 'stopped' } } : {})
+      }
+      : event
+    );
+    setHospitalEvents(updated);
+    writeHospitalEvents(updated);
+  }
 
   useEffect(() => {
     function handleExerciseWindowReturn(event) {
@@ -180,7 +230,7 @@ export default function App() {
     return localStorage.getItem('medicalDirective') || 'Inget inriktningsbeslut';
   });
   const [departmentOccupancyLevel, setDepartmentOccupancyLevel] = useState(() => (
-    localStorage.getItem('departmentOccupancyLevel') || ''
+    localStorage.getItem('departmentOccupancyLevel') || 'medium'
   ));
   const [departmentOccupancyStatus, setDepartmentOccupancyStatus] = useState('');
   const appliedOccupancyPresetRef = useRef('');
@@ -364,6 +414,15 @@ export default function App() {
             localStorage.setItem('akutPatients', serializedAcutePatients);
             window.dispatchEvent(new CustomEvent('akutSync', {
               detail: { akutPatients: status.acutePatients }
+            }));
+          }
+        }
+        if (Array.isArray(status.hospitalEvents)) {
+          const serializedHospitalEvents = JSON.stringify(status.hospitalEvents);
+          if (localStorage.getItem('hospitalEvents') !== serializedHospitalEvents) {
+            localStorage.setItem('hospitalEvents', serializedHospitalEvents);
+            window.dispatchEvent(new CustomEvent('hospitalEventsChanged', {
+              detail: status.hospitalEvents
             }));
           }
         }
@@ -1086,7 +1145,8 @@ export default function App() {
         fetch(`${sessionUrl}/departments`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ departmentPatients: {} }) }),
         fetch(`${sessionUrl}/acute-patients`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ acutePatients: {} }) }),
         fetch(`${sessionUrl}/catastrophe-roster`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ catastropheRoster: {} }) }),
-        fetch(`${sessionUrl}/environment`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ environment: DEFAULT_SIMULATION_ENVIRONMENT }) })
+        fetch(`${sessionUrl}/environment`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ environment: DEFAULT_SIMULATION_ENVIRONMENT }) }),
+        fetch(`${sessionUrl}/hospital-events`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ hospitalEvents: [] }) })
       ];
       await Promise.allSettled(sharedResetRequests);
     }
@@ -1095,6 +1155,8 @@ export default function App() {
     const resetTime = now.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit', hour12: false }).padStart(5, '0');
     const resetWeekday = now.getDay() === 0 ? 6 : now.getDay() - 1;
     localStorage.clear();
+    setHospitalEvents([]);
+    window.dispatchEvent(new CustomEvent('hospitalEventsChanged', { detail: [] }));
     if (session) localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(session));
     localStorage.setItem('hospitalPersonnelConfig', JSON.stringify(DEFAULT_PERSONNEL_CONFIG));
     localStorage.setItem('hospitalPersonnelExtraCounts', '{}');
@@ -1105,7 +1167,7 @@ export default function App() {
     localStorage.setItem('simTime', resetTime);
     localStorage.setItem('initialAcutePatientCount', '20');
     localStorage.setItem('acuteAdmissionsPerHour', '2');
-    localStorage.setItem('departmentOccupancyLevel', '');
+    localStorage.setItem('departmentOccupancyLevel', 'medium');
 
     setHospitalPersonnel(DEFAULT_PERSONNEL_CONFIG);
     hospitalPersonnelRef.current = DEFAULT_PERSONNEL_CONFIG;
@@ -1118,7 +1180,7 @@ export default function App() {
     setAutomatedViews({});
     setMedicalDirective('Inget inriktningsbeslut');
     setSelectedHospital(hospitals[0]);
-    setDepartmentOccupancyLevel('');
+    setDepartmentOccupancyLevel('medium');
     setDepartmentOccupancyStatus('');
     appliedOccupancyPresetRef.current = '';
     setInitialAcutePatientCount(20);
@@ -1513,12 +1575,12 @@ export default function App() {
               >
                 <option value="">Välj beläggningsnivå</option>
                 <option value="low">Låg beläggning</option>
-                <option value="medium">Medel beläggning (referensbild)</option>
+                <option value="medium">Medel beläggning</option>
                 <option value="high">Hög beläggning</option>
               </select>
             </div>
             <div style={{fontSize:13,color:'#53616a',maxWidth:540}}>
-              Låg: cirka 50% beläggning. Medel: beläggningen från referensbilden. Hög: minst 120% beläggning.
+              Låg: cirka 50% beläggning. Medel: normal beläggning. Hög: minst 120% beläggning.
             </div>
           </div>
           {departmentSourcePatientsLoading && (
@@ -1734,6 +1796,56 @@ export default function App() {
               </label>
             </div>
           </div>
+
+          <section aria-labelledby="hospital-events-heading" style={{marginTop:32,marginBottom:28,maxWidth:920}}>
+            <h2 id="hospital-events-heading" style={{margin:'0 0 8px'}}>Övriga händelser på sjukhuset</h2>
+            <p style={{margin:'0 0 14px',color:'#5e6b70'}}>Registrera en händelse separat från patientscenariot. Händelsen delas med LSSL-vyn.</p>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(190px,1fr))',gap:12,alignItems:'end',padding:16,border:'1px solid #cbd5d9',borderRadius:6,background:'#f8fbfc'}}>
+              <label style={{display:'grid',gap:5,fontSize:13,fontWeight:600}}>
+                Händelsetyp
+                <select value={hospitalEventType} onChange={event => setHospitalEventType(event.target.value)} style={{padding:'8px 10px',fontSize:14,border:'1px solid #aebbc0',borderRadius:4,background:'#fff'}}>
+                  {HOSPITAL_EVENT_TYPES.map(type => <option key={type.id} value={type.id}>{type.label}</option>)}
+                </select>
+              </label>
+              {hospitalEventType === 'custom' && (
+                <label style={{display:'grid',gap:5,fontSize:13,fontWeight:600}}>
+                  Händelsenamn
+                  <input value={hospitalEventTitle} onChange={event => setHospitalEventTitle(event.target.value)} placeholder="Beskriv händelsen" style={{padding:'8px 10px',fontSize:14,border:'1px solid #aebbc0',borderRadius:4}} />
+                </label>
+              )}
+              <label style={{display:'grid',gap:5,fontSize:13,fontWeight:600}}>
+                Allvarlighetsgrad
+                <select value={hospitalEventSeverity} onChange={event => setHospitalEventSeverity(event.target.value)} style={{padding:'8px 10px',fontSize:14,border:'1px solid #aebbc0',borderRadius:4,background:'#fff'}}>
+                  <option value="low">Begränsad</option>
+                  <option value="medium">Allvarlig</option>
+                  <option value="high">Kritisk</option>
+                </select>
+              </label>
+              <label style={{display:'grid',gap:5,fontSize:13,fontWeight:600}}>
+                Anteckning
+                <input value={hospitalEventDescription} onChange={event => setHospitalEventDescription(event.target.value)} placeholder="Valfri information" style={{padding:'8px 10px',fontSize:14,border:'1px solid #aebbc0',borderRadius:4}} />
+              </label>
+              <button type="button" onClick={handleCreateHospitalEvent} disabled={hospitalEventType === 'custom' && !hospitalEventTitle.trim()} style={{padding:'9px 14px',border:'1px solid #087f91',borderRadius:4,background:'#087f91',color:'#fff',fontWeight:700,cursor:'pointer',opacity:hospitalEventType === 'custom' && !hospitalEventTitle.trim() ? 0.5 : 1}}>
+                Registrera händelse
+              </button>
+              <div style={{gridColumn:'1 / -1',fontSize:12,color:'#65757c'}}>
+                Sjukhus: <strong>{selectedHospital}</strong> · Simtid: <strong>{simTime}</strong>
+              </div>
+            </div>
+            <div style={{marginTop:12,display:'grid',gap:6}}>
+              {hospitalEvents.filter(event => event.status === 'active').length === 0 ? (
+                <div style={{fontSize:13,color:'#78858b'}}>Inga aktiva sjukhushändelser.</div>
+              ) : hospitalEvents.filter(event => event.status === 'active').map(event => (
+                <div key={event.id} style={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:12,padding:'9px 12px',borderLeft:`4px solid ${event.severity === 'high' ? '#a62e2e' : event.severity === 'medium' ? '#946200' : '#54745b'}`,background:'#fff',borderTop:'1px solid #dce3e6',borderRight:'1px solid #dce3e6',borderBottom:'1px solid #dce3e6'}}>
+                  <div>
+                    <strong>{event.title}</strong> <span style={{fontSize:13,color:'#5f6d73'}}>· {event.hospital} · start {event.createdAtSimTime}</span>
+                    {event.description && <div style={{fontSize:13,color:'#536168',marginTop:3}}>{event.description}</div>}
+                  </div>
+                  <button type="button" onClick={() => handleResolveHospitalEvent(event.id)} style={{padding:'6px 9px',border:'1px solid #aebbc0',borderRadius:4,background:'#fff',color:'#293b44',fontWeight:600,cursor:'pointer',whiteSpace:'nowrap'}}>Avsluta</button>
+                </div>
+              ))}
+            </div>
+          </section>
 
           {/* Karta för att sätta ut händelsemarkör */}
           <h2 style={{marginTop:32}}>Välj plats för händelse</h2>
@@ -2010,6 +2122,7 @@ export default function App() {
             {renderExerciseButton('Mottagningar')}
             {renderExerciseButton('Avdelningar')}
             {renderExerciseButton('Katastrofliggare')}
+            {renderExerciseButton('LSSL')}
             {renderExerciseButton('Hem')}
             {renderExerciseButton('Personal')}
           </div>
