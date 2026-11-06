@@ -7,6 +7,7 @@ import { applyCompletedPrehospitalActions, classifyBleedingSite, isPrehospitalAc
 import { addSimulationMinutes, elapsedSimulationMinutes } from '../simulationTime.js';
 import { getReadyAmbulanceCrew, setTransportCrewStatus } from '../prehospitalTransportEligibility.js';
 import { vehicleTypes, personnelCategories, getTotalPersonnel, getAvailablePersonnel, allocateTransportPersonnel, allocateActionPersonnel, releasePersonnel, markPersonnelBusy, actionRequirements } from './prehospitalResources';
+import { addGreenPatientToBus, canBoardGreenPatient, canBusDepart, getBusAvailableSeats, getBusPassengerIds } from '../prehospitalBus.js';
 import { buildTransportCarePlan } from '../prehospitalTransportCare.js';
 import { movePatientToParatus } from '../prehospitalDispatch.js';
 import { MapContainer, Marker, TileLayer, useMap, Popup, CircleMarker, useMapEvent } from 'react-leaflet';
@@ -43,7 +44,7 @@ function PrehospitalMapSyncMarker() {
   return marker ? <Marker position={marker} /> : null;
 }
 
-function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpenActionPatient, openTriagePatient, setOpenTriagePatient, setHospitalSelectPatient, hospitalDispatchHandlerRef, totalPersonnel, availablePersonnel, actionTimers, setActionTimers, transportTasks, setTransportTasks, simTime, simulationEnvironment }) {
+function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpenActionPatient, openTriagePatient, setOpenTriagePatient, setHospitalSelectPatient, hospitalDispatchHandlerRef, totalPersonnel, availablePersonnel, actionTimers, setActionTimers, transportTasks, setTransportTasks, simTime, simulationEnvironment, vehicles, setVehicles }) {
   const previousSimTimeRef = useRef(null);
   const [patients, setPatients] = useState([]);
   const [completedActions, setCompletedActions] = useState(() => {
@@ -179,6 +180,57 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
     }
   }, [simTime, collectionPoint]);
 
+  useEffect(() => {
+    const storedVehicles = JSON.parse(localStorage.getItem('prehospitalVehicles') || '[]');
+    const arrivedPassengers = new Map();
+    const allocationsToRelease = [];
+    let vehiclesChanged = false;
+    const updatedVehicles = storedVehicles.map(vehicle => {
+      if (vehicle.type !== 'bus' || vehicle.status !== 'inTransit' || !vehicle.busTask) return vehicle;
+      const elapsed = elapsedSimulationMinutes(vehicle.busTask.startedAtSimTime || simTime, simTime);
+      const duration = Number(vehicle.busTask.durationMinutes) || 0;
+      const remaining = Math.max(0, Math.ceil((duration - elapsed) * 60));
+      vehiclesChanged = true;
+      if (elapsed >= duration) {
+        vehicle.busTask.passengerIds.forEach(id => arrivedPassengers.set(String(id), vehicle.busTask.destination));
+        allocationsToRelease.push(vehicle.driverAllocation || []);
+        return {
+          ...vehicle,
+          status: 'available',
+          lat: vehicle.busTask.destination.lat,
+          lng: vehicle.busTask.destination.lng,
+          passengerIds: [],
+          driverAllocation: undefined,
+          busTask: undefined
+        };
+      }
+      return { ...vehicle, busTask: { ...vehicle.busTask, remaining } };
+    });
+
+    if (vehiclesChanged) {
+      let releasedVehicles = updatedVehicles;
+      allocationsToRelease.forEach(allocation => {
+        releasedVehicles = releasePersonnel(releasedVehicles, allocation);
+      });
+      localStorage.setItem('prehospitalVehicles', JSON.stringify(releasedVehicles));
+      setVehicles(releasedVehicles);
+      window.dispatchEvent(new CustomEvent('prehospitalVehiclesUpdated', { detail: releasedVehicles }));
+    }
+
+    if (arrivedPassengers.size > 0) {
+      const storedPatients = JSON.parse(localStorage.getItem('prehospitalPatients') || '[]');
+      const updatedPatients = storedPatients.map(patient => {
+        const destination = arrivedPassengers.get(String(patient.id));
+        return destination
+          ? { ...patient, lat: destination.lat, lng: destination.lng, location: 'Uppsamlingsplats' }
+          : patient;
+      });
+      localStorage.setItem('prehospitalPatients', JSON.stringify(updatedPatients));
+      setPatients(updatedPatients);
+      window.dispatchEvent(new Event('prehospitalPatientsUpdated'));
+    }
+  }, [simTime]);
+
   // Spara triage och åtgärder i localStorage
   function updatePatientField(id, field, value) {
     setPatients(prev => {
@@ -200,6 +252,69 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
       window.dispatchEvent(new Event('prehospitalPatientsUpdated'));
       return updated;
     });
+  }
+
+  function boardPatientOnBus(busId, patientId) {
+    const currentVehicles = JSON.parse(localStorage.getItem('prehospitalVehicles') || '[]');
+    const currentPatients = JSON.parse(localStorage.getItem('prehospitalPatients') || '[]');
+    const busIndex = currentVehicles.findIndex(vehicle => vehicle.id === busId);
+    const patient = currentPatients.find(candidate => String(candidate.id) === String(patientId));
+    if (busIndex < 0 || !patient) return;
+
+    const boardedBus = addGreenPatientToBus(currentVehicles[busIndex], patient);
+    if (!boardedBus) return;
+    currentVehicles[busIndex] = boardedBus;
+    const updatedPatients = currentPatients.map(candidate => String(candidate.id) === String(patientId)
+      ? { ...candidate, lat: boardedBus.lat, lng: boardedBus.lng, location: `På buss ${boardedBus.unitNumber || ''}`.trim() }
+      : candidate
+    );
+    localStorage.setItem('prehospitalVehicles', JSON.stringify(currentVehicles));
+    localStorage.setItem('prehospitalPatients', JSON.stringify(updatedPatients));
+    setVehicles(currentVehicles);
+    setPatients(updatedPatients);
+    window.dispatchEvent(new CustomEvent('prehospitalVehiclesUpdated', { detail: currentVehicles }));
+    window.dispatchEvent(new Event('prehospitalPatientsUpdated'));
+  }
+
+  function departBus(busId) {
+    if (!collectionPoint) {
+      alert('Placera uppsamlingsplatsen innan bussen avgår.');
+      return;
+    }
+    const currentVehicles = JSON.parse(localStorage.getItem('prehospitalVehicles') || '[]');
+    const bus = currentVehicles.find(vehicle => vehicle.id === busId);
+    const availableVehicles = currentVehicles.filter(vehicle => !['away', 'inTransit'].includes(vehicle.status));
+    const driverAllocation = allocateTransportPersonnel(availableVehicles, 1);
+    if (!canBusDepart(bus, collectionPoint, driverAllocation)) {
+      alert(driverAllocation?.length ? 'Bussen behöver minst en grön passagerare.' : 'Det finns ingen ledig personal som kan köra bussen.');
+      return;
+    }
+
+    const earthRadiusKm = 6371;
+    const deltaLat = (collectionPoint.lat - bus.lat) * Math.PI / 180;
+    const deltaLng = (collectionPoint.lng - bus.lng) * Math.PI / 180;
+    const haversine = Math.sin(deltaLat / 2) ** 2
+      + Math.cos(bus.lat * Math.PI / 180) * Math.cos(collectionPoint.lat * Math.PI / 180) * Math.sin(deltaLng / 2) ** 2;
+    const distanceKm = earthRadiusKm * 2 * Math.atan2(Math.sqrt(haversine), Math.sqrt(1 - haversine));
+    const durationMinutes = Math.ceil(Math.max(2, distanceKm * 1.3) / getVehicleSpeedFactor(simulationEnvironment));
+    const busyVehicles = markPersonnelBusy(currentVehicles, driverAllocation).map(vehicle => vehicle.id === busId
+      ? {
+          ...vehicle,
+          status: 'inTransit',
+          driverAllocation,
+          busTask: {
+            passengerIds: getBusPassengerIds(vehicle),
+            destination: collectionPoint,
+            startedAtSimTime: simTime,
+            durationMinutes,
+            remaining: durationMinutes * 60
+          }
+        }
+      : vehicle
+    );
+    localStorage.setItem('prehospitalVehicles', JSON.stringify(busyVehicles));
+    setVehicles(busyVehicles);
+    window.dispatchEvent(new CustomEvent('prehospitalVehiclesUpdated', { detail: busyVehicles }));
   }
 
   // Funktion för att validera att transport är möjlig innan dialogen öppnas
@@ -488,6 +603,7 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
 
   // Gemensam funktion för att rendera patientinformation (används av både Popup och Modal)
   function renderPatientInfo(p) {
+    const patientOnBus = vehicles.some(bus => bus.type === 'bus' && getBusPassengerIds(bus).some(id => String(id) === String(p.id)));
     const completedActionIds = [...new Set([
       ...(Array.isArray(completedActions[p.id]) ? completedActions[p.id] : []),
       ...(Array.isArray(p.prehospitalCompletedActions) ? p.prehospitalCompletedActions : [])
@@ -643,13 +759,22 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
             ))}
           </select>
         </div>
-        <button
+        {!patientOnBus && <button
           style={{marginTop:6,padding:'6px 12px',borderRadius:5,border:'1px solid #1976d2',background:'#1976d2',color:'#fff',fontWeight:600,cursor:'pointer'}}
           onClick={() => setOpenActionPatient(p.id)}
         >
           Åtgärder
-        </button>
-        {!transportTasks[p.id] && (
+        </button>}
+        {!patientOnBus && !transportTasks[p.id] && vehicles.filter(bus => canBoardGreenPatient(bus, p)).map(bus => (
+          <button
+            key={`${p.id}-board-${bus.id}`}
+            style={{marginTop:6,marginLeft:8,padding:'6px 12px',borderRadius:5,border:'1px solid #00897b',background:'#00897b',color:'#fff',fontWeight:600,cursor:'pointer'}}
+            onClick={() => boardPatientOnBus(bus.id, p.id)}
+          >
+            Be grön patient att sätta sig i bussen ({getBusAvailableSeats(bus)} platser kvar)
+          </button>
+        ))}
+        {!patientOnBus && !transportTasks[p.id] && (
           <button
             style={{marginTop:6,marginLeft:8,padding:'6px 12px',borderRadius:5,border:'1px solid #ff9800',background:'#ff9800',color:'#fff',fontWeight:600,cursor:'pointer'}}
             onClick={() => {
@@ -665,7 +790,7 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
             Skicka till sjukhus
           </button>
         )}
-        {collectionPoint && p.location !== 'Uppsamlingsplats' && !transportTasks[p.id] && (
+        {collectionPoint && p.location !== 'Uppsamlingsplats' && !patientOnBus && !transportTasks[p.id] && (
           <button
             style={{marginTop:6,marginLeft:8,padding:'6px 12px',borderRadius:5,border:'1px solid #4caf50',background:'#4caf50',color:'#fff',fontWeight:600,cursor:'pointer'}}
             onClick={() => sendToCollectionPoint(p.id)}
@@ -674,7 +799,7 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
           </button>
         )}
         {/* Skicka till sjukhus från uppsamlingsplats */}
-        {p.location === 'Uppsamlingsplats' && !transportTasks[p.id] && (
+        {p.location === 'Uppsamlingsplats' && !patientOnBus && !transportTasks[p.id] && (
           <button
             style={{marginTop:6,marginLeft:8,padding:'6px 12px',borderRadius:5,border:'1px solid #1976d2',background:'#1976d2',color:'#fff',fontWeight:600,cursor:'pointer'}}
             onClick={() => {
@@ -692,7 +817,9 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
     );
   }
 
-  return patients.map((p, i) => {
+  return (
+    <>
+    {patients.map((p, i) => {
     const patientTimer = actionTimers[p.id];
     const patientName = typeof p.name === 'object' ? (p.name?.name || p.personnummer || p.id) : (p.name || p.personnummer || p.id);
     const completedFollowUpActions = patientTimer?.waitingForFollowUp
@@ -1122,7 +1249,37 @@ function PrehospitalPatientsMarkers({ collectionPoint, openActionPatient, setOpe
       </div>
     )
   ];
-  }).flat();
+  }).flat()}
+    {vehicles.filter(vehicle => vehicle.type === 'bus' && Number.isFinite(Number(vehicle.lat)) && Number.isFinite(Number(vehicle.lng))).map(bus => (
+      <Marker key={`bus-${bus.id}`} position={[Number(bus.lat), Number(bus.lng)]} title={`Buss ${bus.unitNumber || ''}`}>
+        <Popup minWidth={230}>
+          <div style={{fontWeight:700,fontSize:16,marginBottom:6}}>🚌 Buss {bus.unitNumber}</div>
+          {bus.status === 'inTransit' ? (
+            <div style={{color:'#ff9800',fontWeight:600}}>
+              På väg till uppsamlingsplats · {Math.ceil((bus.busTask?.remaining || 0) / 60)} min kvar
+            </div>
+          ) : (
+            <>
+              <div>{getBusPassengerIds(bus).length} / 40 gröna patienter ombord</div>
+              <div style={{fontSize:12,color:'#555',marginTop:4}}>Ingen personal ombord. En ledig person krävs som förare.</div>
+              {getBusPassengerIds(bus).length > 0 && (
+                <button
+                  type="button"
+                  disabled={!collectionPoint || !Object.values(availablePersonnel).some(count => count > 0)}
+                  style={{marginTop:8,padding:'7px 10px',border:0,borderRadius:4,background:'#00897b',color:'#fff',fontWeight:600,cursor:'pointer'}}
+                  onClick={() => departBus(bus.id)}
+                >
+                  Avgå till uppsamlingsplats
+                </button>
+              )}
+              <div style={{fontSize:12,color:'#666',marginTop:4}}>{getBusAvailableSeats(bus)} platser kvar</div>
+            </>
+          )}
+        </Popup>
+      </Marker>
+    ))}
+    </>
+  );
 }
 
 // Komponent för att visa grupperade fordon med nedräkningstimer
@@ -1235,6 +1392,7 @@ export default function MapPanel({ simTime: propSimTime }) {
   const [hospitalSelectPatient, setHospitalSelectPatient] = useState(null);
   const hospitalDispatchHandlerRef = useRef(null);
   const [placingCollectionPoint, setPlacingCollectionPoint] = useState(false);
+  const [placingBusId, setPlacingBusId] = useState(null);
   const [collectionPoint, setCollectionPoint] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem('collectionPointMarker') || 'null');
@@ -1501,6 +1659,18 @@ export default function MapPanel({ simTime: propSimTime }) {
     localStorage.setItem('collectionPointMarker', JSON.stringify(latlng));
     // Låt placingCollectionPoint vara true tills användaren trycker "Klar"
   }
+  function handleBusPlace(latlng) {
+    const currentVehicles = JSON.parse(localStorage.getItem('prehospitalVehicles') || '[]');
+    const updatedVehicles = currentVehicles.map(vehicle => vehicle.id === placingBusId
+      ? { ...vehicle, lat: latlng.lat, lng: latlng.lng, status: 'available' }
+      : vehicle
+    );
+    localStorage.setItem('prehospitalVehicles', JSON.stringify(updatedVehicles));
+    setVehicles(updatedVehicles);
+    window.dispatchEvent(new CustomEvent('prehospitalVehiclesUpdated', { detail: updatedVehicles }));
+    setPlacingBusId(null);
+  }
+
   function handleDeadCollectionPointPlace(latlng) {
     setDeadCollectionPoint(latlng);
     localStorage.setItem('deadCollectionPointMarker', JSON.stringify(latlng));
@@ -1632,6 +1802,20 @@ export default function MapPanel({ simTime: propSimTime }) {
         <div style={{fontSize:13,color:'#b71c1c',marginBottom:8}}>
           {placingDeadCollectionPoint ? 'Klicka på kartan för att sätta ut uppsamlingsplats döda.' : ''}
         </div>
+        {vehicles.filter(vehicle => vehicle.type === 'bus' && vehicle.status === 'awaitingPlacement').map(bus => (
+          <button
+            key={`place-${bus.id}`}
+            type="button"
+            style={{padding:'10px 16px',fontSize:15,borderRadius:6,border:'1px solid #00897b',background:placingBusId === bus.id ? '#00695c' : '#00897b',color:'#fff',fontWeight:600,marginBottom:8,cursor:'pointer'}}
+            onClick={() => {
+              setPlacingCollectionPoint(false);
+              setPlacingDeadCollectionPoint(false);
+              setPlacingBusId(placingBusId === bus.id ? null : bus.id);
+            }}
+          >
+            {placingBusId === bus.id ? `Klicka på kartan för buss ${bus.unitNumber}` : `Placera buss ${bus.unitNumber}`}
+          </button>
+        ))}
         
         {/* Resurspanel - alltid synlig */}
         <div style={{marginTop:12}}>
@@ -1787,6 +1971,7 @@ export default function MapPanel({ simTime: propSimTime }) {
         >
           <CollectionPointPlacer placing={placingCollectionPoint} onPlace={handleCollectionPointPlace} />
           <CollectionPointPlacer placing={placingDeadCollectionPoint} onPlace={handleDeadCollectionPointPlace} />
+          <CollectionPointPlacer placing={Boolean(placingBusId)} onPlace={handleBusPlace} />
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -1808,6 +1993,8 @@ export default function MapPanel({ simTime: propSimTime }) {
             setTransportTasks={setTransportTasks}
             simTime={simTime}
             simulationEnvironment={effectiveSimulationEnvironment}
+            vehicles={vehicles}
+            setVehicles={setVehicles}
           />
           {collectionPoint && (
             <Marker position={collectionPoint} icon={window.L && window.L.icon ? window.L.icon({

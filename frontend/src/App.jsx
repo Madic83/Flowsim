@@ -769,8 +769,9 @@ export default function App() {
       type: type,
       unitNumber: unitNumber,
       arrivalTime: new Date().toISOString(),
-      status: 'available',
-      personnel // Array av personal-objekt
+      status: type === 'bus' ? 'awaitingPlacement' : 'available',
+      personnel, // Array av personal-objekt
+      ...(type === 'bus' ? { passengerIds: [] } : {})
     };
     
     const updatedVehicles = [...currentVehicles, newVehicle];
@@ -2008,9 +2009,9 @@ export default function App() {
                           {count}x {vType.icon} {vType.label}
                         </div>
                         <div style={{fontSize:13,color:'#666'}}>
-                          Personal: {Object.entries(vType.personnel).map(([cat, count]) => 
-                            `${count}x ${personnelCategories[cat].label}`
-                          ).join(', ')}
+                          {type === 'bus'
+                            ? `Ingen personal ombord · ${vType.capacity} gröna passagerare`
+                            : `Personal: ${Object.entries(vType.personnel).map(([cat, count]) => `${count}x ${personnelCategories[cat].label}`).join(', ')}`}
                         </div>
                         {hasBusy && (
                           <div style={{fontSize:12,color:'#ff9800',fontWeight:600,marginTop:4}}>
@@ -2125,6 +2126,7 @@ export default function App() {
             {renderExerciseButton('LSSL')}
             {renderExerciseButton('Hem')}
             {renderExerciseButton('Personal')}
+            {renderExerciseButton('Hälsocentraler')}
           </div>
         </div>
       )}

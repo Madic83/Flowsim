@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getUpsTimerRemainingMinutes, readHospitalEvents } from '../hospitalEvents.js';
 import { getHospitalEventMessages } from '../hospitalEventMessages.js';
+import { HALSOCENTRALER, readApprovedHalsocentraler, writeApprovedHalsocentraler } from '../halsocentraler.js';
 
 const severityLabels = {
   low: 'Begränsad',
@@ -43,6 +44,7 @@ function EventCard({ event }) {
 
 export default function LSSL({ simTime = '00:00', hospital }) {
   const [events, setEvents] = useState(readHospitalEvents);
+  const [approvedHalsocentraler, setApprovedHalsocentraler] = useState(readApprovedHalsocentraler);
 
   useEffect(() => {
     const syncEvents = event => {
@@ -55,6 +57,27 @@ export default function LSSL({ simTime = '00:00', hospital }) {
       window.removeEventListener('storage', syncEvents);
     };
   }, []);
+
+  useEffect(() => {
+    const syncApproved = e => {
+      if (e && e.key && e.key !== 'approvedHalsocentraler') return;
+      setApprovedHalsocentraler(readApprovedHalsocentraler());
+    };
+    window.addEventListener('storage', syncApproved);
+    window.addEventListener('halsocentralerApprovalChanged', syncApproved);
+    return () => {
+      window.removeEventListener('storage', syncApproved);
+      window.removeEventListener('halsocentralerApprovalChanged', syncApproved);
+    };
+  }, []);
+
+  function toggleHalsocentralApproval(namn) {
+    const updated = approvedHalsocentraler.includes(namn)
+      ? approvedHalsocentraler.filter(item => item !== namn)
+      : [...approvedHalsocentraler, namn];
+    setApprovedHalsocentraler(updated);
+    writeApprovedHalsocentraler(updated);
+  }
 
   const visibleEvents = events.filter(event => !hospital || event.hospital === hospital);
   const activeEvents = visibleEvents.filter(event => event.status === 'active');
@@ -73,6 +96,30 @@ export default function LSSL({ simTime = '00:00', hospital }) {
         </div>
         <div style={{fontFamily:'monospace',fontSize:19,color:'#075078'}}>{simTime}</div>
       </header>
+
+      <section aria-labelledby="lssl-halsocentraler-heading" style={{marginBottom:28}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'baseline',gap:12,borderBottom:'1px solid #cbd5d9',paddingBottom:8,marginBottom:4}}>
+          <h3 id="lssl-halsocentraler-heading" style={{margin:0,fontSize:18}}>Hälsocentraler - godkända för patientmottagning</h3>
+          <span style={{fontSize:13,color:'#617078'}}>{approvedHalsocentraler.length} av {HALSOCENTRALER.length} godkända</span>
+        </div>
+        <p style={{margin:'8px 0 10px',fontSize:13,color:'#5e6b70'}}>Patienter kan bara skickas till hälsocentraler som är markerade som godkända här.</p>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(240px,1fr))',gap:8}}>
+          {HALSOCENTRALER.map(namn => {
+            const isApproved = approvedHalsocentraler.includes(namn);
+            return (
+              <label key={namn} style={{display:'flex',alignItems:'center',gap:8,padding:'8px 10px',border:'1px solid #d9e0e3',borderRadius:5,background:isApproved ? '#f1faf2' : '#fff',cursor:'pointer',fontSize:14}}>
+                <input
+                  type="checkbox"
+                  checked={isApproved}
+                  onChange={() => toggleHalsocentralApproval(namn)}
+                  style={{width:16,height:16,cursor:'pointer'}}
+                />
+                <span>{namn}</span>
+              </label>
+            );
+          })}
+        </div>
+      </section>
 
       {activeUpsEvents.length > 0 && (
         <section aria-labelledby="lssl-ups-heading" style={{marginBottom:24,padding:'14px 16px',border:'1px solid #d7b8b8',borderLeft:'5px solid #a62e2e',background:'#fffafa'}}>

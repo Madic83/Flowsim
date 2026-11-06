@@ -28,6 +28,9 @@ import { actionRequirements } from './components/prehospitalResources';
 import { repairInitialAcuteStartTimes } from './acuteStartTimes.js';
 import Katastrofliggare from './components/Katastrofliggare';
 import LSSL from './components/LSSL';
+import Halsocentraler from './components/Halsocentraler';
+import HalsocentralWindow from './components/HalsocentralWindow';
+import { HALSOCENTRALER, readApprovedHalsocentraler } from './halsocentraler.js';
 
 // Hjälpfunktion för att hitta patientobjekt i OP-listan
 function getPatientByIdFromOP(departmentPatients, id) {
@@ -574,6 +577,27 @@ export default function WindowTab() {
     };
   }, []);
   const akutAutomationEnabled = automation.Akutmottagning;
+
+  // Hälsocentraler som LSSL har godkänt för patientmottagning
+  const [approvedHalsocentraler, setApprovedHalsocentraler] = useState(() => readApprovedHalsocentraler());
+  useEffect(() => {
+    function syncApproved(e) {
+      if (e && e.key && e.key !== 'approvedHalsocentraler') return;
+      setApprovedHalsocentraler(readApprovedHalsocentraler());
+    }
+    window.addEventListener('storage', syncApproved);
+    window.addEventListener('halsocentralerApprovalChanged', syncApproved);
+    return () => {
+      window.removeEventListener('storage', syncApproved);
+      window.removeEventListener('halsocentralerApprovalChanged', syncApproved);
+    };
+  }, []);
+  // Avdelningar/hälsocentraler en patient kan skickas till via förflyttning
+  const transferDestinationOptions = [
+    ...departmentOptions[selectedHospital],
+    ...(!departmentOptions[selectedHospital].includes('Postoperativ avdelning') ? ['Postoperativ avdelning'] : []),
+    ...approvedHalsocentraler
+  ];
 
   // Tilldela automatiskt läkare och sjuksköterska till patienter som saknar det, om automatiseringen är på.
   // Läkare/sjuksköterskor på akutmottagningen kan vara ansvariga för flera patienter samtidigt, så ingen upptagen-kontroll behövs här.
@@ -1428,6 +1452,10 @@ export default function WindowTab() {
         <Katastrofliggare simTime={clock} />
       ) : title === 'LSSL' ? (
         <LSSL simTime={clock} hospital={selectedHospital} />
+      ) : title === 'Hälsocentraler' ? (
+        <Halsocentraler simTime={clock} hospital={selectedHospital} />
+      ) : HALSOCENTRALER.includes(title) ? (
+        <HalsocentralWindow name={title} simTime={clock} departmentPatients={departmentPatients} approved={approvedHalsocentraler.includes(title)} />
       ) : (
       <>
       <div style={{display:'flex',alignItems:'center',gap:16,marginBottom:8}}>
@@ -1618,9 +1646,7 @@ export default function WindowTab() {
                                 style={{padding:'4px 4px',fontSize:13, minWidth: 135, maxWidth: 200}}
                               >
                                 <option value="">Välj</option>
-                                {[...departmentOptions[selectedHospital],
-                                  ...(!departmentOptions[selectedHospital].includes('Postoperativ avdelning') ? ['Postoperativ avdelning'] : [])
-                                ].map(dep => (
+                                {transferDestinationOptions.map(dep => (
                                   <option key={dep} value={dep}>{dep}</option>
                                 ))}
                               </select>
@@ -1801,9 +1827,7 @@ export default function WindowTab() {
                         style={{padding:'2px 6px',fontSize:13}}
                       >
                         <option value="">Välj avdelning</option>
-                        {[...departmentOptions[selectedHospital],
-                          ...(!departmentOptions[selectedHospital].includes('Postoperativ avdelning') ? ['Postoperativ avdelning'] : [])
-                        ].map(dep => (
+                        {transferDestinationOptions.map(dep => (
                           <option key={dep} value={dep}>{dep}</option>
                         ))}
                       </select>
@@ -2488,9 +2512,7 @@ export default function WindowTab() {
                           style={{padding:'4px 4px',fontSize:13, minWidth: 135, maxWidth: 200}}
                         >
                           <option value="">Välj</option>
-                          {[...departmentOptions[selectedHospital],
-                            ...(!departmentOptions[selectedHospital].includes('Postoperativ avdelning') ? ['Postoperativ avdelning'] : [])
-                          ].map(dep => (
+                          {transferDestinationOptions.map(dep => (
                             <option key={dep} value={dep}>{dep}</option>
                           ))}
                         </select>
@@ -2576,7 +2598,7 @@ export default function WindowTab() {
                         style={{padding:'4px 4px',fontSize:13, minWidth: 135, maxWidth: 200}}
                       >
                         <option value="">Välj</option>
-                        {departmentOptions[selectedHospital].map(dep => (
+                        {transferDestinationOptions.map(dep => (
                           <option key={dep} value={dep}>{dep}</option>
                         ))}
                       </select>

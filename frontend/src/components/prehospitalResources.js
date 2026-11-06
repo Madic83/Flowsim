@@ -66,6 +66,15 @@ export const vehicleTypes = {
       paramedic: 1
     },
     capacity: 0
+  },
+  bus: {
+    label: 'Patientbuss',
+    icon: '🚌',
+    color: '#00897b',
+    personnel: {},
+    capacity: 40,
+    passengerTriage: 'Grön',
+    requiresDriver: true
   }
 };
 
